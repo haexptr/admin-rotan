@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Absensi;
 use App\Models\Karyawan;
+use App\Traits\ExportableTrait;
 use Illuminate\Http\Request;
 
 class AbsensiController extends Controller
 {
+    use ExportableTrait;
     /**
      * Display a listing of the resource.
      */
@@ -114,5 +116,36 @@ class AbsensiController extends Controller
 
         return redirect()->route('absensis.index')
             ->with('success', 'Data absensi berhasil dihapus!');
+    }
+
+    /**
+     * Export absensi data to Excel
+     */
+    public function export()
+    {
+        $absensis = Absensi::with('karyawan')->get()->map(function ($absensi) {
+            $status = 'Hadir';
+            if ($absensi->tidak_hadir) {
+                $status = 'Tidak Hadir';
+            } elseif ($absensi->izin) {
+                $status = 'Izin';
+            }
+            
+            return (object) [
+                'tanggal' => $absensi->tanggal->format('d/m/Y'),
+                'karyawan_nama' => $absensi->karyawan->nama ?? '-',
+                'status' => $status,
+                'created_at' => $absensi->created_at->format('d/m/Y H:i'),
+            ];
+        });
+        
+        $headers = [
+            'tanggal' => 'Tanggal',
+            'karyawan_nama' => 'Nama Karyawan',
+            'status' => 'Status Kehadiran',
+            'created_at' => 'Waktu Input'
+        ];
+        
+        return $this->exportToExcel($absensis, $headers, 'data_absensi_' . date('Y-m-d'));
     }
 }

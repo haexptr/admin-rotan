@@ -6,10 +6,12 @@ use App\Models\Gaji;
 use App\Models\Karyawan;
 use App\Models\Absensi;
 use App\Models\Timbangan;
+use App\Traits\ExportableTrait;
 use Illuminate\Http\Request;
 
 class GajiController extends Controller
 {
+    use ExportableTrait;
     /**
      * Display a listing of the resource.
      */
@@ -135,5 +137,29 @@ class GajiController extends Controller
             'gaji_mingguan' => $gajiMingguan,
             'gaji_bulanan' => $gajiBulanan,
         ]);
+    }
+
+    /**
+     * Export gaji data to Excel
+     */
+    public function export()
+    {
+        $gajis = Gaji::with('karyawan')->get()->map(function ($gaji) {
+            return (object) [
+                'karyawan_nama' => $gaji->karyawan->nama ?? '-',
+                'mingguan' => 'Rp ' . number_format($gaji->mingguan, 0, ',', '.'),
+                'statistik_dalam_bulanan' => 'Rp ' . number_format($gaji->statistik_dalam_bulanan, 0, ',', '.'),
+                'created_at' => $gaji->created_at->format('d/m/Y'),
+            ];
+        });
+        
+        $headers = [
+            'karyawan_nama' => 'Nama Karyawan',
+            'mingguan' => 'Gaji Mingguan',
+            'statistik_dalam_bulanan' => 'Gaji Bulanan',
+            'created_at' => 'Tanggal Input'
+        ];
+        
+        return $this->exportToExcel($gajis, $headers, 'data_gaji_' . date('Y-m-d'));
     }
 }

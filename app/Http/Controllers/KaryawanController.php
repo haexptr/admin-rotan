@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
+use App\Traits\ExportableTrait;
 use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
 {
+    use ExportableTrait;
     /**
      * Display a listing of the resource.
      */
@@ -88,5 +90,23 @@ class KaryawanController extends Controller
 
         return redirect()->route('karyawans.index')
             ->with('success', 'Karyawan berhasil dihapus!');
+    }
+
+    /**
+     * Export karyawan data to Excel
+     */
+    public function export()
+    {
+        $karyawans = Karyawan::all();
+        
+        $headers = [
+            'nama' => 'Nama',
+            'alamat' => 'Alamat',
+            'no_telp' => 'No Telepon',
+            'memuat_timbangan_in' => 'Timbangan In (Kg)',
+            'memuat_timbangan_out' => 'Timbangan Out (Kg)'
+        ];
+        
+        return $this->exportToExcel($karyawans, $headers, 'data_karyawan_' . date('Y-m-d'));
     }
 }

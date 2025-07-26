@@ -26,6 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('timbangans', TimbangangController::class);
     Route::resource('absensis', AbsensiController::class);
     Route::resource('gajis', GajiController::class);
+    
+    // Export routes
+    Route::get('karyawans-export', [KaryawanController::class, 'export'])->name('karyawans.export');
+    Route::get('gajis-export', [GajiController::class, 'export'])->name('gajis.export');
+    Route::get('absensis-export', [AbsensiController::class, 'export'])->name('absensis.export');
 });
 
 require __DIR__.'/auth.php';
