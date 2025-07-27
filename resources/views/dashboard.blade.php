@@ -1,6 +1,460 @@
 <x-app-layout>
     @section('title', 'Dashboard')
 
+    <!-- Enhanced CSS untuk Dashboard -->
+    <style>
+        /* ========================================
+           DASHBOARD ENHANCED CSS - TAILWIND
+           Tanpa mengubah struktur Laravel Blade
+           ======================================== */
+
+        /* Custom animations */
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes bounce-in {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ========================================
+           GENERAL STYLING
+           ======================================== */
+
+        /* Main container enhancement */
+        .space-y-6 {
+            @apply relative;
+            animation: fade-in 0.8s ease-out;
+        }
+
+        /* ========================================
+           WELCOME CARD ENHANCEMENT
+           ======================================== */
+
+        /* Welcome card dengan enhanced gradient */
+        .bg-gradient-to-r.from-blue-600.to-purple-600 {
+            @apply relative overflow-hidden;
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 25%, #8b5cf6 75%, #a855f7 100%);
+            animation: slide-up 0.6s ease-out;
+        }
+
+        /* Background pattern untuk welcome card */
+        .bg-gradient-to-r.from-blue-600.to-purple-600::before {
+            content: '';
+            @apply absolute inset-0 opacity-10;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+        }
+
+        /* Welcome card hover effect */
+        .bg-gradient-to-r.from-blue-600.to-purple-600:hover {
+            @apply transform -translate-y-1;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Welcome text enhancement */
+        .bg-gradient-to-r.from-blue-600.to-purple-600 h2 {
+            @apply relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ========================================
+           STATS CARDS ENHANCEMENT
+           ======================================== */
+
+        /* Grid container untuk stats */
+        .grid.grid-cols-1.md\\:grid-cols-2.xl\\:grid-cols-4 {
+            @apply gap-6;
+        }
+
+        /* Base stats card styling */
+        .bg-white.rounded-lg.shadow-sm.p-6 {
+            @apply relative overflow-hidden transition-all duration-300;
+            animation: slide-up 0.8s ease-out;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Stats card hover effects */
+        .bg-white.rounded-lg.shadow-sm.p-6:hover {
+            @apply transform -translate-y-2;
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Border left colors dengan glow effect */
+        .border-blue-500 {
+            position: relative;
+        }
+
+        .border-blue-500::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .border-green-500::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #10b981, #059669);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .border-yellow-500::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #f59e0b, #d97706);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+        }
+
+        .border-purple-500::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #8b5cf6, #7c3aed);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Icon circles enhancement */
+        .w-12.h-12.bg-blue-500.rounded-full,
+        .w-12.h-12.bg-green-500.rounded-full,
+        .w-12.h-12.bg-yellow-500.rounded-full,
+        .w-12.h-12.bg-purple-500.rounded-full {
+            @apply transition-all duration-300;
+            animation: float-gentle 3s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .w-12.h-12.bg-blue-500.rounded-full:hover {
+            @apply scale-110;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .w-12.h-12.bg-green-500.rounded-full:hover {
+            @apply scale-110;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+
+        .w-12.h-12.bg-yellow-500.rounded-full:hover {
+            @apply scale-110;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .w-12.h-12.bg-purple-500.rounded-full:hover {
+            @apply scale-110;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Stats number enhancement */
+        .text-3xl.font-bold.text-gray-900 {
+            @apply bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent;
+            animation: bounce-in 1s ease-out 0.3s both;
+        }
+
+        .text-2xl.font-bold.text-gray-900 {
+            @apply bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent;
+            animation: bounce-in 1s ease-out 0.3s both;
+        }
+
+        /* ========================================
+           CHARTS SECTION ENHANCEMENT
+           ======================================== */
+
+        /* Charts grid container */
+        .grid.grid-cols-1.lg\\:grid-cols-2 {
+            @apply gap-8;
+        }
+
+        /* Chart containers */
+        .bg-white.rounded-lg.shadow-sm.p-6:has(canvas) {
+            @apply relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Chart titles */
+        .text-lg.font-semibold.text-gray-900 {
+            @apply bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent;
+            position: relative;
+        }
+
+        .text-lg.font-semibold.text-gray-900::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            border-radius: 1px;
+        }
+
+        /* Legend dots enhancement */
+        .w-3.h-3.bg-blue-500.rounded-full,
+        .w-3.h-3.bg-yellow-500.rounded-full,
+        .w-3.h-3.bg-green-500.rounded-full,
+        .w-3.h-3.bg-red-500.rounded-full {
+            @apply transition-all duration-300;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        /* ========================================
+           TOP PERFORMERS ENHANCEMENT
+           ======================================== */
+
+        /* Performer cards */
+        .bg-gray-50.rounded-lg {
+            @apply transition-all duration-300 hover:bg-gray-100;
+            background: linear-gradient(135deg, rgba(249, 250, 251, 0.8) 0%, rgba(243, 244, 246, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .bg-gray-50.rounded-lg:hover {
+            @apply transform -translate-y-1;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ranking badges */
+        .w-10.h-10.bg-gradient-to-r.from-blue-500.to-purple-500 {
+            @apply relative overflow-hidden;
+            animation: bounce-in 0.8s ease-out;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .w-10.h-10.bg-gradient-to-r.from-blue-500.to-purple-500::before {
+            content: '';
+            @apply absolute inset-0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            animation: shimmer 2s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        /* Performance percentage badges */
+        .text-green-600.bg-green-100 {
+            @apply transition-all duration-300;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        /* ========================================
+           QUICK ACTIONS ENHANCEMENT
+           ======================================== */
+
+        /* Quick action cards */
+        .border-dashed.border-gray-300 {
+            @apply transition-all duration-300 relative overflow-hidden;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(249, 250, 251, 0.8) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Hover effects untuk quick actions */
+        .hover\\:border-blue-500:hover {
+            @apply transform -translate-y-2;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 197, 253, 0.1) 100%);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .hover\\:border-green-500:hover {
+            @apply transform -translate-y-2;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(110, 231, 183, 0.1) 100%);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
+        }
+
+        .hover\\:border-yellow-500:hover {
+            @apply transform -translate-y-2;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(251, 191, 36, 0.1) 100%);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15);
+        }
+
+        .hover\\:border-purple-500:hover {
+            @apply transform -translate-y-2;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(196, 181, 253, 0.1) 100%);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+        }
+
+        /* Quick action icon circles */
+        .w-12.h-12.bg-blue-600.rounded-full,
+        .w-12.h-12.bg-green-600.rounded-full,
+        .w-12.h-12.bg-yellow-600.rounded-full,
+        .w-12.h-12.bg-purple-600.rounded-full {
+            @apply transition-all duration-300;
+            animation: float-gentle 4s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .group:hover .w-12.h-12.bg-blue-600.rounded-full {
+            @apply scale-110;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .group:hover .w-12.h-12.bg-green-600.rounded-full {
+            @apply scale-110;
+            box-shadow: 0 0 20px rgba(22, 163, 74, 0.5);
+        }
+
+        .group:hover .w-12.h-12.bg-yellow-600.rounded-full {
+            @apply scale-110;
+            box-shadow: 0 0 20px rgba(202, 138, 4, 0.5);
+        }
+
+        .group:hover .w-12.h-12.bg-purple-600.rounded-full {
+            @apply scale-110;
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+        }
+
+        /* ========================================
+           RECENT ACTIVITIES ENHANCEMENT
+           ======================================== */
+
+        /* Activity headers */
+        .text-sm.font-medium.text-gray-700 {
+            @apply relative;
+            color: #374151;
+        }
+
+        .text-sm.font-medium.text-gray-700::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 20px;
+            height: 1px;
+            background: linear-gradient(to right, #6b7280, transparent);
+        }
+
+        /* Status badges enhancement */
+        .bg-green-100.text-green-800 {
+            @apply transition-all duration-300;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.15) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .bg-yellow-100.text-yellow-800 {
+            @apply transition-all duration-300;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.15) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.1);
+        }
+
+        .bg-red-100.text-red-800 {
+            @apply transition-all duration-300;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.15) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.1);
+        }
+
+        /* ========================================
+           RESPONSIVE ENHANCEMENTS
+           ======================================== */
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .space-y-6 {
+                @apply space-y-4;
+            }
+            
+            .bg-gradient-to-r.from-blue-600.to-purple-600 {
+                @apply p-4;
+            }
+            
+            .bg-white.rounded-lg.shadow-sm.p-6 {
+                @apply p-4;
+            }
+            
+            .text-3xl.font-bold.text-gray-900 {
+                @apply text-2xl;
+            }
+            
+            .grid.grid-cols-1.md\\:grid-cols-2.xl\\:grid-cols-4 {
+                @apply gap-4;
+            }
+            
+            .grid.grid-cols-1.lg\\:grid-cols-2 {
+                @apply gap-4;
+            }
+        }
+
+        /* ========================================
+           ACCESSIBILITY ENHANCEMENTS
+           ======================================== */
+
+        /* Focus states */
+        a:focus-visible,
+        button:focus-visible {
+            @apply ring-2 ring-blue-500 ring-offset-2 outline-none;
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            .bg-white.rounded-lg.shadow-sm.p-6 {
+                @apply border-2 border-gray-800;
+            }
+            
+            .bg-gradient-to-r.from-blue-600.to-purple-600 {
+                @apply bg-blue-800;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+
     <div class="space-y-6">
         <!-- Welcome Card -->
         <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-6 text-white">
@@ -395,6 +849,58 @@
                 }
             }
         });
+
+        // Enhanced interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add staggered animation to stats cards
+            const statsCards = document.querySelectorAll('.border-l-4');
+            statsCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Add staggered animation to chart containers
+            const chartContainers = document.querySelectorAll('.bg-white.rounded-lg.shadow-sm.p-6:has(canvas)');
+            chartContainers.forEach((container, index) => {
+                container.style.animationDelay = `${0.4 + index * 0.1}s`;
+            });
+
+            // Add click ripple effect to quick action cards
+            const quickActions = document.querySelectorAll('.border-dashed');
+            quickActions.forEach(action => {
+                action.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(59, 130, 246, 0.3);
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        pointer-events: none;
+                    `;
+                    
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = e.clientX - rect.left - size / 2 + 'px';
+                    ripple.style.top = e.clientY - rect.top - size / 2 + 'px';
+                    
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        });
+
+        // Add ripple animation keyframes
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
     </script>
     @endpush
 </x-app-layout>
