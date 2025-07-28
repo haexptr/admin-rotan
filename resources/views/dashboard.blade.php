@@ -537,7 +537,7 @@
                     </div>
                     <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
                 </div>
@@ -631,49 +631,49 @@
                 </div>
             </div>
 
-            <!-- Top Performers -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Blue to Purple Theme -->
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-400 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+            <!-- Top Performers - Transparent Design -->
+            <div class="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-white/20 dark:border-gray-700/30">
+                <!-- Subtle Gradient Border Effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-400/20 rounded-lg"></div>
+                <div class="absolute inset-[1px] bg-white/5 dark:bg-gray-800/5 backdrop-blur-sm rounded-lg"></div>
                 
                 <!-- Content -->
                 <div class="relative">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Top Performer Bulan Ini</h3>
                     <div class="space-y-4">
                         @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
-                            <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/80 rounded-lg border border-gray-100 dark:border-gray-600/50">
+                            <div class="flex items-center justify-between p-4 bg-white/20 dark:bg-gray-700/20 backdrop-blur-sm rounded-lg border border-white/30 dark:border-gray-600/30 hover:bg-white/30 dark:hover:bg-gray-700/30 transition-all duration-200">
                                 <div class="flex items-center space-x-3">
-                                    <!-- Ranking Badge with Better Contrast -->
-                                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-sm">
+                                    <!-- Ranking Badge with Glass Effect -->
+                                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-bold shadow-lg border border-white/20">
                                         {{ $index + 1 }}
                                     </div>
                                     <div>
-                                        <!-- Employee Name - High Contrast -->
-                                        <p class="font-semibold text-gray-900 dark:text-gray-50">
+                                        <!-- Employee Name - High Contrast for Both Modes -->
+                                        <p class="font-semibold text-gray-900 dark:text-white">
                                             {{ $karyawan->nama }}
                                         </p>
-                                        <!-- Attendance Info - Medium Contrast -->
-                                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                                        <!-- Attendance Info - Good Contrast -->
+                                        <p class="text-sm text-gray-700 dark:text-gray-200">
                                             {{ $karyawan->total_hadir }} hari hadir
                                         </p>
                                     </div>
                                 </div>
-                                <!-- Percentage Badge - High Visibility -->
-                                <span class="text-sm font-bold text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-800/40 px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700/50">
+                                <!-- Percentage Badge - Glass Effect -->
+                                <span class="text-sm font-bold text-purple-800 dark:text-purple-200 bg-purple-100/60 dark:bg-purple-800/30 backdrop-blur-sm px-3 py-1.5 rounded-full border border-green-200/60 dark:border-green-700/40">
                                     {{ round(($karyawan->total_hadir / 30) * 100) }}%
                                 </span>
                             </div>
                         @empty
-                            <!-- Empty State with Better Visibility -->
+                            <!-- Empty State with Glass Effect -->
                             <div class="text-center py-12">
-                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
-                                    <svg class="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-16 h-16 mx-auto mb-4 bg-white/20 dark:bg-gray-700/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 dark:border-gray-600/30">
+                                    <svg class="w-8 h-8 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
                                     </svg>
                                 </div>
-                                <p class="text-gray-600 dark:text-gray-300 font-medium">Belum ada data performer</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Data akan muncul setelah ada aktivitas absensi</p>
+                                <p class="text-gray-800 dark:text-gray-200 font-medium">Belum ada data performer</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Data akan muncul setelah ada aktivitas absensi</p>
                             </div>
                         @endforelse
                     </div>
@@ -696,7 +696,7 @@
                             <div class="w-12 h-12 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors shadow-lg">
                                 <!-- ICON PLUS untuk Tambah Karyawan -->
                                 <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z "></path>
                                 </svg>
                             </div>
                             <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-blue-700 dark:group-hover:text-blue-300 text-center transition-colors select-none" 

@@ -8,6 +8,7 @@
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
+    <link rel="icon" type="image/png" href="{{ asset('SA.png') }}">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     
     <!-- Scripts -->
@@ -41,11 +42,13 @@
             <div class="p-4">
                 <!-- Logo Section -->
                 <div class="flex items-center space-x-2 mb-6 select-none">
-                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center select-none">
-                        <span class="text-white font-bold text-sm select-none">AR</span>
+                    <div class="w-8 h-8 flex items-center justify-center select-none overflow-hidden">
+                        <img src="{{ asset('SA.png') }}" 
+                            alt="SA" 
+                            class="w-full h-full object-cover select-none aspect-square">
                     </div>
                     <div class="select-none">
-                        <h2 class="text-sm font-semibold text-gray-900 dark:text-white select-none">Admin Rotan</h2>
+                        <h2 class="text-sm font-semibold text-gray-900 dark:text-white select-none">Admin</h2>
                         <p class="text-xs text-gray-500 dark:text-gray-400 select-none">Management System</p>
                     </div>
                 </div>
