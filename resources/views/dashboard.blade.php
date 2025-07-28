@@ -631,26 +631,26 @@
                 </div>
             </div>
 
-            <!-- Top Performers - Transparent Design -->
-            <div class="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-white/20 dark:border-gray-700/30">
-                <!-- Subtle Gradient Border Effect -->
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-400/20 rounded-lg"></div>
-                <div class="absolute inset-[1px] bg-white/5 dark:bg-gray-800/5 backdrop-blur-sm rounded-lg"></div>
-                
-                <!-- Content -->
-                <div class="relative">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Top Performer Bulan Ini</h3>
-                    <div class="space-y-4">
-                        @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
-                            <div class="flex items-center justify-between p-4 bg-white/20 dark:bg-gray-700/20 backdrop-blur-sm rounded-lg border border-white/30 dark:border-gray-600/30 hover:bg-white/30 dark:hover:bg-gray-700/30 transition-all duration-200">
-                                <div class="flex items-center space-x-3">
-                                    <!-- Ranking Badge with Glass Effect -->
-                                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-bold shadow-lg border border-white/20">
-                                        {{ $index + 1 }}
-                                    </div>
-                                    <div>
-                                        <!-- Employee Name - High Contrast for Both Modes -->
-                                        <p class="font-semibold text-gray-900 dark:text-white">
+        <!-- Top Performers - Glass Design with Working Hover -->
+        <div class="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-yellow-400/60 dark:border-yellow-500/50">
+            
+            <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 rounded-lg"></div>
+            <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+
+            <!-- Content -->
+            <div class="relative">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Top Performer Bulan Ini</h3>
+                <div class="space-y-4">
+                    @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
+                        <div class="flex items-center justify-between p-4 bg-gray-50/30 dark:bg-gray-700/20 backdrop-blur-sm rounded-lg border border-gray-200/40 dark:border-gray-600/30 hover:bg-gray-100/50 dark:hover:bg-gray-700/40 hover:border-gray-300/60 dark:hover:border-gray-500/40 transition-all duration-200">
+                            <div class="flex items-center space-x-3">
+                                <!-- Ranking Badge with Glass Effect -->
+                                <div class="w-10 h-10 bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-bold shadow-lg border border-white/20">
+                                    {{ $index + 1 }}
+                                </div>
+                                <div>
+                                    <!-- Employee Name - High Contrast for Both Modes -->
+                                    <p class="font-semibold text-gray-900 dark:text-white">                     
                                             {{ $karyawan->nama }}
                                         </p>
                                         <!-- Attendance Info - Good Contrast -->
@@ -660,14 +660,14 @@
                                     </div>
                                 </div>
                                 <!-- Percentage Badge - Glass Effect -->
-                                <span class="text-sm font-bold text-purple-800 dark:text-purple-200 bg-purple-100/60 dark:bg-purple-800/30 backdrop-blur-sm px-3 py-1.5 rounded-full border border-green-200/60 dark:border-green-700/40">
+                                <span class="text-sm font-bold text-green-800 dark:text-green-200 bg-green-100/60 dark:bg-green-800/30 backdrop-blur-sm px-3 py-1.5 rounded-full border border-green-200/60 dark:border-green-700/40">
                                     {{ round(($karyawan->total_hadir / 30) * 100) }}%
                                 </span>
                             </div>
                         @empty
                             <!-- Empty State with Glass Effect -->
                             <div class="text-center py-12">
-                                <div class="w-16 h-16 mx-auto mb-4 bg-white/20 dark:bg-gray-700/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 dark:border-gray-600/30">
+                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-50/30 dark:bg-gray-700/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gray-200/40 dark:border-gray-600/30">
                                     <svg class="w-8 h-8 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
                                     </svg>
