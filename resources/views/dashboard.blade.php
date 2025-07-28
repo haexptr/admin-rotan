@@ -464,14 +464,18 @@
 
         <!-- Stats Cards - Improved Layout -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-            <!-- Total Karyawan -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500">
-                <div class="flex items-center justify-between">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 uppercase">Total Karyawan</p>
-                        <p class="text-3xl font-bold text-gray-900">{{ $totalKaryawan ?? 0 }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Total Karyawan</p>
+                        <p class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">{{ $totalKaryawan ?? 0 }}</p>
                     </div>
-                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                         </svg>
@@ -480,13 +484,18 @@
             </div>
 
             <!-- Absensi Hari Ini -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500">
-                <div class="flex items-center justify-between">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Green Theme -->
+                <div class="absolute inset-0 bg-gradient-to-r from-green-500 via-green-400 to-green-300 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 uppercase">Hadir Hari Ini</p>
-                        <p class="text-3xl font-bold text-gray-900">{{ $totalAbsensiHariIni ?? 0 }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Hadir Hari Ini</p>
+                        <p class="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">{{ $totalAbsensiHariIni ?? 0 }}</p>
                     </div>
-                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
@@ -495,13 +504,18 @@
             </div>
 
             <!-- Timbangan Hari Ini -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500">
-                <div class="flex items-center justify-between">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Yellow Theme -->
+                <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 uppercase">Timbangan Hari Ini</p>
-                        <p class="text-3xl font-bold text-gray-900">{{ $totalTimbanganHariIni ?? 0 }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Timbangan Hari Ini</p>
+                        <p class="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-400 bg-clip-text text-transparent">{{ $totalTimbanganHariIni ?? 0 }}</p>
                     </div>
-                    <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                    <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
                         </svg>
@@ -509,16 +523,21 @@
                 </div>
             </div>
 
-            <!-- Total Gaji Bulan Ini -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-purple-500">
-                <div class="flex items-center justify-between">
+            <!-- Gaji Bulan Ini -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Yellow Theme -->
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-500 via-purple-400 to-purple-300 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 uppercase">Gaji Bulan Ini</p>
-                        <p class="text-2xl font-bold text-gray-900">Rp {{ number_format($totalGajiBulanIni ?? 0, 0, ',', '.') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Gaji Bulan Ini</p>
+                        <p class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">Rp {{ number_format($totalGajiBulanIni ?? 0, 0, ',', '.') }}</p>
                     </div>
-                    <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
                         </svg>
                     </div>
                 </div>
@@ -528,178 +547,278 @@
         <!-- Charts Section - Improved Layout -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Activity Trend Chart -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-gray-900">Tren Aktivitas 7 Hari</h3>
-                    <div class="flex space-x-4 text-sm">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
-                            <span class="text-gray-600">Absensi</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                            <span class="text-gray-600">Timbangan</span>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Blue Theme -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tren Aktivitas 7 Hari</h3>
+                        <div class="flex space-x-4 text-sm">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                                <span class="text-gray-600 dark:text-gray-400">Absensi</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                <span class="text-gray-600 dark:text-gray-400">Timbangan</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="h-64">
-                    <canvas id="activityChart"></canvas>
+                    <div class="h-64">
+                        <canvas id="activityChart"></canvas>
+                    </div>
                 </div>
             </div>
 
             <!-- Status Distribution -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Status Absensi Bulan Ini</h3>
-                <div class="flex items-center justify-center h-48">
-                    <canvas id="absensiChart"></canvas>
-                </div>
-                <div class="mt-4 space-y-2">
-                    <div class="flex items-center justify-between text-sm">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                            <span>Hadir</span>
-                        </div>
-                        <span class="font-medium">{{ $absensiStats['hadir'] }}</span>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Green Theme -->
+                <div class="absolute inset-0 bg-gradient-to-r from-green-500 via-green-400 to-green-300 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Status Absensi Bulan Ini</h3>
+                    <div class="flex items-center justify-center h-48">
+                        <canvas id="absensiChart"></canvas>
                     </div>
-                    <div class="flex items-center justify-between text-sm">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                            <span>Izin</span>
-                        </div>
-                        <span class="font-medium">{{ $absensiStats['izin'] }}</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                            <span>Tidak Hadir</span>
-                        </div>
-                        <span class="font-medium">{{ $absensiStats['tidak_hadir'] }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Salary Trend Chart -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-semibold text-gray-900">Tren Gaji 6 Bulan Terakhir</h3>
-                <div class="text-sm text-gray-500">
-                    Total: Rp {{ number_format(array_sum($gajiBulanan), 0, ',', '.') }}
-                </div>
-            </div>
-            <div class="h-64">
-                <canvas id="gajiChart"></canvas>
-            </div>
-        </div>
-
-        <!-- Bottom Section - Improved Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Top Performers -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Top Performer Bulan Ini</h3>
-                <div class="space-y-4">
-                    @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
-                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-                                    {{ $index + 1 }}
-                                </div>
-                                <div>
-                                    <p class="font-medium text-gray-900">{{ $karyawan->nama }}</p>
-                                    <p class="text-sm text-gray-500">{{ $karyawan->total_hadir }} hari hadir</p>
-                                </div>
+                    <div class="mt-4 space-y-2">
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                <span class="text-gray-900 dark:text-white">Hadir</span>
                             </div>
-                            <span class="text-sm font-medium text-green-600 bg-green-100 px-2 py-1 rounded">
-                                {{ round(($karyawan->total_hadir / 30) * 100) }}%
-                            </span>
+                            <span class="font-medium text-gray-900 dark:text-white">{{ $absensiStats['hadir'] ?? 0 }}</span>
                         </div>
-                    @empty
-                        <p class="text-gray-500 text-center py-8">Belum ada data</p>
-                    @endforelse
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                <span class="text-gray-900 dark:text-white">Izin</span>
+                            </div>
+                            <span class="font-medium text-gray-900 dark:text-white">{{ $absensiStats['izin'] ?? 0 }}</span>
+                        </div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                <span class="text-gray-900 dark:text-white">Tidak Hadir</span>
+                            </div>
+                            <span class="font-medium text-gray-900 dark:text-white">{{ $absensiStats['tidak_hadir'] ?? 0 }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Salary Trend Chart -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Purple Theme -->
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-500 via-purple-400 to-purple-300 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tren Gaji 6 Bulan Terakhir</h3>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            Total: <span class="font-medium text-gray-900 dark:text-white">Rp {{ number_format(array_sum($gajiBulanan ?? [0]), 0, ',', '.') }}</span>
+                        </div>
+                    </div>
+                    <div class="h-64">
+                        <canvas id="gajiChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Performers -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Blue to Purple Theme -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-400 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Top Performer Bulan Ini</h3>
+                    <div class="space-y-4">
+                        @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
+                            <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700/80 rounded-lg border border-gray-100 dark:border-gray-600/50">
+                                <div class="flex items-center space-x-3">
+                                    <!-- Ranking Badge with Better Contrast -->
+                                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-sm">
+                                        {{ $index + 1 }}
+                                    </div>
+                                    <div>
+                                        <!-- Employee Name - High Contrast -->
+                                        <p class="font-semibold text-gray-900 dark:text-gray-50">
+                                            {{ $karyawan->nama }}
+                                        </p>
+                                        <!-- Attendance Info - Medium Contrast -->
+                                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                                            {{ $karyawan->total_hadir }} hari hadir
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Percentage Badge - High Visibility -->
+                                <span class="text-sm font-bold text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-800/40 px-3 py-1.5 rounded-full border border-green-200 dark:border-green-700/50">
+                                    {{ round(($karyawan->total_hadir / 30) * 100) }}%
+                                </span>
+                            </div>
+                        @empty
+                            <!-- Empty State with Better Visibility -->
+                            <div class="text-center py-12">
+                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 font-medium">Belum ada data performer</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Data akan muncul setelah ada aktivitas absensi</p>
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Aksi Cepat</h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <a href="{{ route('karyawans.create') }}" 
-                       class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 group">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-700 transition-colors">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                            </svg>
-                        </div>
-                        <span class="text-sm font-medium text-gray-700 text-center">Tambah Karyawan</span>
-                    </a>
-
-                    <a href="{{ route('absensis.create') }}" 
-                       class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all duration-200 group">
-                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-green-700 transition-colors">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <span class="text-sm font-medium text-gray-700 text-center">Catat Absensi</span>
-                    </a>
-
-                    <a href="{{ route('timbangans.create') }}" 
-                       class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition-all duration-200 group">
-                        <div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-yellow-700 transition-colors">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
-                            </svg>
-                        </div>
-                        <span class="text-sm font-medium text-gray-700 text-center">Input Timbangan</span>
-                    </a>
-
-                    <a href="{{ route('gajis.create') }}" 
-                       class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all duration-200 group">
-                        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-purple-700 transition-colors">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                            </svg>
-                        </div>
-                        <span class="text-sm font-medium text-gray-700 text-center">Hitung Gaji</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Recent Activities -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Aktivitas Terbaru</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Recent Absensi -->
-                <div>
-                    <h4 class="text-sm font-medium text-gray-700 mb-3">Absensi Terbaru</h4>
-                    <div class="space-y-3">
-                        @forelse($recentAbsensi->take(3) as $absensi)
-                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                <span class="text-sm font-medium text-gray-900">{{ $absensi->karyawan->nama }}</span>
-                                <span class="px-2 py-1 text-xs rounded-full 
-                                    {{ $absensi->hadir ? 'bg-green-100 text-green-800' : ($absensi->izin ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800') }}">
-                                    {{ $absensi->hadir ? 'Hadir' : ($absensi->izin ? 'Izin' : 'Tidak Hadir') }}
-                                </span>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Multi-color Theme -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-yellow-500 to-purple-500 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 select-none" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">Aksi Cepat</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Tambah Karyawan -->
+                        <a href="{{ route('karyawans.create') }}" 
+                        class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 group select-none">
+                            <div class="w-12 h-12 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors shadow-lg">
+                                <!-- ICON PLUS untuk Tambah Karyawan -->
+                                <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
                             </div>
-                        @empty
-                            <p class="text-gray-500 text-sm text-center py-4">Belum ada data</p>
-                        @endforelse
+                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-blue-700 dark:group-hover:text-blue-300 text-center transition-colors select-none" 
+                                style="text-shadow: 0 1px 2px rgba(0,0,0,0.1); -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);">
+                                Tambah Karyawan
+                            </span>
+                        </a>
+
+                        <!-- Catat Absensi -->
+                        <a href="{{ route('absensis.create') }}" 
+                        class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-green-500 dark:hover:border-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-200 group select-none">
+                            <div class="w-12 h-12 bg-green-600 dark:bg-green-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-green-700 dark:group-hover:bg-green-600 transition-colors shadow-lg">
+                                <!-- ICON CHECKMARK untuk Absensi -->
+                                <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-green-700 dark:group-hover:text-green-300 text-center transition-colors select-none" 
+                                style="text-shadow: 0 1px 2px rgba(0,0,0,0.1); -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);">
+                                Catat Absensi
+                            </span>
+                        </a>
+
+                        <!-- Input Timbangan -->
+                        <a href="{{ route('timbangans.create') }}" 
+                        class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-yellow-500 dark:hover:border-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-all duration-200 group select-none">
+                            <div class="w-12 h-12 bg-yellow-600 dark:bg-yellow-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-yellow-700 dark:group-hover:bg-yellow-600 transition-colors shadow-lg">
+                                <!-- ICON SCALE untuk Timbangan -->
+                                <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-yellow-700 dark:group-hover:text-yellow-300 text-center transition-colors select-none" 
+                                style="text-shadow: 0 1px 2px rgba(0,0,0,0.1); -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);">
+                                Input Timbangan
+                            </span>
+                        </a>
+
+                        <!-- Hitung Gaji -->
+                        <a href="{{ route('gajis.create') }}" 
+                        class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-purple-500 dark:hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 group select-none">
+                            <div class="w-12 h-12 bg-purple-600 dark:bg-purple-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-purple-700 dark:group-hover:bg-purple-600 transition-colors shadow-lg">
+                                <!-- ICON MONEY untuk Gaji -->
+                                <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-purple-700 dark:group-hover:text-purple-300 text-center transition-colors select-none" 
+                                style="text-shadow: 0 1px 2px rgba(0,0,0,0.1); -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);">
+                                Hitung Gaji
+                            </span>
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Recent Timbangan -->
-                <div>
-                    <h4 class="text-sm font-medium text-gray-700 mb-3">Timbangan Terbaru</h4>
-                    <div class="space-y-3">
-                        @forelse($recentTimbangan->take(3) as $timbangan)
-                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                <span class="text-sm font-medium text-gray-900">{{ $timbangan->karyawan->nama }}</span>
-                                <span class="text-xs text-gray-500">{{ $timbangan->deskripsi_timbangan }}</span>
+            <!-- Recent Activities -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
+                <!-- Gradient Border Effect - Green to Yellow Theme (Activity Colors) -->
+                <div class="absolute inset-0 bg-gradient-to-r from-green-500 via-blue-500 to-yellow-500 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                
+                <!-- Content -->
+                <div class="relative">
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50 mb-4">Aktivitas Terbaru</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Recent Absensi -->
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                Absensi Terbaru
+                            </h4>
+                            <div class="space-y-3">
+                                @forelse($recentAbsensi->take(3) as $absensi)
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-750 rounded-lg border border-gray-200 dark:border-gray-600">
+                                        <span class="text-sm font-bold text-gray-900 dark:text-gray-50">{{ $absensi->karyawan->nama }}</span>
+                                        <span class="px-3 py-1.5 text-xs rounded-full font-bold
+                                            {{ $absensi->hadir ? 'bg-green-100 dark:bg-green-800 text-green-900 dark:text-green-100 border border-green-300 dark:border-green-600' : 
+                                            ($absensi->izin ? 'bg-yellow-100 dark:bg-yellow-800 text-yellow-900 dark:text-yellow-100 border border-yellow-300 dark:border-yellow-600' : 
+                                            'bg-red-100 dark:bg-red-800 text-red-900 dark:text-red-100 border border-red-300 dark:border-red-600') }}">
+                                            {{ $absensi->hadir ? 'Hadir' : ($absensi->izin ? 'Izin' : 'Tidak Hadir') }}
+                                        </span>
+                                    </div>
+                                @empty
+                                    <div class="text-center py-8">
+                                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-gray-700 dark:text-gray-300 text-sm font-semibold">Belum ada data absensi</p>
+                                    </div>
+                                @endforelse
                             </div>
-                        @empty
-                            <p class="text-gray-500 text-sm text-center py-4">Belum ada data</p>
-                        @endforelse
+                        </div>
+
+                        <!-- Recent Timbangan -->
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
+                                <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                                Timbangan Terbaru
+                            </h4>
+                            <div class="space-y-3">
+                                @forelse($recentTimbangan->take(3) as $timbangan)
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-750 rounded-lg border border-gray-200 dark:border-gray-600">
+                                        <span class="text-sm font-bold text-gray-900 dark:text-gray-50 flex-1 mr-3">{{ $timbangan->karyawan->nama }}</span>
+                                        <span class="text-xs text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-600 px-3 py-1.5 rounded-full font-bold border border-gray-300 dark:border-gray-500 text-center whitespace-nowrap">
+                                            {{ $timbangan->deskripsi_timbangan }}
+                                        </span>
+                                    </div>
+                                @empty
+                                    <div class="text-center py-8">
+                                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                                            <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-gray-700 dark:text-gray-300 text-sm font-semibold">Belum ada data timbangan</p>
+                                    </div>
+                                @endforelse
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
