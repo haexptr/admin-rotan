@@ -9,7 +9,7 @@ use App\Http\Controllers\GajiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('/login');
+    return view('auth/login');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
