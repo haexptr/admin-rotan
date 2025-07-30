@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Rotan Sidoarjo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            cursor: default;
+            user-select: none;
+        }
+
+        /* Hide all scrollbars */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Header - Modern Elegant */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(44, 62, 80, 0.15);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🌿";
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #74b9ff;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #74b9ff, #0984e3);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Login Button - Elegant & Eye-catching */
+        .login-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section - Sophisticated */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.85), rgba(52, 73, 94, 0.85)), 
+                        linear-gradient(45deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.04)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(116, 185, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(116, 185, 255, 0.4);
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* About Section - Clean & Modern */
+        .about {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #74b9ff, #0984e3);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .placeholder-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #ddd6fe, #c7d2fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #2c3e50;
+        }
+
+        /* Products Section - Auto Sliding Clean Version */
+        .products {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            overflow: hidden;
+        }
+
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            margin-top: 3rem;
+            padding: 2rem 0;
+        }
+
+        .product-slider {
+            display: flex;
+            gap: 2rem;
+            animation: infiniteSlide 30s linear infinite;
+            width: max-content;
+        }
+
+        .product-slider:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes infiniteSlide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(52, 73, 94, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(116, 185, 255, 0.1);
+            min-width: 350px;
+            flex-shrink: 0;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #74b9ff, #0984e3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(52, 73, 94, 0.15);
+            border-color: rgba(116, 185, 255, 0.2);
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Contact Section - Elegant Dark */
+        .contact {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+            color: white;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="rgba(116,185,255,0.1)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item span {
+            font-size: 1.5rem;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(116, 185, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.95);
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #74b9ff;
+            box-shadow: 0 0 0 3px rgba(116, 185, 255, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(116, 185, 255, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(116, 185, 255, 0.4);
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+        }
+
+        /* Footer - Sophisticated Dark */
+        footer {
+            background: #1a202c;
+            color: #a0aec0;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(116, 185, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(44, 62, 80, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .mobile-menu-toggle {
+                display: block !important;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .login-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                min-width: 280px;
+            }
+        }
+
+        /* Floating Elements */
+        .floating {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating:nth-child(2) { top: 60%; right: 10%; animation-delay: 2s; }
+        .floating:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Loading overlay for redirect - Enhanced Smooth */
+        .redirect-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.95), rgba(52, 73, 94, 0.95));
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .redirect-overlay.show {
+            opacity: 1;
+        }
+
+        .redirect-content {
+            text-align: center;
+            color: white;
+            animation: smoothSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes smoothSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.9);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(10px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .redirect-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(116, 185, 255, 0.2);
+            border-top: 3px solid #74b9ff;
+            border-right: 3px solid #0984e3;
+            border-radius: 50%;
+            animation: smoothSpin 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            margin: 0 auto 2rem;
+            box-shadow: 0 0 20px rgba(116, 185, 255, 0.3);
+        }
+
+        @keyframes smoothSpin {
+            0% { 
+                transform: rotate(0deg) scale(1);
+                box-shadow: 0 0 20px rgba(116, 185, 255, 0.3);
+            }
+            50% { 
+                transform: rotate(180deg) scale(1.05);
+                box-shadow: 0 0 30px rgba(116, 185, 255, 0.5);
+            }
+            100% { 
+                transform: rotate(360deg) scale(1);
+                box-shadow: 0 0 20px rgba(116, 185, 255, 0.3);
+            }
+        }
+
+        .redirect-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .redirect-content p {
+            font-size: 1rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        /* Progress dots animation */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(116, 185, 255, 0.3);
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+
+        .progress-dot:nth-child(1) { animation-delay: 0s; }
+        .progress-dot:nth-child(2) { animation-delay: 0.3s; }
+        .progress-dot:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                background: rgba(116, 185, 255, 0.3);
+                transform: scale(1);
+            }
+            50% {
+                background: #74b9ff;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Smooth page transition out */
+        .page-fade-out {
+            animation: pageSlideOut 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes pageSlideOut {
+            0% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.05) translateY(-20px);
+                filter: blur(5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">SA Rotan Sidoarjo</div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#products">Produk</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                <a href="#" class="login-btn" onclick="redirectToLogin(event)">
+                    🔐 Masuk
+                </a>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating">🌿</div>
+        <div class="floating">🪑</div>
+        <div class="floating">🌾</div>
+        
+        <div class="hero-content">
+            <h1>Produk Lokal, Kualitas Global </h1>
+            <p>Menghadirkan keindahan alami rotan Indonesia dalam setiap produk berkualitas tinggi </p>
+            <a href="#products" class="cta-button">Lihat Koleksi Kami</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Warisan Keahlian Rotan Indonesia</h3>
+                    <p>Sejak tahun 2010, SA Rotan Sidoarjo telah menjadi pionir dalam industri furniture rotan Indonesia. Kami menggabungkan teknik tradisional yang telah diwariskan turun-temurun dengan teknologi modern untuk menghasilkan produk berkualitas ekspor.</p>
+                    <p>Dengan komitmen terhadap keberlanjutan lingkungan, kami hanya menggunakan bahan rotan pilihan yang dipanen secara bertanggung jawab dari hutan-hutan Indonesia. Setiap produk dibuat dengan perhatian detail dan standar kualitas internasional.</p>
+                    <p>Tim pengrajin berpengalaman kami yang telah mengabdikan hidup mereka untuk seni pembuatan furniture rotan, menjadikan setiap produk sebagai karya seni yang fungsional.</p>
+                </div>
+                <div class="about-image">
+                    <div class="placeholder-image">🏭</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section with Clean Auto Slide -->
+    <section id="products" class="products">
+        <div class="products-container">
+            <h2 class="section-title">Produk Unggulan</h2>
+            
+            <div class="product-slider-wrapper">
+                <div class="product-slider">
+                    <!-- First set of cards -->
+                    <div class="product-card">
+                        <div class="product-icon">🪑</div>
+                        <h3>Furniture Rumah</h3>
+                        <p>Koleksi lengkap furniture rotan untuk ruang tamu, kamar tidur, dan ruang makan yang menawan dengan desain modern dan klasik.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🏨</div>
+                        <h3>Furniture Hotel & Resort</h3>
+                        <p>Solusi furniture rotan premium untuk industri hospitality dengan daya tahan tinggi dan estetika yang memukau.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🌺</div>
+                        <h3>Furniture Taman</h3>
+                        <p>Rangkaian furniture outdoor yang tahan cuaca, sempurna untuk taman, balkon, dan area outdoor lainnya.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🎨</div>
+                        <h3>Custom Design</h3>
+                        <p>Layanan desain khusus sesuai kebutuhan dan preferensi Anda dengan konsultasi gratis dari tim desainer berpengalaman.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🧺</div>
+                        <h3>Aksesoris Dekorasi</h3>
+                        <p>Berbagai aksesoris rotan seperti keranjang, lampu hias, dan dekorasi dinding untuk melengkapi interior Anda.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">📦</div>
+                        <h3>Ekspor International</h3>
+                        <p>Layanan ekspor ke seluruh dunia dengan standar packaging internasional dan sertifikasi kualitas global.</p>
+                    </div>
+                    
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="product-card">
+                        <div class="product-icon">🪑</div>
+                        <h3>Furniture Rumah</h3>
+                        <p>Koleksi lengkap furniture rotan untuk ruang tamu, kamar tidur, dan ruang makan yang menawan dengan desain modern dan klasik.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🏨</div>
+                        <h3>Furniture Hotel & Resort</h3>
+                        <p>Solusi furniture rotan premium untuk industri hospitality dengan daya tahan tinggi dan estetika yang memukau.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🌺</div>
+                        <h3>Furniture Taman</h3>
+                        <p>Rangkaian furniture outdoor yang tahan cuaca, sempurna untuk taman, balkon, dan area outdoor lainnya.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🎨</div>
+                        <h3>Custom Design</h3>
+                        <p>Layanan desain khusus sesuai kebutuhan dan preferensi Anda dengan konsultasi gratis dari tim desainer berpengalaman.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">🧺</div>
+                        <h3>Aksesoris Dekorasi</h3>
+                        <p>Berbagai aksesoris rotan seperti keranjang, lampu hias, dan dekorasi dinding untuk melengkapi interior Anda.</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon">📦</div>
+                        <h3>Ekspor International</h3>
+                        <p>Layanan ekspor ke seluruh dunia dengan standar packaging internasional dan sertifikasi kualitas global.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Hubungi Kami</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <div>
+                            <strong>Alamat:</strong><br>
+                            Jl. Industri Rotan No. 123<br>
+                            Cirebon, Jawa Barat 45123
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <div>
+                            <strong>Telepon:</strong><br>
+                            (+62) 812 174 948 01<br>
+                            (+62) 812 174 948 02<br>
+                            (+62) 817 517 743 2<br>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <div>
+                            <strong>Email:</strong><br>
+                            info@rotannusantara.co.id
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span>🕒</span>
+                        <div>
+                            <strong>Jam Operasional:</strong><br>
+                            Senin - Jumat: 07:30 - 16:00<br>
+                            Sabtu: 7:30 - 15:30
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Kirim Pesan</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nama:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek:</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan:</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SA Rotan Sidoarjo. Semua hak dilindungi. | Crafted with ❤️ for Indonesian Rattan Excellence</p>
+        </div>
+    </footer>
+
+    <!-- Redirect Loading Overlay -->
+    <div id="redirectOverlay" class="redirect-overlay">
+        <div class="redirect-content">
+            <div class="redirect-spinner"></div>
+            <h3>Mengarahkan ke halaman login</h3>
+            <p>Mohon tunggu sebentar</p>
+            <div class="progress-dots">
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to redirect to Laravel auth login - Fast Version
+        function redirectToLogin(event) {
+            event.preventDefault();
+            
+            const overlay = document.getElementById('redirectOverlay');
+            const body = document.body;
+            
+            // Show overlay immediately
+            body.style.overflow = 'hidden';
+            overlay.style.display = 'flex';
+            overlay.classList.add('show');
+            
+            // Quick redirect after minimal delay
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 500);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah dikirim. Kami akan segera menghubungi Anda.');
+            this.reset();
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(44, 62, 80, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animation
+        document.querySelectorAll('.about-text, .contact-info').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Handle keyboard shortcut for login
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
+                e.preventDefault();
+                redirectToLogin(e);
+            }
+        });
+
+        // Reset overlay on errors
+        window.addEventListener('beforeunload', function() {
+            const overlay = document.getElementById('redirectOverlay');
+            const body = document.body;
+            
+            overlay.style.display = 'none';
+            overlay.classList.remove('show');
+            body.classList.remove('page-fade-out');
+            body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('error', function() {
+            const overlay = document.getElementById('redirectOverlay');
+            const body = document.body;
+            
+            overlay.style.display = 'none';
+            overlay.classList.remove('show');
+            body.classList.remove('page-fade-out');
+            body.style.overflow = 'auto';
+        });
+    </script>
+</body>
+</html>
