@@ -114,12 +114,12 @@
                         <span class="ml-2 text-sm text-gray-600 group-hover:text-gray-800 transition-colors">Ingat saya</span>
                     </label>
 
-                    @if (Route::has('password.request'))
+                    <!-- @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}" 
                            class="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors hover:underline">
                             Lupa password?
                         </a>
-                    @endif
+                    @endif -->
                 </div>
 
                 <!-- Submit Button -->
@@ -130,17 +130,17 @@
                 </button>
 
                 <!-- Divider -->
-                <div class="relative my-6">
+                <!-- <div class="relative my-6">
                     <div class="absolute inset-0 flex items-center">
                         <div class="w-full border-t border-gray-200"></div>
                     </div>
                     <div class="relative flex justify-center text-sm">
                         <span class="px-4 bg-white text-gray-500">atau</span>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Register Link -->
-                @if (Route::has('register'))
+                <!-- @if (Route::has('register'))
                     <div class="text-center">
                         <p class="text-sm text-gray-600">
                             Belum punya akun? 
@@ -150,7 +150,7 @@
                             </a>
                         </p>
                     </div>
-                @endif
+                @endif -->
             </form>
         </div>
 
@@ -163,7 +163,7 @@
     </div>
 
     <!-- Development Login Info -->
-    @if (app()->environment('local'))
+    <!-- @if (app()->environment('local'))
         <div class="fixed bottom-6 right-6 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-4 shadow-xl max-w-xs transform transition-all duration-300 hover:scale-105">
             <div class="flex items-center mb-2">
                 <div class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
@@ -174,7 +174,7 @@
                 <p class="font-mono bg-gray-50 px-2 py-1 rounded">admin123</p>
             </div>
         </div>
-    @endif
+    @endif -->
 
     <style>
         @keyframes spin-slow {
