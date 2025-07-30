@@ -14,19 +14,21 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: default;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             height: 100vh;
             overflow: hidden;
-            background: linear-gradient(135deg, #8B4513 0%, #D2691E 25%, #DEB887 50%, #F4A460 75%, #8B4513 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 25%, #667eea 50%, #764ba2 75%, #2c3e50 100%);
             background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
+            animation: gradientShift 10s ease infinite;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            user-select: none;
         }
 
         @keyframes gradientShift {
@@ -35,7 +37,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating particles effect */
+        /* Floating particles effect - Modern colors */
         .particles {
             position: absolute;
             top: 0;
@@ -48,9 +50,10 @@
 
         .particle {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(116, 185, 255, 0.15);
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(116, 185, 255, 0.2);
         }
 
         .particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: 0s; }
@@ -65,8 +68,8 @@
 
         @keyframes float {
             0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
 
@@ -82,27 +85,48 @@
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            animation: logoFloat 3s ease-in-out infinite;
+            box-shadow: 0 25px 50px rgba(44, 62, 80, 0.3);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(116, 185, 255, 0.3);
+            animation: logoFloat 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3, #667eea, #764ba2);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .logo-text {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            background: linear-gradient(45deg, #8B4513, #D2691E);
+            background: linear-gradient(45deg, #2c3e50, #34495e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         @keyframes logoAppear {
@@ -121,28 +145,33 @@
 
         @keyframes logoFloat {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
 
         .welcome-text {
             color: white;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             animation: textSlideUp 2s ease-out 0.5s both;
         }
 
         .welcome-text h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             line-height: 1.2;
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .welcome-text p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            opacity: 0.9;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-size: 1.3rem;
+            font-weight: 400;
+            opacity: 0.95;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            color: #ddd6fe;
         }
 
         @keyframes textSlideUp {
@@ -158,34 +187,36 @@
 
         .loading-container {
             animation: loadingAppear 2.5s ease-out 1s both;
+            margin-bottom: 1rem;
         }
 
         .loading-text {
-            color: white;
-            font-size: 1rem;
-            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 500;
             margin-bottom: 1.5rem;
-            opacity: 0.8;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .progress-bar {
-            width: 300px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            width: 320px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
             margin: 0 auto;
             overflow: hidden;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #fff, #f0f0f0, #fff);
+            background: linear-gradient(90deg, #74b9ff, #0984e3, #667eea, #764ba2);
             background-size: 200% 100%;
-            border-radius: 10px;
+            border-radius: 15px;
             width: 0%;
-            animation: progressFill 4s ease-in-out, progressShine 1.5s ease-in-out infinite;
+            animation: progressFill 4s ease-in-out, progressShine 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(116, 185, 255, 0.5);
         }
 
         @keyframes loadingAppear {
@@ -220,46 +251,94 @@
             }
             100% {
                 opacity: 0;
-                transform: scale(1.1);
+                transform: scale(1.05);
             }
+        }
+
+        /* Skip button - Hidden */
+        .skip-button {
+            display: none;
+        }
+
+        /* Action buttons container - Hidden */
+        .action-buttons {
+            display: none;
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
             .welcome-text h1 {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
             
             .welcome-text p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             
             .logo {
-                width: 100px;
-                height: 100px;
+                width: 110px;
+                height: 110px;
             }
             
             .logo-text {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .progress-bar {
-                width: 250px;
+                width: 280px;
+            }
+
+            .skip-button {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .enter-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
             }
         }
 
         @media (max-width: 480px) {
             .welcome-text h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .progress-bar {
-                width: 200px;
+                width: 240px;
             }
+
+            .enter-button {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Additional modern effects */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(116, 185, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.1; transform: scale(1.1); }
         }
     </style>
 </head>
 <body>
+    <!-- Skip Button - Hidden -->
+    <!-- <button class="skip-button" onclick="redirectToIndex()">Lewati ⏭️</button> -->
+
     <!-- Floating particles -->
     <div class="particles">
         <div class="particle"></div>
@@ -284,7 +363,7 @@
         <!-- Welcome Text -->
         <div class="welcome-text">
             <h1>Selamat Datang</h1>
-            <p>SA Rotan Sidoarjo</p>
+            <p>SA Rotan Sidoarjo - Furniture Rotan Berkualitas</p>
         </div>
 
         <!-- Loading -->
@@ -297,21 +376,26 @@
     </div>
 
     <script>
-        // Redirect to login page after 5 seconds
-        setTimeout(function() {
+        // Function to redirect to index.html
+        function redirectToIndex() {
             const container = document.getElementById('mainContainer');
             container.classList.add('fade-out');
             
             // Wait for fade out animation to complete then redirect
             setTimeout(function() {
-                // Ganti '/login' dengan route login yang sesuai
-                window.location.href = '/login';
+                // Redirect to index.html (website pabrik rotan)
+                window.location.href = 'index.html';
             }, 1000);
-        }, 4000);
+        }
+
+        // Auto redirect after 5 seconds
+        setTimeout(function() {
+            redirectToIndex();
+        }, 5000);
 
         // Add some interactive particles on mouse move
         document.addEventListener('mousemove', function(e) {
-            if (Math.random() > 0.95) {
+            if (Math.random() > 0.96) {
                 createTemporaryParticle(e.clientX, e.clientY);
             }
         });
@@ -321,19 +405,22 @@
             particle.style.position = 'fixed';
             particle.style.left = x + 'px';
             particle.style.top = y + 'px';
-            particle.style.width = '4px';
-            particle.style.height = '4px';
-            particle.style.background = 'rgba(255, 255, 255, 0.6)';
+            particle.style.width = '6px';
+            particle.style.height = '6px';
+            particle.style.background = 'rgba(116, 185, 255, 0.8)';
             particle.style.borderRadius = '50%';
             particle.style.pointerEvents = 'none';
             particle.style.zIndex = '100';
-            particle.style.animation = 'tempParticle 1s ease-out forwards';
+            particle.style.boxShadow = '0 0 10px rgba(116, 185, 255, 0.6)';
+            particle.style.animation = 'tempParticle 1.2s ease-out forwards';
             
             document.body.appendChild(particle);
             
             setTimeout(() => {
-                document.body.removeChild(particle);
-            }, 1000);
+                if (document.body.contains(particle)) {
+                    document.body.removeChild(particle);
+                }
+            }, 1200);
         }
 
         // Add temporary particle animation
@@ -345,12 +432,43 @@
                     opacity: 1;
                 }
                 100% {
-                    transform: scale(0) translateY(-50px);
+                    transform: scale(0) translateY(-60px);
                     opacity: 0;
                 }
             }
         `;
         document.head.appendChild(style);
+
+        // Keyboard shortcut to skip (press Enter or Space) - Optional
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                redirectToIndex();
+            }
+        });
+
+        // Show loading progress with percentage
+        let progress = 0;
+        const loadingText = document.querySelector('.loading-text');
+        const progressInterval = setInterval(() => {
+            progress += 1.5;
+            if (progress <= 100) {
+                loadingText.textContent = `Memuat sistem... ${Math.floor(progress)}%`;
+            } else {
+                clearInterval(progressInterval);
+                loadingText.textContent = 'Siap! Mengalihkan ke website...';
+            }
+        }, 60);
+
+        // Add subtle screen glow effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            
+            setInterval(() => {
+                const glowIntensity = 0.5 + Math.sin(Date.now() * 0.001) * 0.2;
+                body.style.boxShadow = `inset 0 0 100px rgba(116, 185, 255, ${glowIntensity * 0.1})`;
+            }, 100);
+        });
     </script>
 </body>
 </html>

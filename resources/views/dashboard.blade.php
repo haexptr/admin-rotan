@@ -1,11 +1,67 @@
 <x-app-layout>
     @section('title', 'Dashboard')
 
-    <!-- Enhanced CSS untuk Dashboard -->
+    <!-- Enhanced CSS untuk Dashboard dengan Scrollbar Konsisten -->
     <style>
         /* ========================================
-           DASHBOARD ENHANCED CSS - TAILWIND
-           Tanpa mengubah struktur Laravel Blade
+           CONSISTENT SCROLLBAR FOR BOTH MODES
+           ======================================== */
+
+        /* Custom Scrollbar - Consistent untuk Light & Dark Mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(156, 163, 175, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(107, 114, 128, 0.6);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(75, 85, 99, 0.8);
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background: rgba(55, 65, 81, 0.9);
+        }
+
+        /* Firefox Scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(107, 114, 128, 0.6) rgba(156, 163, 175, 0.2);
+        }
+
+        /* Ensure scrollbar stays consistent in dark mode */
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(156, 163, 175, 0.2);
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(107, 114, 128, 0.6);
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: rgba(75, 85, 99, 0.8);
+        }
+
+        .dark ::-webkit-scrollbar-thumb:active {
+            background: rgba(55, 65, 81, 0.9);
+        }
+
+        /* Firefox dark mode */
+        .dark * {
+            scrollbar-color: rgba(107, 114, 128, 0.6) rgba(156, 163, 175, 0.2);
+        }
+
+        /* ========================================
+           DASHBOARD ENHANCED CSS
            ======================================== */
 
         /* Custom animations */
@@ -40,126 +96,54 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* ========================================
-           GENERAL STYLING
-           ======================================== */
-
         /* Main container enhancement */
         .space-y-6 {
-            @apply relative;
             animation: fade-in 0.8s ease-out;
         }
 
-        /* ========================================
-           WELCOME CARD ENHANCEMENT
-           ======================================== */
-
-        /* Welcome card dengan enhanced gradient */
+        /* Welcome card enhancement */
         .bg-gradient-to-r.from-blue-600.to-purple-600 {
-            @apply relative overflow-hidden;
+            position: relative;
+            overflow: hidden;
             background: linear-gradient(135deg, #2563eb 0%, #3b82f6 25%, #8b5cf6 75%, #a855f7 100%);
             animation: slide-up 0.6s ease-out;
         }
 
-        /* Background pattern untuk welcome card */
         .bg-gradient-to-r.from-blue-600.to-purple-600::before {
             content: '';
-            @apply absolute inset-0 opacity-10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
             background-image: 
                 radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
         }
 
-        /* Welcome card hover effect */
         .bg-gradient-to-r.from-blue-600.to-purple-600:hover {
-            @apply transform -translate-y-1;
+            transform: translateY(-1px);
             transition: all 0.3s ease;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        /* Welcome text enhancement */
-        .bg-gradient-to-r.from-blue-600.to-purple-600 h2 {
-            @apply relative;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* ========================================
-           STATS CARDS ENHANCEMENT
-           ======================================== */
-
-        /* Grid container untuk stats */
-        .grid.grid-cols-1.md\\:grid-cols-2.xl\\:grid-cols-4 {
-            @apply gap-6;
-        }
-
-        /* Base stats card styling */
+        /* Stats cards enhancement */
         .bg-white.rounded-lg.shadow-sm.p-6 {
-            @apply relative overflow-hidden transition-all duration-300;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
             animation: slide-up 0.8s ease-out;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Stats card hover effects */
         .bg-white.rounded-lg.shadow-sm.p-6:hover {
-            @apply transform -translate-y-2;
+            transform: translateY(-2px);
             box-shadow: 
                 0 20px 25px -5px rgba(0, 0, 0, 0.1),
                 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        /* Border left colors dengan glow effect */
-        .border-blue-500 {
-            position: relative;
-        }
-
-        .border-blue-500::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
-            border-radius: 0 4px 4px 0;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-        }
-
-        .border-green-500::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, #10b981, #059669);
-            border-radius: 0 4px 4px 0;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-        }
-
-        .border-yellow-500::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, #f59e0b, #d97706);
-            border-radius: 0 4px 4px 0;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
-        }
-
-        .border-purple-500::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, #8b5cf6, #7c3aed);
-            border-radius: 0 4px 4px 0;
-            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
         }
 
         /* Icon circles enhancement */
@@ -167,281 +151,194 @@
         .w-12.h-12.bg-green-500.rounded-full,
         .w-12.h-12.bg-yellow-500.rounded-full,
         .w-12.h-12.bg-purple-500.rounded-full {
-            @apply transition-all duration-300;
+            transition: all 0.3s ease;
             animation: float-gentle 3s ease-in-out infinite;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .w-12.h-12.bg-blue-500.rounded-full:hover {
-            @apply scale-110;
+            transform: scale(1.1);
             animation: pulse-glow 2s ease-in-out infinite;
         }
 
         .w-12.h-12.bg-green-500.rounded-full:hover {
-            @apply scale-110;
+            transform: scale(1.1);
             box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
         }
 
         .w-12.h-12.bg-yellow-500.rounded-full:hover {
-            @apply scale-110;
+            transform: scale(1.1);
             box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
         }
 
         .w-12.h-12.bg-purple-500.rounded-full:hover {
-            @apply scale-110;
+            transform: scale(1.1);
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-        }
-
-        /* Stats number enhancement */
-        .text-3xl.font-bold.text-gray-900 {
-            @apply bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent;
-            animation: bounce-in 1s ease-out 0.3s both;
-        }
-
-        .text-2xl.font-bold.text-gray-900 {
-            @apply bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent;
-            animation: bounce-in 1s ease-out 0.3s both;
-        }
-
-        /* ========================================
-           CHARTS SECTION ENHANCEMENT
-           ======================================== */
-
-        /* Charts grid container */
-        .grid.grid-cols-1.lg\\:grid-cols-2 {
-            @apply gap-8;
         }
 
         /* Chart containers */
         .bg-white.rounded-lg.shadow-sm.p-6:has(canvas) {
-            @apply relative;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Chart titles */
-        .text-lg.font-semibold.text-gray-900 {
-            @apply bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent;
-            position: relative;
-        }
-
-        .text-lg.font-semibold.text-gray-900::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            border-radius: 1px;
-        }
-
-        /* Legend dots enhancement */
-        .w-3.h-3.bg-blue-500.rounded-full,
-        .w-3.h-3.bg-yellow-500.rounded-full,
-        .w-3.h-3.bg-green-500.rounded-full,
-        .w-3.h-3.bg-red-500.rounded-full {
-            @apply transition-all duration-300;
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-
-        /* ========================================
-           TOP PERFORMERS ENHANCEMENT
-           ======================================== */
-
-        /* Performer cards */
-        .bg-gray-50.rounded-lg {
-            @apply transition-all duration-300 hover:bg-gray-100;
-            background: linear-gradient(135deg, rgba(249, 250, 251, 0.8) 0%, rgba(243, 244, 246, 0.8) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .bg-gray-50.rounded-lg:hover {
-            @apply transform -translate-y-1;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Ranking badges */
-        .w-10.h-10.bg-gradient-to-r.from-blue-500.to-purple-500 {
-            @apply relative overflow-hidden;
-            animation: bounce-in 0.8s ease-out;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .w-10.h-10.bg-gradient-to-r.from-blue-500.to-purple-500::before {
-            content: '';
-            @apply absolute inset-0;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
-            animation: shimmer 2s ease-in-out infinite;
-            background-size: 200% 200%;
-        }
-
-        /* Performance percentage badges */
-        .text-green-600.bg-green-100 {
-            @apply transition-all duration-300;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        /* ========================================
-           QUICK ACTIONS ENHANCEMENT
-           ======================================== */
-
-        /* Quick action cards */
+        /* Quick action cards - Enhanced dengan Glass Effect untuk Dark Mode */
         .border-dashed.border-gray-300 {
-            @apply transition-all duration-300 relative overflow-hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(249, 250, 251, 0.8) 100%);
             backdrop-filter: blur(10px);
         }
 
-        /* Hover effects untuk quick actions */
+        /* Glass Effect - Dark Mode Only untuk Quick Actions */
+        .dark .quick-action-glass {
+            background: rgba(31, 41, 55, 0.3) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 
+                0 8px 32px 0 rgba(31, 38, 135, 0.2),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.05) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .dark .quick-action-glass:hover {
+            background: rgba(31, 41, 55, 0.4) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 
+                0 12px 40px 0 rgba(31, 38, 135, 0.3),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .dark .quick-action-glass.blue-hover:hover {
+            border: 1px solid rgba(59, 130, 246, 0.4) !important;
+            background: rgba(59, 130, 246, 0.08) !important;
+            box-shadow: 
+                0 12px 40px 0 rgba(59, 130, 246, 0.15),
+                inset 0 1px 0 0 rgba(59, 130, 246, 0.1),
+                0 0 0 1px rgba(59, 130, 246, 0.2) !important;
+        }
+
+        .dark .quick-action-glass.green-hover:hover {
+            border: 1px solid rgba(16, 185, 129, 0.4) !important;
+            background: rgba(16, 185, 129, 0.08) !important;
+            box-shadow: 
+                0 12px 40px 0 rgba(16, 185, 129, 0.15),
+                inset 0 1px 0 0 rgba(16, 185, 129, 0.1),
+                0 0 0 1px rgba(16, 185, 129, 0.2) !important;
+        }
+
+        .dark .quick-action-glass.yellow-hover:hover {
+            border: 1px solid rgba(245, 158, 11, 0.4) !important;
+            background: rgba(245, 158, 11, 0.08) !important;
+            box-shadow: 
+                0 12px 40px 0 rgba(245, 158, 11, 0.15),
+                inset 0 1px 0 0 rgba(245, 158, 11, 0.1),
+                0 0 0 1px rgba(245, 158, 11, 0.2) !important;
+        }
+
+        .dark .quick-action-glass.purple-hover:hover {
+            border: 1px solid rgba(139, 92, 246, 0.4) !important;
+            background: rgba(139, 92, 246, 0.08) !important;
+            box-shadow: 
+                0 12px 40px 0 rgba(139, 92, 246, 0.15),
+                inset 0 1px 0 0 rgba(139, 92, 246, 0.1),
+                0 0 0 1px rgba(139, 92, 246, 0.2) !important;
+        }
+
+        .dark .glass-icon {
+            box-shadow: 
+                0 8px 16px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(8px) !important;
+        }
+
+        .dark .glass-text {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Light Mode Hover Effects - Tetap seperti semula */
         .hover\\:border-blue-500:hover {
-            @apply transform -translate-y-2;
+            transform: translateY(-2px);
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 197, 253, 0.1) 100%);
             box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
         }
 
         .hover\\:border-green-500:hover {
-            @apply transform -translate-y-2;
+            transform: translateY(-2px);
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(110, 231, 183, 0.1) 100%);
             box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
         }
 
         .hover\\:border-yellow-500:hover {
-            @apply transform -translate-y-2;
+            transform: translateY(-2px);
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(251, 191, 36, 0.1) 100%);
             box-shadow: 0 10px 25px rgba(245, 158, 11, 0.15);
         }
 
         .hover\\:border-purple-500:hover {
-            @apply transform -translate-y-2;
+            transform: translateY(-2px);
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(196, 181, 253, 0.1) 100%);
             box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
         }
 
-        /* Quick action icon circles */
-        .w-12.h-12.bg-blue-600.rounded-full,
-        .w-12.h-12.bg-green-600.rounded-full,
-        .w-12.h-12.bg-yellow-600.rounded-full,
-        .w-12.h-12.bg-purple-600.rounded-full {
-            @apply transition-all duration-300;
-            animation: float-gentle 4s ease-in-out infinite;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        /* Custom scrollable areas */
+        .custom-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(107, 114, 128, 0.6) rgba(156, 163, 175, 0.2);
         }
 
-        .group:hover .w-12.h-12.bg-blue-600.rounded-full {
-            @apply scale-110;
-            animation: pulse-glow 2s ease-in-out infinite;
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
 
-        .group:hover .w-12.h-12.bg-green-600.rounded-full {
-            @apply scale-110;
-            box-shadow: 0 0 20px rgba(22, 163, 74, 0.5);
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(156, 163, 175, 0.2);
+            border-radius: 4px;
         }
 
-        .group:hover .w-12.h-12.bg-yellow-600.rounded-full {
-            @apply scale-110;
-            box-shadow: 0 0 20px rgba(202, 138, 4, 0.5);
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(107, 114, 128, 0.6);
+            border-radius: 4px;
         }
 
-        .group:hover .w-12.h-12.bg-purple-600.rounded-full {
-            @apply scale-110;
-            box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(75, 85, 99, 0.8);
         }
 
-        /* ========================================
-           RECENT ACTIVITIES ENHANCEMENT
-           ======================================== */
-
-        /* Activity headers */
-        .text-sm.font-medium.text-gray-700 {
-            @apply relative;
-            color: #374151;
-        }
-
-        .text-sm.font-medium.text-gray-700::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 20px;
-            height: 1px;
-            background: linear-gradient(to right, #6b7280, transparent);
-        }
-
-        /* Status badges enhancement */
-        .bg-green-100.text-green-800 {
-            @apply transition-all duration-300;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.15) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
-        }
-
-        .bg-yellow-100.text-yellow-800 {
-            @apply transition-all duration-300;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.15) 100%);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.1);
-        }
-
-        .bg-red-100.text-red-800 {
-            @apply transition-all duration-300;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.15) 100%);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.1);
-        }
-
-        /* ========================================
-           RESPONSIVE ENHANCEMENTS
-           ======================================== */
-
-        /* Mobile optimizations */
+        /* Responsive */
         @media (max-width: 768px) {
-            .space-y-6 {
-                @apply space-y-4;
+            ::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
             }
             
-            .bg-gradient-to-r.from-blue-600.to-purple-600 {
-                @apply p-4;
+            .dark .quick-action-glass {
+                backdrop-filter: blur(8px) !important;
+                -webkit-backdrop-filter: blur(8px) !important;
             }
             
-            .bg-white.rounded-lg.shadow-sm.p-6 {
-                @apply p-4;
+            .dark .quick-action-glass:hover {
+                transform: translateY(-1px) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
             }
-            
-            .text-3xl.font-bold.text-gray-900 {
-                @apply text-2xl;
-            }
-            
-            .grid.grid-cols-1.md\\:grid-cols-2.xl\\:grid-cols-4 {
-                @apply gap-4;
-            }
-            
-            .grid.grid-cols-1.lg\\:grid-cols-2 {
-                @apply gap-4;
-            }
-        }
-
-        /* ========================================
-           ACCESSIBILITY ENHANCEMENTS
-           ======================================== */
-
-        /* Focus states */
-        a:focus-visible,
-        button:focus-visible {
-            @apply ring-2 ring-blue-500 ring-offset-2 outline-none;
         }
 
         /* High contrast mode */
         @media (prefers-contrast: high) {
-            .bg-white.rounded-lg.shadow-sm.p-6 {
-                @apply border-2 border-gray-800;
+            ::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, 0.8);
             }
-            
-            .bg-gradient-to-r.from-blue-600.to-purple-600 {
-                @apply bg-blue-800;
+
+            ::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.8);
             }
         }
 
@@ -451,6 +348,12 @@
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
+            }
+            
+            .dark .quick-action-glass,
+            .dark .quick-action-glass:hover {
+                transition: none !important;
+                transform: none !important;
             }
         }
     </style>
@@ -462,18 +365,17 @@
             <p class="text-blue-100">Sistem Manajemen Admin Rotan - {{ date('d F Y') }}</p>
         </div>
 
-        <!-- Stats Cards - Improved Layout -->
+        <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect -->
+            <!-- Total Karyawan -->
+            <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-blue-400/60 dark:border-blue-500/50">
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
                 
-                <!-- Content -->
                 <div class="relative flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Total Karyawan</p>
-                        <p class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">{{ $totalKaryawan ?? 0 }}</p>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase">Total Karyawan</p>
+                        <p class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-300 dark:to-blue-100 bg-clip-text text-transparent">{{ $totalKaryawan ?? 0 }}</p>
                     </div>
                     <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -483,17 +385,15 @@
                 </div>
             </div>
 
-            <!-- Absensi Hari Ini -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Green Theme -->
+            <!-- Hadir Hari Ini -->
+            <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-green-400/60 dark:border-green-500/50">
                 <div class="absolute inset-0 bg-gradient-to-r from-green-500 via-green-400 to-green-300 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
                 
-                <!-- Content -->
                 <div class="relative flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Hadir Hari Ini</p>
-                        <p class="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">{{ $totalAbsensiHariIni ?? 0 }}</p>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase">Hadir Hari Ini</p>
+                        <p class="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-400 dark:from-green-300 dark:to-green-100 bg-clip-text text-transparent">{{ $totalAbsensiHariIni ?? 0 }}</p>
                     </div>
                     <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -504,16 +404,14 @@
             </div>
 
             <!-- Timbangan Hari Ini -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Yellow Theme -->
+            <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-yellow-400/60 dark:border-yellow-500/50">
                 <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
                 
-                <!-- Content -->
                 <div class="relative flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Timbangan Hari Ini</p>
-                        <p class="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-400 bg-clip-text text-transparent">{{ $totalTimbanganHariIni ?? 0 }}</p>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase">Timbangan Hari Ini</p>
+                        <p class="text-3xl font-bold bg-gradient-to-r from-yellow-600 to-yellow-400 dark:from-yellow-300 dark:to-yellow-100 bg-clip-text text-transparent">{{ $totalTimbanganHariIni ?? 0 }}</p>
                     </div>
                     <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -524,16 +422,14 @@
             </div>
 
             <!-- Gaji Bulan Ini -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Yellow Theme -->
+            <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-purple-400/60 dark:border-purple-500/50">
                 <div class="absolute inset-0 bg-gradient-to-r from-purple-500 via-purple-400 to-purple-300 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
                 
-                <!-- Content -->
                 <div class="relative flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase">Gaji Bulan Ini</p>
-                        <p class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">Rp {{ number_format($totalGajiBulanIni ?? 0, 0, ',', '.') }}</p>
+                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 uppercase">Gaji Bulan Ini</p>
+                        <p class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 dark:from-purple-300 dark:to-purple-100 bg-clip-text text-transparent">Rp {{ number_format($totalGajiBulanIni ?? 0, 0, ',', '.') }}</p>
                     </div>
                     <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-400 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -544,18 +440,16 @@
             </div>
         </div>
 
-        <!-- Charts Section - Improved Layout -->
+        <!-- Charts Section -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Activity Trend Chart -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Blue Theme -->
+            <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-blue-400/60 dark:border-blue-500/50">
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
                 
-                <!-- Content -->
                 <div class="relative">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tren Aktivitas 7 Hari</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Tren Aktivitas 7 Hari</h3>
                         <div class="flex space-x-4 text-sm">
                             <div class="flex items-center">
                                 <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
@@ -574,14 +468,12 @@
             </div>
 
             <!-- Status Distribution -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Green Theme -->
+            <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-green-400/60 dark:border-green-500/50">
                 <div class="absolute inset-0 bg-gradient-to-r from-green-500 via-green-400 to-green-300 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
                 
-                <!-- Content -->
                 <div class="relative">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Status Absensi Bulan Ini</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Status Absensi Bulan Ini</h3>
                     <div class="flex items-center justify-center h-48">
                         <canvas id="absensiChart"></canvas>
                     </div>
@@ -589,40 +481,38 @@
                         <div class="flex items-center justify-between text-sm">
                             <div class="flex items-center">
                                 <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                                <span class="text-gray-900 dark:text-white">Hadir</span>
+                                <span class="text-gray-700 dark:text-white">Hadir</span>
                             </div>
-                            <span class="font-medium text-gray-900 dark:text-white">{{ $absensiStats['hadir'] ?? 0 }}</span>
+                            <span class="font-medium text-gray-800 dark:text-white">{{ $absensiStats['hadir'] ?? 0 }}</span>
                         </div>
                         <div class="flex items-center justify-between text-sm">
                             <div class="flex items-center">
                                 <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                                <span class="text-gray-900 dark:text-white">Izin</span>
+                                <span class="text-gray-700 dark:text-white">Izin</span>
                             </div>
-                            <span class="font-medium text-gray-900 dark:text-white">{{ $absensiStats['izin'] ?? 0 }}</span>
+                            <span class="font-medium text-gray-800 dark:text-white">{{ $absensiStats['izin'] ?? 0 }}</span>
                         </div>
                         <div class="flex items-center justify-between text-sm">
                             <div class="flex items-center">
                                 <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                                <span class="text-gray-900 dark:text-white">Tidak Hadir</span>
+                                <span class="text-gray-700 dark:text-white">Tidak Hadir</span>
                             </div>
-                            <span class="font-medium text-gray-900 dark:text-white">{{ $absensiStats['tidak_hadir'] ?? 0 }}</span>
+                            <span class="font-medium text-gray-800 dark:text-white">{{ $absensiStats['tidak_hadir'] ?? 0 }}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Salary Trend Chart -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Purple Theme -->
+            <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-purple-400/60 dark:border-purple-500/50">
                 <div class="absolute inset-0 bg-gradient-to-r from-purple-500 via-purple-400 to-purple-300 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
                 
-                <!-- Content -->
                 <div class="relative">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tren Gaji 6 Bulan Terakhir</h3>
-                        <div class="text-sm text-gray-500 dark:text-gray-400">
-                            Total: <span class="font-medium text-gray-900 dark:text-white">Rp {{ number_format(array_sum($gajiBulanan ?? [0]), 0, ',', '.') }}</span>
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Tren Gaji 6 Bulan Terakhir</h3>
+                        <div class="text-sm text-gray-600 dark:text-gray-400">
+                            Total: <span class="font-medium text-gray-800 dark:text-white">Rp {{ number_format(array_sum($gajiBulanan ?? [0]), 0, ',', '.') }}</span>
                         </div>
                     </div>
                     <div class="h-64">
@@ -631,193 +521,158 @@
                 </div>
             </div>
 
-        <!-- Top Performers - Glass Design with Working Hover -->
-        <div class="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-yellow-400/60 dark:border-yellow-500/50">
-            
-            <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 rounded-lg"></div>
-            <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
+            <!-- Top Performers -->
+            <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-yellow-400/60 dark:border-yellow-500/50">
+                <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 rounded-lg"></div>
+                <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
 
-            <!-- Content -->
-            <div class="relative">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Top Performer Bulan Ini</h3>
-                <div class="space-y-4">
-                    @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
-                        <div class="flex items-center justify-between p-4 bg-gray-50/30 dark:bg-gray-700/20 backdrop-blur-sm rounded-lg border border-gray-200/40 dark:border-gray-600/30 hover:bg-gray-100/50 dark:hover:bg-gray-700/40 hover:border-gray-300/60 dark:hover:border-gray-500/40 transition-all duration-200">
-                            <div class="flex items-center space-x-3">
-                                <!-- Ranking Badge with Glass Effect -->
-                                <div class="w-10 h-10 bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-bold shadow-lg border border-white/20">
-                                    {{ $index + 1 }}
-                                </div>
-                                <div>
-                                    <!-- Employee Name - High Contrast for Both Modes -->
-                                    <p class="font-semibold text-gray-900 dark:text-white">                     
-                                            {{ $karyawan->nama }}
-                                        </p>
-                                        <!-- Attendance Info - Good Contrast -->
-                                        <p class="text-sm text-gray-700 dark:text-gray-200">
-                                            {{ $karyawan->total_hadir }} hari hadir
-                                        </p>
+                <div class="relative">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Top Performer Bulan Ini</h3>
+                    <div class="space-y-4 custom-scroll max-h-64 overflow-y-auto">
+                        @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
+                            <div class="flex items-center justify-between p-4 bg-gray-100/60 dark:bg-gray-700/30 backdrop-blur-sm rounded-lg border border-gray-300/60 dark:border-gray-600/40 hover:bg-gray-200/60 dark:hover:bg-gray-600/40 hover:border-gray-400/80 dark:hover:border-gray-500/60 transition-all duration-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                                        {{ $index + 1 }}
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-800 dark:text-white">{{ $karyawan->nama }}</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-200">{{ $karyawan->total_hadir }} hari hadir</p>
                                     </div>
                                 </div>
-                                <!-- Percentage Badge - Glass Effect -->
-                                <span class="text-sm font-bold text-green-800 dark:text-green-200 bg-green-100/60 dark:bg-green-800/30 backdrop-blur-sm px-3 py-1.5 rounded-full border border-green-200/60 dark:border-green-700/40">
+                                <span class="text-sm font-bold text-green-800 dark:text-green-100 bg-green-200/80 dark:bg-green-500/80 px-3 py-1.5 rounded-full border border-green-300/80 dark:border-green-400/60">
                                     {{ round(($karyawan->total_hadir / 30) * 100) }}%
                                 </span>
                             </div>
                         @empty
-                            <!-- Empty State with Glass Effect -->
                             <div class="text-center py-12">
-                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-50/30 dark:bg-gray-700/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gray-200/40 dark:border-gray-600/30">
-                                    <svg class="w-8 h-8 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-16 h-16 mx-auto mb-4 bg-gray-200/60 dark:bg-gray-700/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gray-300/60 dark:border-gray-600/30">
+                                    <svg class="w-8 h-8 text-gray-500 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
                                     </svg>
                                 </div>
-                                <p class="text-gray-800 dark:text-gray-200 font-medium">Belum ada data performer</p>
+                                <p class="text-gray-700 dark:text-white font-medium">Belum ada data performer</p>
                                 <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Data akan muncul setelah ada aktivitas absensi</p>
                             </div>
                         @endforelse
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Quick Actions -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Multi-color Theme -->
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-yellow-500 to-purple-500 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
-                
-                <!-- Content -->
-                <div class="relative">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 select-none" style="text-shadow: 0 1px 2px rgba(0,0,0,0.1);">Aksi Cepat</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <!-- Tambah Karyawan -->
-                        <a href="{{ route('karyawans.create') }}" 
-                        class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 group select-none">
-                            <div class="w-12 h-12 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors shadow-lg">
-                                <!-- ICON PLUS untuk Tambah Karyawan -->
-                                <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z "></path>
-                                </svg>
-                            </div>
-                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-blue-700 dark:group-hover:text-blue-300 text-center transition-colors select-none" 
-                                style="text-shadow: 0 1px 2px rgba(0,0,0,0.1); -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);">
-                                Tambah Karyawan
-                            </span>
-                        </a>
+        <!-- Quick Actions -->
+        <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-blue-400/60 dark:border-blue-500/50">
+            <!-- Gradient Border Effect - Multi-color Theme -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 via-yellow-500 to-purple-500 rounded-lg"></div>
+            <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
+            
+            <!-- Content -->
+            <div class="relative">
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-4">Aksi Cepat</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <a href="{{ route('karyawans.create') }}" class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-400/50 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 group quick-action-glass blue-hover">
+                        <div class="w-12 h-12 bg-blue-600 dark:bg-blue-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors shadow-lg glass-icon">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-300 text-center transition-colors glass-text">Tambah Karyawan</span>
+                    </a>
 
-                        <!-- Catat Absensi -->
-                        <a href="{{ route('absensis.create') }}" 
-                        class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-green-500 dark:hover:border-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-200 group select-none">
-                            <div class="w-12 h-12 bg-green-600 dark:bg-green-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-green-700 dark:group-hover:bg-green-600 transition-colors shadow-lg">
-                                <!-- ICON CHECKMARK untuk Absensi -->
-                                <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-green-700 dark:group-hover:text-green-300 text-center transition-colors select-none" 
-                                style="text-shadow: 0 1px 2px rgba(0,0,0,0.1); -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);">
-                                Catat Absensi
-                            </span>
-                        </a>
+                    <a href="{{ route('absensis.create') }}" class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-400/50 rounded-lg hover:border-green-500 dark:hover:border-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-200 group quick-action-glass green-hover">
+                        <div class="w-12 h-12 bg-green-600 dark:bg-green-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-green-700 dark:group-hover:bg-green-600 transition-colors shadow-lg glass-icon">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-gray-700 dark:text-gray-200 group-hover:text-green-600 dark:group-hover:text-green-300 text-center transition-colors glass-text">Catat Absensi</span>
+                    </a>
 
-                        <!-- Input Timbangan -->
-                        <a href="{{ route('timbangans.create') }}" 
-                        class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-yellow-500 dark:hover:border-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-all duration-200 group select-none">
-                            <div class="w-12 h-12 bg-yellow-600 dark:bg-yellow-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-yellow-700 dark:group-hover:bg-yellow-600 transition-colors shadow-lg">
-                                <!-- ICON SCALE untuk Timbangan -->
-                                <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
-                                </svg>
-                            </div>
-                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-yellow-700 dark:group-hover:text-yellow-300 text-center transition-colors select-none" 
-                                style="text-shadow: 0 1px 2px rgba(0,0,0,0.1); -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);">
-                                Input Timbangan
-                            </span>
-                        </a>
+                    <a href="{{ route('timbangans.create') }}" class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-400/50 rounded-lg hover:border-yellow-500 dark:hover:border-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-all duration-200 group quick-action-glass yellow-hover">
+                        <div class="w-12 h-12 bg-yellow-600 dark:bg-yellow-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-yellow-700 dark:group-hover:bg-yellow-600 transition-colors shadow-lg glass-icon">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-gray-700 dark:text-gray-200 group-hover:text-yellow-600 dark:group-hover:text-yellow-300 text-center transition-colors glass-text">Input Timbangan</span>
+                    </a>
 
-                        <!-- Hitung Gaji -->
-                        <a href="{{ route('gajis.create') }}" 
-                        class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg hover:border-purple-500 dark:hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 group select-none">
-                            <div class="w-12 h-12 bg-purple-600 dark:bg-purple-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-purple-700 dark:group-hover:bg-purple-600 transition-colors shadow-lg">
-                                <!-- ICON MONEY untuk Gaji -->
-                                <svg class="w-6 h-6 text-white select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                            </div>
-                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300 group-hover:text-purple-700 dark:group-hover:text-purple-300 text-center transition-colors select-none" 
-                                style="text-shadow: 0 1px 2px rgba(0,0,0,0.1); -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);">
-                                Hitung Gaji
-                            </span>
-                        </a>
-                    </div>
+                    <a href="{{ route('gajis.create') }}" class="flex flex-col items-center justify-center p-4 border-2 border-dashed border-gray-300 dark:border-gray-400/50 rounded-lg hover:border-purple-500 dark:hover:border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 group quick-action-glass purple-hover">
+                        <div class="w-12 h-12 bg-purple-600 dark:bg-purple-500 rounded-full flex items-center justify-center mb-3 group-hover:bg-purple-700 dark:group-hover:bg-purple-600 transition-colors shadow-lg glass-icon">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm font-bold text-gray-700 dark:text-gray-200 group-hover:text-purple-600 dark:group-hover:text-purple-300 text-center transition-colors glass-text">Hitung Gaji</span>
+                    </a>
                 </div>
             </div>
+        </div>
 
-            <!-- Recent Activities -->
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 relative overflow-hidden border-2 border-transparent bg-clip-padding">
-                <!-- Gradient Border Effect - Green to Yellow Theme (Activity Colors) -->
-                <div class="absolute inset-0 bg-gradient-to-r from-green-500 via-blue-500 to-yellow-500 rounded-lg"></div>
-                <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-lg"></div>
-                
-                <!-- Content -->
-                <div class="relative">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50 mb-4">Aktivitas Terbaru</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Recent Absensi -->
-                        <div>
-                            <h4 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
-                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                                Absensi Terbaru
-                            </h4>
-                            <div class="space-y-3">
-                                @forelse($recentAbsensi->take(3) as $absensi)
-                                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-750 rounded-lg border border-gray-200 dark:border-gray-600">
-                                        <span class="text-sm font-bold text-gray-900 dark:text-gray-50">{{ $absensi->karyawan->nama }}</span>
-                                        <span class="px-3 py-1.5 text-xs rounded-full font-bold
-                                            {{ $absensi->hadir ? 'bg-green-100 dark:bg-green-800 text-green-900 dark:text-green-100 border border-green-300 dark:border-green-600' : 
-                                            ($absensi->izin ? 'bg-yellow-100 dark:bg-yellow-800 text-yellow-900 dark:text-yellow-100 border border-yellow-300 dark:border-yellow-600' : 
-                                            'bg-red-100 dark:bg-red-800 text-red-900 dark:text-red-100 border border-red-300 dark:border-red-600') }}">
-                                            {{ $absensi->hadir ? 'Hadir' : ($absensi->izin ? 'Izin' : 'Tidak Hadir') }}
-                                        </span>
+        <!-- Recent Activities -->
+        <div class="bg-white/80 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-sm p-6 relative overflow-hidden border border-green-400/60 dark:border-green-500/50">
+            <!-- Gradient Border Effect - Green to Blue Theme (Activity Colors) -->
+            <div class="absolute inset-0 bg-gradient-to-r from-green-500 via-blue-500 to-yellow-500 rounded-lg"></div>
+            <div class="absolute inset-[2px] bg-white dark:bg-gray-900 rounded-lg"></div>
+            
+            <!-- Content -->
+            <div class="relative">
+                <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-4">Aktivitas Terbaru</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Recent Absensi -->
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-600 dark:text-gray-200 mb-3 flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                            Absensi Terbaru
+                        </h4>
+                        <div class="space-y-3 custom-scroll max-h-48 overflow-y-auto">
+                            @forelse($recentAbsensi->take(3) as $absensi)
+                                <div class="flex items-center justify-between p-4 bg-gray-100/60 dark:bg-gray-700/30 backdrop-blur-sm rounded-lg border border-gray-300/60 dark:border-gray-600/40 hover:bg-gray-200/60 dark:hover:bg-gray-600/40 hover:border-gray-400/80 dark:hover:border-gray-500/60 transition-all duration-200">
+                                    <span class="text-sm font-bold text-gray-800 dark:text-white">{{ $absensi->karyawan->nama }}</span>
+                                    <span class="px-3 py-1.5 text-xs rounded-full font-bold
+                                        {{ $absensi->hadir ? 'bg-green-200/80 dark:bg-green-500/80 text-green-800 dark:text-green-100 border border-green-300/80 dark:border-green-400/60' : 
+                                        ($absensi->izin ? 'bg-yellow-200/80 dark:bg-yellow-500/80 text-yellow-800 dark:text-yellow-100 border border-yellow-300/80 dark:border-yellow-400/60' : 
+                                        'bg-red-200/80 dark:bg-red-500/80 text-red-800 dark:text-red-100 border border-red-300/80 dark:border-red-400/60') }}">
+                                        {{ $absensi->hadir ? 'Hadir' : ($absensi->izin ? 'Izin' : 'Tidak Hadir') }}
+                                    </span>
+                                </div>
+                            @empty
+                                <div class="text-center py-8">
+                                    <div class="w-12 h-12 mx-auto mb-3 bg-gray-200/60 dark:bg-gray-700/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gray-300/60 dark:border-gray-600/30">
+                                        <svg class="w-6 h-6 text-gray-500 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
                                     </div>
-                                @empty
-                                    <div class="text-center py-8">
-                                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="text-gray-700 dark:text-gray-300 text-sm font-semibold">Belum ada data absensi</p>
-                                    </div>
-                                @endforelse
-                            </div>
+                                    <p class="text-gray-700 dark:text-gray-200 text-sm font-semibold">Belum ada data absensi</p>
+                                </div>
+                            @endforelse
                         </div>
+                    </div>
 
-                        <!-- Recent Timbangan -->
-                        <div>
-                            <h4 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center">
-                                <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
-                                Timbangan Terbaru
-                            </h4>
-                            <div class="space-y-3">
-                                @forelse($recentTimbangan->take(3) as $timbangan)
-                                    <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-750 rounded-lg border border-gray-200 dark:border-gray-600">
-                                        <span class="text-sm font-bold text-gray-900 dark:text-gray-50 flex-1 mr-3">{{ $timbangan->karyawan->nama }}</span>
-                                        <span class="text-xs text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-600 px-3 py-1.5 rounded-full font-bold border border-gray-300 dark:border-gray-500 text-center whitespace-nowrap">
-                                            {{ $timbangan->deskripsi_timbangan }}
-                                        </span>
+                    <!-- Recent Timbangan -->
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-600 dark:text-gray-200 mb-3 flex items-center">
+                            <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                            Timbangan Terbaru
+                        </h4>
+                        <div class="space-y-3 custom-scroll max-h-48 overflow-y-auto">
+                            @forelse($recentTimbangan->take(3) as $timbangan)
+                                <div class="flex items-center justify-between p-4 bg-gray-100/60 dark:bg-gray-700/30 backdrop-blur-sm rounded-lg border border-gray-300/60 dark:border-gray-600/40 hover:bg-gray-200/60 dark:hover:bg-gray-600/40 hover:border-gray-400/80 dark:hover:border-gray-500/60 transition-all duration-200">
+                                    <span class="text-sm font-bold text-gray-800 dark:text-white flex-1 mr-3">{{ $timbangan->karyawan->nama }}</span>
+                                    <span class="text-xs text-gray-700 dark:text-gray-200 bg-gray-200/80 dark:bg-gray-600/40 px-3 py-1.5 rounded-full font-bold border border-gray-300/80 dark:border-gray-500/40 text-center whitespace-nowrap">
+                                        {{ $timbangan->deskripsi_timbangan }}
+                                    </span>
+                                </div>
+                            @empty
+                                <div class="text-center py-8">
+                                    <div class="w-12 h-12 mx-auto mb-3 bg-gray-200/60 dark:bg-gray-700/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gray-300/60 dark:border-gray-600/30">
+                                        <svg class="w-6 h-6 text-gray-500 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                                        </svg>
                                     </div>
-                                @empty
-                                    <div class="text-center py-8">
-                                        <div class="w-12 h-12 mx-auto mb-3 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
-                                            </svg>
-                                        </div>
-                                        <p class="text-gray-700 dark:text-gray-300 text-sm font-semibold">Belum ada data timbangan</p>
-                                    </div>
-                                @endforelse
-                            </div>
+                                    <p class="text-gray-700 dark:text-gray-200 text-sm font-semibold">Belum ada data timbangan</p>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -971,55 +826,8 @@
 
         // Enhanced interactions
         document.addEventListener('DOMContentLoaded', function() {
-            // Add staggered animation to stats cards
-            const statsCards = document.querySelectorAll('.border-l-4');
-            statsCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-
-            // Add staggered animation to chart containers
-            const chartContainers = document.querySelectorAll('.bg-white.rounded-lg.shadow-sm.p-6:has(canvas)');
-            chartContainers.forEach((container, index) => {
-                container.style.animationDelay = `${0.4 + index * 0.1}s`;
-            });
-
-            // Add click ripple effect to quick action cards
-            const quickActions = document.querySelectorAll('.border-dashed');
-            quickActions.forEach(action => {
-                action.addEventListener('click', function(e) {
-                    const ripple = document.createElement('span');
-                    ripple.style.cssText = `
-                        position: absolute;
-                        border-radius: 50%;
-                        background: rgba(59, 130, 246, 0.3);
-                        transform: scale(0);
-                        animation: ripple 0.6s linear;
-                        pointer-events: none;
-                    `;
-                    
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = e.clientX - rect.left - size / 2 + 'px';
-                    ripple.style.top = e.clientY - rect.top - size / 2 + 'px';
-                    
-                    this.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 600);
-                });
-            });
+            console.log('Dashboard dengan scrollbar konsisten telah dimuat');
         });
-
-        // Add ripple animation keyframes
-        const rippleStyle = document.createElement('style');
-        rippleStyle.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(rippleStyle);
     </script>
     @endpush
 </x-app-layout>
