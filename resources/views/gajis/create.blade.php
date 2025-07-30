@@ -12,7 +12,7 @@
                 @csrf
                 
                 <!-- Karyawan -->
-                {{-- <div>
+                <div>
                     <label for="id_karyawan" class="block text-sm font-medium text-gray-700 mb-1">Karyawan</label>
                     <select name="id_karyawan" id="id_karyawan" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500" required>
                         <option value="">Pilih Karyawan</option>
@@ -21,7 +21,7 @@
                         @endforeach
                     </select>
                     @error('id_karyawan')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                </div> --}}
+                </div>
 
                 <!-- Data Absensi -->
                 <div>
