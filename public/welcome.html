@@ -21,7 +21,8 @@
             font-family: 'Poppins', sans-serif;
             height: 100vh;
             overflow: hidden;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 25%, #667eea 50%, #764ba2 75%, #2c3e50 100%);
+            /* Updated gradient dengan warna hijau yang serasi */
+            background: linear-gradient(135deg, #2d5a27 0%, #3d6b2f 25%, #6b8e23 50%, #4d7c37 75%, #2d5a27 100%);
             background-size: 400% 400%;
             animation: gradientShift 10s ease infinite;
             display: flex;
@@ -37,7 +38,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating particles effect - Modern colors */
+        /* Floating particles effect - Green colors */
         .particles {
             position: absolute;
             top: 0;
@@ -50,10 +51,10 @@
 
         .particle {
             position: absolute;
-            background: rgba(116, 185, 255, 0.15);
+            background: rgba(107, 142, 35, 0.15);
             border-radius: 50%;
             animation: float 8s ease-in-out infinite;
-            box-shadow: 0 0 10px rgba(116, 185, 255, 0.2);
+            box-shadow: 0 0 10px rgba(107, 142, 35, 0.3);
         }
 
         .particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: 0s; }
@@ -93,9 +94,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 25px 50px rgba(44, 62, 80, 0.3);
+            box-shadow: 0 25px 50px rgba(45, 90, 39, 0.4);
             backdrop-filter: blur(20px);
-            border: 3px solid rgba(116, 185, 255, 0.3);
+            border: 3px solid rgba(107, 142, 35, 0.4);
             animation: logoFloat 4s ease-in-out infinite;
             position: relative;
         }
@@ -107,7 +108,8 @@
             left: -5px;
             right: -5px;
             bottom: -5px;
-            background: linear-gradient(45deg, #74b9ff, #0984e3, #667eea, #764ba2);
+            /* Updated gradient dengan warna hijau */
+            background: linear-gradient(45deg, #6b8e23, #4d7c37, #228b22, #3d6b2f);
             border-radius: 50%;
             z-index: -1;
             animation: rotate 3s linear infinite;
@@ -122,7 +124,7 @@
         .logo-text {
             font-size: 2.8rem;
             font-weight: 700;
-            background: linear-gradient(45deg, #2c3e50, #34495e);
+            background: linear-gradient(45deg, #2d5a27, #3d6b2f);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -160,7 +162,8 @@
             margin-bottom: 0.5rem;
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             line-height: 1.2;
-            background: linear-gradient(135deg, #fff, #f8f9fa);
+            /* Updated dengan warna hijau terang */
+            background: linear-gradient(135deg, #f8fdf7, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -171,7 +174,7 @@
             font-weight: 400;
             opacity: 0.95;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            color: #ddd6fe;
+            color: rgba(248, 253, 247, 0.9);
         }
 
         @keyframes textSlideUp {
@@ -191,7 +194,7 @@
         }
 
         .loading-text {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(248, 253, 247, 0.9);
             font-size: 1.1rem;
             font-weight: 500;
             margin-bottom: 1.5rem;
@@ -211,12 +214,13 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #74b9ff, #0984e3, #667eea, #764ba2);
+            /* Updated gradient dengan warna hijau */
+            background: linear-gradient(90deg, #6b8e23, #4d7c37, #228b22, #3d6b2f);
             background-size: 200% 100%;
             border-radius: 15px;
             width: 0%;
             animation: progressFill 4s ease-in-out, progressShine 2s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(116, 185, 255, 0.5);
+            box-shadow: 0 0 20px rgba(107, 142, 35, 0.6);
         }
 
         @keyframes loadingAppear {
@@ -316,7 +320,7 @@
             }
         }
 
-        /* Additional modern effects */
+        /* Additional modern effects with green theme */
         .container::before {
             content: '';
             position: absolute;
@@ -324,7 +328,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(116, 185, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(107, 142, 35, 0.1) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
             z-index: -1;
         }
@@ -356,7 +360,7 @@
         <!-- Logo -->
         <div class="logo-container">
             <div class="logo">
-                <div class="logo-text">🏺</div>
+                <img src="SA.png" alt="SA Logo" class="logo-image">
             </div>
         </div>
 
@@ -407,11 +411,11 @@
             particle.style.top = y + 'px';
             particle.style.width = '6px';
             particle.style.height = '6px';
-            particle.style.background = 'rgba(116, 185, 255, 0.8)';
+            particle.style.background = 'rgba(107, 142, 35, 0.8)';
             particle.style.borderRadius = '50%';
             particle.style.pointerEvents = 'none';
             particle.style.zIndex = '100';
-            particle.style.boxShadow = '0 0 10px rgba(116, 185, 255, 0.6)';
+            particle.style.boxShadow = '0 0 10px rgba(107, 142, 35, 0.6)';
             particle.style.animation = 'tempParticle 1.2s ease-out forwards';
             
             document.body.appendChild(particle);
@@ -460,13 +464,13 @@
             }
         }, 60);
 
-        // Add subtle screen glow effect
+        // Add subtle screen glow effect with green theme
         document.addEventListener('DOMContentLoaded', function() {
             const body = document.body;
             
             setInterval(() => {
                 const glowIntensity = 0.5 + Math.sin(Date.now() * 0.001) * 0.2;
-                body.style.boxShadow = `inset 0 0 100px rgba(116, 185, 255, ${glowIntensity * 0.1})`;
+                body.style.boxShadow = `inset 0 0 100px rgba(107, 142, 35, ${glowIntensity * 0.1})`;
             }, 100);
         });
     </script>

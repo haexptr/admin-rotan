@@ -51,8 +51,9 @@ class KaryawanController extends Controller
 
         Karyawan::create($validated);
 
+        // Menggunakan 'karyawan_success' untuk membedakan dengan flash message layout
         return redirect()->route('karyawans.index')
-            ->with('success', 'Karyawan berhasil ditambahkan!');
+            ->with('karyawan_success', 'Karyawan berhasil ditambahkan!');
     }
 
     /**
@@ -87,8 +88,9 @@ class KaryawanController extends Controller
 
         $karyawan->update($validated);
 
+        // Menggunakan 'karyawan_success' untuk membedakan dengan flash message layout
         return redirect()->route('karyawans.index')
-            ->with('success', 'Karyawan berhasil diperbarui!');
+            ->with('karyawan_success', 'Karyawan berhasil diperbarui!');
     }
 
     /**
@@ -98,8 +100,9 @@ class KaryawanController extends Controller
     {
         $karyawan->delete();
 
+        // Menggunakan 'karyawan_success' untuk membedakan dengan flash message layout
         return redirect()->route('karyawans.index')
-            ->with('success', 'Karyawan berhasil dihapus!');
+            ->with('karyawan_success', 'Karyawan berhasil dihapus!');
     }
 
     /**

@@ -14,7 +14,6 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
-    <!-- Prevent Drag/Select Issues -->
     <style>
         * {
             -webkit-user-select: none;
@@ -26,40 +25,97 @@
             -webkit-tap-highlight-color: transparent;
         }
         
-        /* Allow text selection only where needed */
         input, textarea, [contenteditable] {
             -webkit-user-select: text;
             -moz-user-select: text;
             -ms-user-select: text;
             user-select: text;
         }
+
+        /* Dark Mint Premium Theme */
+        .sidebar-green {
+            background: linear-gradient(135deg, #1e3a2e 0%, #2d5a45 100%);
+            box-shadow: 0 10px 25px rgba(30, 58, 46, 0.15);
+        }
+        
+        .header-green {
+            background: linear-gradient(135deg, #1e3a2e 0%, #2d5a45 50%, #3d6b55 100%);
+            box-shadow: 0 4px 15px rgba(30, 58, 46, 0.2);
+        }
+        
+        .nav-active-green {
+            background: rgba(6, 182, 212, 0.15);
+            color: #06b6d4;
+            border-right: 3px solid #06b6d4;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(6, 182, 212, 0.1);
+        }
+        
+        .nav-hover-green:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cffafe;
+            transform: translateX(2px);
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-green {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+        }
+        
+        .toggle-green-inactive {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .dark .sidebar-green {
+            background: linear-gradient(135deg, #0f1f1a 0%, #1e3a2e 100%);
+        }
+        
+        .dark .header-green {
+            background: linear-gradient(135deg, #0f1f1a 0%, #1e3a2e 50%, #2d5a45 100%);
+        }
+
+        .logo-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover {
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-gray-50 dark:bg-gray-900">
     <div class="min-h-screen flex" x-data="darkMode">
         <!-- Sidebar -->
-        <aside class="w-56 bg-white dark:bg-gray-800 shadow-sm border-r border-gray-200 dark:border-gray-700 select-none">
+        <aside class="w-56 sidebar-green shadow-lg border-r border-cyan-800/30 select-none">
             <div class="p-4">
                 <!-- Logo Section -->
                 <div class="flex items-center space-x-2 mb-6 select-none">
-                    <div class="w-8 h-8 flex items-center justify-center select-none overflow-hidden">
+                    <div class="w-8 h-8 flex items-center justify-center select-none overflow-hidden logo-container rounded-lg">
                         <img src="{{ asset('SA.png') }}" 
                             alt="SA" 
                             class="w-full h-full object-cover select-none aspect-square">
                     </div>
                     <div class="select-none">
-                        <h2 class="text-sm font-semibold text-gray-900 dark:text-white select-none">Admin</h2>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 select-none">Management System</p>
+                        <h2 class="text-sm font-semibold text-white select-none">Admin</h2>
+                        <p class="text-xs text-cyan-100/80 select-none">Management System</p>
                     </div>
                 </div>
 
                 <!-- Navigation Menu -->
                 <nav class="space-y-1 select-none">
                     <a href="{{ route('dashboard') }}" 
-                       class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors select-none
+                       class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('dashboard') 
-                                 ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700' 
-                                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white' }}">
+                                 ? 'nav-active-green' 
+                                 : 'text-cyan-100/90 nav-hover-green' }}">
                         <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
                         </svg>
@@ -67,10 +123,10 @@
                     </a>
 
                     <a href="{{ route('karyawans.index') }}" 
-                       class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors select-none
+                       class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('karyawans.*') 
-                                 ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700' 
-                                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white' }}">
+                                 ? 'nav-active-green' 
+                                 : 'text-cyan-100/90 nav-hover-green' }}">
                         <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
                         </svg>
@@ -78,10 +134,10 @@
                     </a>
 
                     <a href="{{ route('timbangans.index') }}" 
-                       class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors select-none
+                       class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('timbangans.*') 
-                                 ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700' 
-                                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white' }}">
+                                 ? 'nav-active-green' 
+                                 : 'text-cyan-100/90 nav-hover-green' }}">
                         <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
@@ -89,10 +145,10 @@
                     </a>
 
                     <a href="{{ route('absensis.index') }}" 
-                       class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors select-none
+                       class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('absensis.*') 
-                                 ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700' 
-                                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white' }}">
+                                 ? 'nav-active-green' 
+                                 : 'text-cyan-100/90 nav-hover-green' }}">
                         <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
                         </svg>
@@ -100,10 +156,10 @@
                     </a>
 
                     <a href="{{ route('gajis.index') }}" 
-                       class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors select-none
+                       class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('gajis.*') 
-                                 ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700' 
-                                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white' }}">
+                                 ? 'nav-active-green' 
+                                 : 'text-cyan-100/90 nav-hover-green' }}">
                         <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
@@ -115,11 +171,10 @@
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col">
-            <!-- Top Navigation - NO DRAG -->
-            <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-4 py-3 select-none">
+            <!-- Header -->
+            <header class="header-green shadow-lg border-b border-cyan-800/30 px-4 py-3 select-none">
                 <div class="flex items-center justify-between select-none">
-                    <!-- Dynamic Title berdasarkan Route -->
-                    <h1 class="text-lg font-semibold text-gray-900 dark:text-white select-none pointer-events-none">
+                    <h1 class="text-lg font-semibold text-white select-none pointer-events-none">
                         @if(request()->routeIs('dashboard'))
                             Dashboard
                         @elseif(request()->routeIs('karyawans.*'))
@@ -135,13 +190,11 @@
                         @endif
                     </h1>
                     
-                    <!-- User Menu with Dark Mode Toggle -->
                     <div class="flex items-center space-x-4 text-sm select-none">
-                        <!-- Dark Mode Toggle - NO DRAG -->
                         <div class="flex items-center space-x-2 select-none">
                             <button @click="toggle()" 
-                                    class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 select-none shrink-0"
-                                    :class="{ 'bg-blue-600': isDark, 'bg-gray-200': !isDark }"
+                                    class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-cyan-800 select-none shrink-0"
+                                    :class="{ 'toggle-green': isDark, 'toggle-green-inactive': !isDark }"
                                     type="button"
                                     aria-label="Toggle dark mode"
                                     draggable="false">
@@ -150,15 +203,14 @@
                                       draggable="false">
                                 </span>
                             </button>
-                            <span class="text-sm text-gray-600 dark:text-gray-400 select-none pointer-events-none" 
+                            <span class="text-sm text-cyan-100/90 select-none pointer-events-none" 
                                   x-text="isDark ? 'Dark' : 'Light'"></span>
                         </div>
                         
-                        <!-- User Info -->
-                        <span class="text-gray-700 dark:text-gray-300 select-none pointer-events-none">{{ Auth::user()->name }}</span>
+                        <span class="text-cyan-100/90 select-none pointer-events-none">{{ Auth::user()->name }}</span>
                         <form method="POST" action="{{ route('logout') }}" class="inline select-none">
                             @csrf
-                            <button type="submit" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors select-none">
+                            <button type="submit" class="text-cyan-100/80 hover:text-white transition-colors select-none">
                                 Logout
                             </button>
                         </form>
@@ -168,9 +220,8 @@
 
             <!-- Page Content -->
             <main class="flex-1 p-4 max-w-7xl mx-auto w-full">
-                <!-- Success/Error Messages -->
                 @if (session('success'))
-                    <div class="mb-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-3 py-2 rounded-md text-sm select-none">
+                    <div class="mb-4 bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-200 dark:border-cyan-800 text-cyan-700 dark:text-cyan-300 px-3 py-2 rounded-md text-sm select-none">
                         {{ session('success') }}
                     </div>
                 @endif

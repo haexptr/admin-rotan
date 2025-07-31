@@ -8,6 +8,7 @@
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
+    <link rel="icon" type="image/png" href="{{ asset('SA.png') }}">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     
     <!-- Scripts -->
@@ -30,13 +31,14 @@
                 <!-- Animated Logo -->
                 <div class="relative mx-auto w-16 h-16 mb-4">
                     <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 rounded-2xl animate-spin-slow"></div>
-                    <div class="relative bg-white rounded-2xl flex items-center justify-center w-full h-full">
-                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">AR</span>
+                    <div class="relative rounded-2xl flex items-center justify-center w-full h-full">
+                        <img src="{{ asset('SA.png') }}" alt="SA Logo" class="w-10 h-10 object-contain" />
                     </div>
                 </div>
+
                 
                 <h1 class="text-3xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-2">
-                    Admin Rotan
+                    Admin SA Rotan
                 </h1>
                 <p class="text-gray-600 text-sm">Selamat datang kembali! Masuk ke dashboard Anda</p>
             </div>

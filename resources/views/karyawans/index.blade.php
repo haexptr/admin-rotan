@@ -1,7 +1,62 @@
 <x-app-layout>
     @section('title', 'Employee Overview')
 
-    <div class="space-y-6">
+    <!-- ISOLATE CSS - Prevent conflict with layout -->
+    <style scoped>
+        /* Pastikan CSS hanya berlaku untuk konten karyawan, BUKAN sidebar */
+        .karyawan-content * {
+            /* Reset untuk mencegah conflict */
+        }
+        
+        .karyawan-content @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .karyawan-content .employee-row:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark .karyawan-content .employee-row:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .karyawan-content .pagination-wrapper nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .karyawan-content .pagination-wrapper nav a,
+        .karyawan-content .pagination-wrapper nav span {
+            @apply px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200;
+        }
+        
+        .karyawan-content .pagination-wrapper nav span[aria-current="page"] {
+            @apply bg-blue-600 text-white border-blue-600;
+        }
+
+        /* PENTING: Pastikan sidebar tidak terpengaruh */
+        aside.sidebar-green {
+            width: 14rem !important;
+            min-width: 14rem !important;
+            max-width: 14rem !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            height: 100vh !important;
+            z-index: 50 !important;
+        }
+        
+        /* Pastikan main content tidak overlap dengan sidebar */
+        .main-content-karyawan {
+            margin-left: 14rem !important;
+            width: calc(100% - 14rem) !important;
+        }
+    </style>
+
+    <div class="karyawan-content space-y-6">
         <!-- Header -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
@@ -25,7 +80,7 @@
                     <div class="flex items-center space-x-3">
                         <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
                             <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                             </svg>
                         </div>
                     </div>
@@ -88,13 +143,13 @@
             </div>
         </div>
 
-        <!-- Success Message -->
-        @if(session('success'))
+        <!-- Success Message - KHUSUS UNTUK KARYAWAN -->
+        @if(session('karyawan_success'))
             <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-200 px-4 py-3 rounded-lg flex items-center space-x-2 transition-colors duration-200">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span class="text-sm font-medium">{{ session('success') }}</span>
+                <span class="text-sm font-medium">{{ session('karyawan_success') }}</span>
                 <button onclick="this.parentElement.remove()" class="ml-auto text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-200">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -255,7 +310,7 @@
                                     <div class="flex flex-col items-center">
                                         <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
                                             <svg class="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                                             </svg>
                                         </div>
                                         <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Belum ada karyawan</h3>
@@ -379,7 +434,7 @@
             // Add search clear button functionality
             if (searchInput) {
                 const clearSearchBtn = document.createElement('button');
-                clearSearchBtn.type = 'button'; // Explicitly set type to prevent form submission
+                clearSearchBtn.type = 'button';
                 clearSearchBtn.innerHTML = `
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -405,17 +460,13 @@
             // FIXED: Delete confirmation with proper event handling
             const deleteButtons = document.querySelectorAll('form[action*="destroy"] button[type="submit"]');
             deleteButtons.forEach(button => {
-                // Remove any existing onclick to prevent double confirmation
                 button.removeAttribute('onclick');
-                
-                // Set attribute to prevent app.js from handling this
                 button.setAttribute('data-no-loading', 'true');
                 
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    // Prevent multiple clicks
                     if (this.hasAttribute('data-confirming')) {
                         return false;
                     }
@@ -426,11 +477,9 @@
                     const employeeRow = this.closest('tr');
                     const employeeName = employeeRow?.querySelector('.employee-name')?.textContent || 'karyawan ini';
                     
-                    // Single confirmation dialog
                     const result = confirm(`⚠️ Konfirmasi Penghapusan\n\nApakah Anda yakin ingin menghapus karyawan "${employeeName}"?\n\n• Data karyawan akan dihapus permanen\n• Data terkait mungkin terpengaruh\n• Tindakan ini tidak dapat dibatalkan\n\nKlik OK untuk melanjutkan.`);
                     
                     if (result && form) {
-                        // Add loading state
                         this.disabled = true;
                         this.innerHTML = `
                             <svg class="animate-spin w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24">
@@ -439,49 +488,12 @@
                             </svg>
                             Menghapus...
                         `;
-                        
-                        // Submit form
                         form.submit();
                     } else {
-                        // Reset confirming state if cancelled
                         this.removeAttribute('data-confirming');
                     }
                 });
             });
         });
-
-        // Add CSS animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            
-            .employee-row:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            }
-            
-            .dark .employee-row:hover {
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            }
-            
-            .pagination-wrapper nav {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-            
-            .pagination-wrapper nav a,
-            .pagination-wrapper nav span {
-                @apply px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200;
-            }
-            
-            .pagination-wrapper nav span[aria-current="page"] {
-                @apply bg-blue-600 text-white border-blue-600;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </x-app-layout>
