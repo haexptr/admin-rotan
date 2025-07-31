@@ -9,13 +9,23 @@ use Illuminate\Http\Request;
 class KaryawanController extends Controller
 {
     use ExportableTrait;
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $karyawans = Karyawan::latest()->paginate(10);
-        return view('karyawans.index', compact('karyawans'));
+        
+        // Statistik untuk dashboard
+        $stats = [
+            'total_employees' => Karyawan::count(),
+            'active_employees' => Karyawan::where('memuat_timbangan_in', '>', 0)->count(),
+            'total_weight_in' => Karyawan::sum('memuat_timbangan_in'),
+            'total_weight_out' => Karyawan::sum('memuat_timbangan_out'),
+        ];
+        
+        return view('karyawans.index', compact('karyawans', 'stats'));
     }
 
     /**
