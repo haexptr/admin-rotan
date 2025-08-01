@@ -15,15 +15,15 @@
     }
     
     .dark::-webkit-scrollbar-track {
-        @apply bg-dark-800;
+        @apply bg-gray-800;
     }
     
     .dark::-webkit-scrollbar-thumb {
-        @apply bg-dark-600 rounded-full;
+        @apply bg-gray-600 rounded-full;
     }
     
     .dark::-webkit-scrollbar-thumb:hover {
-        @apply bg-dark-500;
+        @apply bg-gray-500;
     }
 }
 
@@ -49,31 +49,31 @@
     /* Dark Mode Toggle Button */
     .dark-mode-toggle {
         @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors;
-        @apply bg-gray-200 dark:bg-dark-600;
+        @apply bg-gray-200 dark:bg-gray-600;
     }
     
     .dark-mode-toggle-inner {
         @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform;
-        @apply translate-x-1 dark:translate-x-6 dark:bg-dark-200;
+        @apply translate-x-1 dark:translate-x-6 dark:bg-gray-200;
     }
     
     /* Card Components for Dark Mode */
     .card {
-        @apply bg-white dark:bg-dark-800 shadow-sm dark:shadow-dark-900/20 border border-gray-200 dark:border-dark-700 rounded-lg;
+        @apply bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-lg;
     }
     
     .card-header {
-        @apply bg-gray-50 dark:bg-dark-750 border-b border-gray-200 dark:border-dark-700 px-4 py-3 rounded-t-lg;
+        @apply bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3 rounded-t-lg;
     }
     
     /* Form Elements Dark Mode */
     .form-input {
-        @apply bg-white dark:bg-dark-800 border-gray-300 dark:border-dark-600 text-gray-900 dark:text-dark-100;
+        @apply bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100;
         @apply focus:border-blue-500 dark:focus:border-blue-400 focus:ring-blue-500 dark:focus:ring-blue-400;
     }
     
     .form-select {
-        @apply bg-white dark:bg-dark-800 border-gray-300 dark:border-dark-600 text-gray-900 dark:text-dark-100;
+        @apply bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100;
     }
     
     /* Button Components */
@@ -82,7 +82,7 @@
     }
     
     .btn-secondary {
-        @apply bg-gray-600 hover:bg-gray-700 dark:bg-dark-600 dark:hover:bg-dark-500 text-white;
+        @apply bg-gray-600 hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500 text-white;
     }
     
     .btn-danger {
@@ -112,28 +112,28 @@
     
     /* Text Color Utilities for Dark Mode */
     .text-primary {
-        @apply text-gray-900 dark:text-dark-100;
+        @apply text-gray-900 dark:text-gray-100;
     }
     
     .text-secondary {
-        @apply text-gray-600 dark:text-dark-400;
+        @apply text-gray-600 dark:text-gray-400;
     }
     
     .text-muted {
-        @apply text-gray-500 dark:text-dark-500;
+        @apply text-gray-500 dark:text-gray-500;
     }
     
     /* Background Utilities for Dark Mode */
     .bg-primary {
-        @apply bg-white dark:bg-dark-800;
+        @apply bg-white dark:bg-gray-800;
     }
     
     .bg-secondary {
-        @apply bg-gray-50 dark:bg-dark-900;
+        @apply bg-gray-50 dark:bg-gray-900;
     }
     
     /* Border Utilities for Dark Mode */
     .border-primary {
-        @apply border-gray-200 dark:border-dark-700;
+        @apply border-gray-200 dark:border-gray-700;
     }
 }

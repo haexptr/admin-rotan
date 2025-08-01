@@ -24,6 +24,11 @@ Route::middleware('auth')->group(function () {
     // Bulk delete route - MUST be before resource route
     Route::delete('/timbangans/bulk-delete', [TimbangangController::class, 'bulkDelete'])->name('timbangans.bulk-delete');
     
+    // Bulk attendance routes - MUST be before resource route
+    Route::get('/absensis/bulk', [AbsensiController::class, 'bulk'])->name('absensis.bulk');
+    Route::post('/absensis/bulk', [AbsensiController::class, 'bulkStore'])->name('absensis.bulk.store');
+    Route::post('/absensis/generate-daily', [AbsensiController::class, 'generateDaily'])->name('absensis.generate-daily');
+    
     // Resource routes untuk admin rotan
     Route::resource('karyawans', KaryawanController::class);
     Route::resource('timbangans', TimbangangController::class);
