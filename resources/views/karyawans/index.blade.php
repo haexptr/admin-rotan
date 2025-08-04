@@ -116,7 +116,7 @@
             @endif
 
             <!-- Table Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
                 <!-- Search Header -->
                 <div class="p-6 border-b border-gray-100 dark:border-gray-700">
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -139,7 +139,7 @@
                     </div>
                 </div>
 
-                <div class="overflow-x-auto">
+                <div>
                     <table class="w-full">
                         <thead>
                             <tr class="border-b border-gray-100 dark:border-gray-700">
@@ -284,4 +284,35 @@
             });
         });
     </script>
+
+    <!-- CSS untuk menghilangkan scrollbar -->
+    <style>
+        /* Menghilangkan scrollbar horizontal */
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Menghilangkan scrollbar pada semua elemen */
+        * {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        }
+        
+        /* Menghilangkan scrollbar pada WebKit browsers (Chrome, Safari, Edge) */
+        *::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Pastikan tabel tidak overflow */
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+        
+        /* Batasi lebar kolom agar tidak overflow */
+        th, td {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
 </x-app-layout>

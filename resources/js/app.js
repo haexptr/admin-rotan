@@ -9,17 +9,8 @@ document.addEventListener('alpine:init', () => {
         isDark: false,
         
         init() {
-            // Check for saved theme preference or default to system preference
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-                this.isDark = true;
-                document.documentElement.classList.add('dark');
-            } else {
-                this.isDark = false;
-                document.documentElement.classList.remove('dark');
-            }
+            // FIXED: Get current state from pre-loaded theme (no flash!)
+            this.isDark = document.documentElement.classList.contains('dark');
             
             // Listen for system theme changes
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
@@ -38,10 +29,10 @@ document.addEventListener('alpine:init', () => {
             localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
             
             // Optional: Add smooth transition effect
-            document.documentElement.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+            document.documentElement.style.transition = 'background-color 0.2s ease, color 0.2s ease';
             setTimeout(() => {
                 document.documentElement.style.transition = '';
-            }, 300);
+            }, 200);
         },
         
         updateTheme() {
@@ -154,9 +145,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Ctrl/Cmd + D to toggle dark mode
         if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
             e.preventDefault();
-            const darkModeToggle = document.querySelector('[x-data*="darkMode"]');
-            if (darkModeToggle) {
-                Alpine.store('darkMode').toggle();
+            // Find the Alpine component and trigger toggle
+            const darkModeEl = document.querySelector('[x-data*="darkMode"]');
+            if (darkModeEl && darkModeEl._x_dataStack) {
+                darkModeEl._x_dataStack[0].toggle();
             }
         }
         

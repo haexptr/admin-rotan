@@ -1,63 +1,61 @@
 <x-app-layout>
     @section('title', 'Dashboard')
 
-    <!-- Enhanced CSS untuk Dashboard dengan Scrollbar Konsisten -->
+    <!-- Enhanced CSS untuk Dashboard TANPA Scrollbar -->
     <style>
         /* ========================================
-           CONSISTENT SCROLLBAR FOR BOTH MODES
+           HIDE ALL SCROLLBARS BUT KEEP SCROLLING
            ======================================== */
 
-        /* Custom Scrollbar - Consistent untuk Light & Dark Mode */
+        /* Hide scrollbar for Chrome, Safari and Opera */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 0px;
+            height: 0px;
+            background: transparent;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(156, 163, 175, 0.2);
-            border-radius: 4px;
+            display: none;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(107, 114, 128, 0.6);
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            display: none;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(75, 85, 99, 0.8);
-        }
-
-        ::-webkit-scrollbar-thumb:active {
-            background: rgba(55, 65, 81, 0.9);
-        }
-
-        /* Firefox Scrollbar */
+        /* Hide scrollbar for Firefox */
         * {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(107, 114, 128, 0.6) rgba(156, 163, 175, 0.2);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        /* Ensure scrollbar stays consistent in dark mode */
-        .dark ::-webkit-scrollbar-track {
-            background: rgba(156, 163, 175, 0.2);
+        /* Hide scrollbar for IE and Edge */
+        body {
+            -ms-overflow-style: none;
         }
 
-        .dark ::-webkit-scrollbar-thumb {
-            background: rgba(107, 114, 128, 0.6);
+        /* Custom scrollable areas - NO VISIBLE SCROLLBAR */
+        .custom-scroll {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        .dark ::-webkit-scrollbar-thumb:hover {
-            background: rgba(75, 85, 99, 0.8);
+        .custom-scroll::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+            display: none;
         }
 
-        .dark ::-webkit-scrollbar-thumb:active {
-            background: rgba(55, 65, 81, 0.9);
+        .custom-scroll::-webkit-scrollbar-track {
+            display: none;
         }
 
-        /* Firefox dark mode */
-        .dark * {
-            scrollbar-color: rgba(107, 114, 128, 0.6) rgba(156, 163, 175, 0.2);
+        .custom-scroll::-webkit-scrollbar-thumb {
+            display: none;
+        }
+
+        /* Ensure scrolling still works smoothly */
+        html, body {
+            scroll-behavior: smooth;
         }
 
         /* ========================================
@@ -287,36 +285,11 @@
             box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
         }
 
-        /* Custom scrollable areas */
-        .custom-scroll {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(107, 114, 128, 0.6) rgba(156, 163, 175, 0.2);
-        }
-
-        .custom-scroll::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        .custom-scroll::-webkit-scrollbar-track {
-            background: rgba(156, 163, 175, 0.2);
-            border-radius: 4px;
-        }
-
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: rgba(107, 114, 128, 0.6);
-            border-radius: 4px;
-        }
-
-        .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: rgba(75, 85, 99, 0.8);
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            ::-webkit-scrollbar {
-                width: 6px;
-                height: 6px;
+            /* Make sure mobile scrollbars are also hidden */
+            html, body {
+                overflow-x: hidden;
             }
             
             .dark .quick-action-glass {
@@ -333,13 +306,7 @@
 
         /* High contrast mode */
         @media (prefers-contrast: high) {
-            ::-webkit-scrollbar-thumb {
-                background: rgba(0, 0, 0, 0.8);
-            }
-
-            ::-webkit-scrollbar-track {
-                background: rgba(255, 255, 255, 0.8);
-            }
+            /* No scrollbar styles needed since they're hidden */
         }
 
         /* Reduced motion */
@@ -355,6 +322,59 @@
                 transition: none !important;
                 transform: none !important;
             }
+        }
+
+        /* ========================================
+           ADDITIONAL STYLE IMPROVEMENTS
+           ======================================== */
+
+        /* Better overflow handling for scrollable areas */
+        .scrollable-content {
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Add subtle fade effect at edges for scrollable areas */
+        .fade-edges {
+            position: relative;
+        }
+
+        .fade-edges::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .fade-edges::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.8), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .dark .fade-edges::before {
+            background: linear-gradient(to bottom, rgba(17, 24, 39, 0.8), transparent);
+        }
+
+        .dark .fade-edges::after {
+            background: linear-gradient(to top, rgba(17, 24, 39, 0.8), transparent);
         }
     </style>
 
@@ -528,7 +548,7 @@
 
                 <div class="relative">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Top Performer Bulan Ini</h3>
-                    <div class="space-y-4 custom-scroll max-h-64 overflow-y-auto">
+                    <div class="space-y-4 scrollable-content fade-edges max-h-64 overflow-y-auto">
                         @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
                             <div class="flex items-center justify-between p-4 bg-gray-100/60 dark:bg-gray-700/30 backdrop-blur-sm rounded-lg border border-gray-300/60 dark:border-gray-600/40 hover:bg-gray-200/60 dark:hover:bg-gray-600/40 hover:border-gray-400/80 dark:hover:border-gray-500/60 transition-all duration-200">
                                 <div class="flex items-center space-x-3">
@@ -625,7 +645,7 @@
                             <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                             Absensi Terbaru
                         </h4>
-                        <div class="space-y-3 custom-scroll max-h-48 overflow-y-auto">
+                        <div class="space-y-3 scrollable-content fade-edges max-h-48 overflow-y-auto">
                             @forelse($recentAbsensi->take(3) as $absensi)
                                 <div class="flex items-center justify-between p-4 bg-gray-100/60 dark:bg-gray-700/30 backdrop-blur-sm rounded-lg border border-gray-300/60 dark:border-gray-600/40 hover:bg-gray-200/60 dark:hover:bg-gray-600/40 hover:border-gray-400/80 dark:hover:border-gray-500/60 transition-all duration-200">
                                     <span class="text-sm font-bold text-gray-800 dark:text-white">{{ $absensi->karyawan->nama }}</span>
@@ -655,7 +675,7 @@
                             <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
                             Timbangan Terbaru
                         </h4>
-                        <div class="space-y-3 custom-scroll max-h-48 overflow-y-auto">
+                        <div class="space-y-3 scrollable-content fade-edges max-h-48 overflow-y-auto">
                             @forelse($recentTimbangan->take(3) as $timbangan)
                                 <div class="flex items-center justify-between p-4 bg-gray-100/60 dark:bg-gray-700/30 backdrop-blur-sm rounded-lg border border-gray-300/60 dark:border-gray-600/40 hover:bg-gray-200/60 dark:hover:bg-gray-600/40 hover:border-gray-400/80 dark:hover:border-gray-500/60 transition-all duration-200">
                                     <span class="text-sm font-bold text-gray-800 dark:text-white flex-1 mr-3">{{ $timbangan->karyawan->nama }}</span>
@@ -826,7 +846,7 @@
 
         // Enhanced interactions
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Dashboard dengan scrollbar konsisten telah dimuat');
+            console.log('Dashboard TANPA scrollbar telah dimuat');
         });
     </script>
     @endpush

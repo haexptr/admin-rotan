@@ -6,6 +6,21 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Admin Rotan') }}</title>
     
+    <!-- CRITICAL: Dark Mode Pre-loader Script (BEFORE any CSS) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="icon" type="image/png" href="{{ asset('SA.png') }}">
@@ -88,6 +103,11 @@
 
         .nav-item:hover {
             box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+        }
+        
+        /* ADDED: Prevent FOLC with CSS */
+        body {
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
     </style>
 </head>
