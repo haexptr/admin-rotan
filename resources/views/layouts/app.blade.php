@@ -32,54 +32,54 @@
             user-select: text;
         }
 
-        /* Dark Mint Premium Theme */
+        /* New Color Palette Theme */
         .sidebar-green {
-            background: linear-gradient(135deg, #1e3a2e 0%, #2d5a45 100%);
-            box-shadow: 0 10px 25px rgba(30, 58, 46, 0.15);
+            background: #242424;
+            box-shadow: 0 10px 25px rgba(36, 36, 36, 0.15);
         }
         
         .header-green {
-            background: linear-gradient(135deg, #1e3a2e 0%, #2d5a45 50%, #3d6b55 100%);
-            box-shadow: 0 4px 15px rgba(30, 58, 46, 0.2);
+            background: #242424;
+            box-shadow: 0 4px 15px rgba(36, 36, 36, 0.2);
         }
         
         .nav-active-green {
-            background: rgba(6, 182, 212, 0.15);
-            color: #06b6d4;
-            border-right: 3px solid #06b6d4;
+            background: #fafafa;
+            color: #242424;
+            border-right: 3px solid #fafafa;
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(6, 182, 212, 0.1);
+            box-shadow: 0 2px 10px rgba(250, 250, 250, 0.1);
         }
         
         .nav-hover-green:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: #cffafe;
+            background: rgba(109, 109, 109, 0.15);
+            color: #e7e7e7;
             transform: translateX(2px);
             transition: all 0.3s ease;
         }
         
         .toggle-green {
-            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-            box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+            background: #6d6d6d;
+            box-shadow: 0 2px 8px rgba(109, 109, 109, 0.3);
         }
         
         .toggle-green-inactive {
-            background: rgba(255, 255, 255, 0.2);
+            background: #e7e7e7;
             backdrop-filter: blur(10px);
         }
         
         .dark .sidebar-green {
-            background: linear-gradient(135deg, #0f1f1a 0%, #1e3a2e 100%);
+            background: #1a1a1a;
         }
         
         .dark .header-green {
-            background: linear-gradient(135deg, #0f1f1a 0%, #1e3a2e 50%, #2d5a45 100%);
+            background: #1a1a1a;
         }
 
         .logo-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(231, 231, 231, 0.1);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(231, 231, 231, 0.1);
         }
 
         .nav-item {
@@ -87,14 +87,47 @@
         }
 
         .nav-item:hover {
-            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+            box-shadow: 0 4px 12px rgba(109, 109, 109, 0.15);
+        }
+
+        /* Logout button at bottom */
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 16px 20px;
+            border-top: 1px solid rgba(231, 231, 231, 0.1);
+        }
+
+        .logout-nav-item {
+            display: flex;
+            align-items: center;
+            space-x: 2;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: rgba(231, 231, 231, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+        }
+
+        .logout-nav-item:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .logout-nav-item svg {
+            margin-right: 8px;
         }
     </style>
 </head>
 <body class="font-sans antialiased bg-gray-50 dark:bg-gray-900">
     <div class="min-h-screen flex" x-data="darkMode">
         <!-- Sidebar -->
-        <aside class="w-56 sidebar-green shadow-lg border-r border-cyan-800/30 select-none">
+        <aside class="w-56 sidebar-green shadow-lg border-r border-gray-800/30 select-none">
             <div class="p-4">
                 <!-- Logo Section -->
                 <div class="flex items-center space-x-2 mb-6 select-none">
@@ -105,7 +138,7 @@
                     </div>
                     <div class="select-none">
                         <h2 class="text-sm font-semibold text-white select-none">Admin</h2>
-                        <p class="text-xs text-cyan-100/80 select-none">Management System</p>
+                        <p class="text-xs text-gray-300 select-none">Management System</p>
                     </div>
                 </div>
 
@@ -115,9 +148,12 @@
                        class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('dashboard') 
                                  ? 'nav-active-green' 
-                                 : 'text-cyan-100/90 nav-hover-green' }}">
-                        <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                                 : 'text-gray-300 nav-hover-green' }}">
+                        <svg class="w-4 h-4 select-none pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
                         </svg>
                         <span class="select-none">Dashboard</span>
                     </a>
@@ -126,9 +162,10 @@
                        class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('karyawans.*') 
                                  ? 'nav-active-green' 
-                                 : 'text-cyan-100/90 nav-hover-green' }}">
-                        <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
+                                 : 'text-gray-300 nav-hover-green' }}">
+                        <svg class="w-4 h-4 select-none pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
                         </svg>
                         <span class="select-none">Karyawan</span>
                     </a>
@@ -137,9 +174,13 @@
                        class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('timbangans.*') 
                                  ? 'nav-active-green' 
-                                 : 'text-cyan-100/90 nav-hover-green' }}">
-                        <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                 : 'text-gray-300 nav-hover-green' }}">
+                        <svg class="w-4 h-4 select-none pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                            <path d="M5 3v4"/>
+                            <path d="M19 17v4"/>
+                            <path d="M3 5h4"/>
+                            <path d="M17 19h4"/>
                         </svg>
                         <span class="select-none">Timbangan</span>
                     </a>
@@ -148,9 +189,10 @@
                        class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('absensis.*') 
                                  ? 'nav-active-green' 
-                                 : 'text-cyan-100/90 nav-hover-green' }}">
-                        <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                                 : 'text-gray-300 nav-hover-green' }}">
+                        <svg class="w-4 h-4 select-none pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 11l3 3 8-8"/>
+                            <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.51 0 2.93.37 4.18 1.03"/>
                         </svg>
                         <span class="select-none">Absensi</span>
                     </a>
@@ -159,12 +201,28 @@
                        class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('gajis.*') 
                                  ? 'nav-active-green' 
-                                 : 'text-cyan-100/90 nav-hover-green' }}">
-                        <svg class="w-4 h-4 select-none pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                 : 'text-gray-300 nav-hover-green' }}">
+                        <svg class="w-4 h-4 select-none pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                         </svg>
                         <span class="select-none">Gaji</span>
                     </a>
+
+                    <!-- Logout dibawah menu Gaji dengan spacing -->
+                    <div class="pt-25">
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
+                            <button type="submit" class="logout-nav-item flex items-center w-full space-x-2 px-3 py-2 rounded-lg text-sm font-medium">
+                                <svg class="w-4 h-4 select-none pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                    <polyline points="16,17 21,12 16,7"/>
+                                    <line x1="21" y1="12" x2="9" y2="12"/>
+                                </svg>
+                                <span class="select-none">Logout</span>
+                            </button>
+                        </form>
+                    </div>
                 </nav>
             </div>
         </aside>
@@ -172,7 +230,7 @@
         <!-- Main Content -->
         <div class="flex-1 flex flex-col">
             <!-- Header -->
-            <header class="header-green shadow-lg border-b border-cyan-800/30 px-4 py-3 select-none">
+            <header class="header-green shadow-lg border-b border-gray-800/30 px-4 py-3 select-none">
                 <div class="flex items-center justify-between select-none">
                     <h1 class="text-lg font-semibold text-white select-none pointer-events-none">
                         @if(request()->routeIs('dashboard'))
@@ -193,7 +251,7 @@
                     <div class="flex items-center space-x-4 text-sm select-none">
                         <div class="flex items-center space-x-2 select-none">
                             <button @click="toggle()" 
-                                    class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-cyan-800 select-none shrink-0"
+                                    class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 focus:ring-offset-gray-800 select-none shrink-0"
                                     :class="{ 'toggle-green': isDark, 'toggle-green-inactive': !isDark }"
                                     type="button"
                                     aria-label="Toggle dark mode"
@@ -203,17 +261,11 @@
                                       draggable="false">
                                 </span>
                             </button>
-                            <span class="text-sm text-cyan-100/90 select-none pointer-events-none" 
+                            <span class="text-sm text-gray-300 select-none pointer-events-none" 
                                   x-text="isDark ? 'Dark' : 'Light'"></span>
                         </div>
                         
-                        <span class="text-cyan-100/90 select-none pointer-events-none">{{ Auth::user()->name }}</span>
-                        <form method="POST" action="{{ route('logout') }}" class="inline select-none">
-                            @csrf
-                            <button type="submit" class="text-cyan-100/80 hover:text-white transition-colors select-none">
-                                Logout
-                            </button>
-                        </form>
+                        <span class="text-gray-300 select-none pointer-events-none">{{ Auth::user()->name }}</span>
                     </div>
                 </div>
             </header>
@@ -221,7 +273,7 @@
             <!-- Page Content -->
             <main class="flex-1 p-4 max-w-7xl mx-auto w-full">
                 @if (session('success'))
-                    <div class="mb-4 bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-200 dark:border-cyan-800 text-cyan-700 dark:text-cyan-300 px-3 py-2 rounded-md text-sm select-none">
+                    <div class="mb-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-3 py-2 rounded-md text-sm select-none">
                         {{ session('success') }}
                     </div>
                 @endif
