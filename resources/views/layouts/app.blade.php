@@ -144,37 +144,58 @@
         }
 
         /* ========================================
-           PERBAIKAN: DASHBOARD FULL WIDTH OVERRIDE
+           FIXED: PROPER DASHBOARD SPACING
            ======================================== */
         
-        /* KHUSUS UNTUK DASHBOARD - Override main container */
+        /* FIXED: Gentle dashboard overrides - no aggressive !important */
         body.dashboard-page main {
-            max-width: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100% !important;
+            max-width: 100%;
+            padding: 2rem 1.5rem;
         }
 
-        /* PERBAIKAN: Override body background untuk dashboard */
+        /* FIXED: Ensure proper background */
         body.dashboard-page {
-            background: #f8fafc !important;
+            background: #f8fafc;
         }
 
         body.dashboard-page.dark {
-            background: #111827 !important;
+            background: #111827;
         }
 
-        /* PERBAIKAN: Ensure no container constraints untuk dashboard */
-        body.dashboard-page .max-w-7xl,
-        body.dashboard-page .container,
-        body.dashboard-page .mx-auto {
-            max-width: none !important;
-            margin: 0 !important;
+        /* FIXED: Better responsive padding for dashboard */
+        @media (min-width: 1024px) {
+            body.dashboard-page main {
+                padding: 2rem 3rem;
+            }
         }
 
-        /* PERBAIKAN: Full width untuk dashboard content */
-        body.dashboard-page main > * {
-            width: 100%;
+        @media (min-width: 1280px) {
+            body.dashboard-page main {
+                padding: 2rem 4rem;
+            }
+        }
+
+        /* ADDED: Better card spacing and content padding */
+        body.dashboard-page .dashboard-card {
+            padding: 1.5rem 2rem;
+        }
+
+        body.dashboard-page .dashboard-grid {
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            body.dashboard-page main {
+                padding: 1rem;
+            }
+            
+            body.dashboard-page .dashboard-grid {
+                gap: 1.5rem;
+            }
+            
+            body.dashboard-page .dashboard-card {
+                padding: 1.25rem 1.5rem;
+            }
         }
     </style>
     
@@ -333,8 +354,8 @@
                 </div>
             </header>
 
-            <!-- Page Content -->
-            <main class="flex-1 p-4 max-w-7xl mx-auto w-full">
+            <!-- FIXED: Page Content with Proper Spacing -->
+            <main class="flex-1">
                 @if (session('success'))
                     <div class="mb-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-3 py-2 rounded-md text-sm select-none">
                         {{ session('success') }}
