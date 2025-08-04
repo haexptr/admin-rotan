@@ -1,8 +1,16 @@
 <x-app-layout>
     @section('title', 'Dashboard')
 
-    <!-- Clean & Proper Dashboard CSS -->
+    <!-- Custom Dark Theme CSS dengan Palette Warna -->
     <style>
+        /* Custom Color Palette Variables */
+        :root {
+            --color-black: #242424;
+            --color-gray: #6D6D6D;
+            --color-light: #E7E7E7;
+            --color-white: #FAFAFA;
+        }
+
         /* Reset */
         * {
             box-sizing: border-box;
@@ -13,44 +21,46 @@
             background: transparent;
         }
 
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+
         * {
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
 
-        /* Dashboard Container - FULL ISI */
+        /* Dashboard Container - Dark Theme */
         .dashboard-container {
-            /* PERBAIKAN: Hilangkan padding untuk full width */
-            padding: 0;
+            padding: 1.5rem;
             margin: 0;
-            background: #f8fafc;
+            background: var(--color-black);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            /* PERBAIKAN: Padding hanya di dalam untuk spacing */
-            padding: 1.5rem;
             width: 100%;
             box-sizing: border-box;
         }
 
-        /* Welcome Card */
+        /* Welcome Card - Enhanced Dark */
         .welcome-card {
             background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 25%, #8b5cf6 75%, #a855f7 100%);
             border-radius: 1rem;
             padding: 2rem;
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            color: var(--color-white);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
             animation: slideUp 0.6s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .welcome-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
         }
 
-        /* Grid Layout - Proper 3 Columns */
+        /* Grid Layout - Tetap 3 Kolom */
         .dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -58,30 +68,31 @@
             gap: 1.5rem;
         }
 
-        /* Card Styling */
+        /* Card Styling - Forced Dark Theme untuk Light dan Dark Mode */
         .card {
-            background: white;
+            background: var(--color-black) !important;
             border-radius: 1rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid var(--color-gray) !important;
             transition: all 0.3s ease;
             animation: slideUp 0.8s ease-out;
         }
 
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5) !important;
+            border-color: var(--color-light) !important;
         }
 
-        /* Grid Positioning */
+        /* Grid Positioning - Tetap sama */
         .activity-card { grid-column: 1; grid-row: 1 / 3; }
         .trend-card { grid-column: 2; grid-row: 1; }
         .salary-card { grid-column: 3; grid-row: 1; }
         .attendance-card { grid-column: 2; grid-row: 2; }
         .performer-card { grid-column: 3; grid-row: 2; }
 
-        /* Activity Section */
+        /* Activity Section - Dark Theme */
         .activity-section {
             margin-bottom: 1.5rem;
         }
@@ -92,7 +103,7 @@
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            color: #6b7280;
+            color: var(--color-light);
         }
 
         .activity-section-title::before {
@@ -111,43 +122,46 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem;
-            background: #f8fafc;
+            background: rgba(109, 109, 109, 0.1);
             border-radius: 0.5rem;
             margin-bottom: 0.75rem;
             transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(109, 109, 109, 0.2);
         }
 
         .activity-item:hover {
-            background: #f1f5f9;
+            background: rgba(109, 109, 109, 0.2);
             transform: translateY(-1px);
+            border-color: var(--color-light);
         }
 
         .status-hadir {
-            background: #d1fae5;
-            color: #065f46;
+            background: rgba(109, 109, 109, 0.3);
+            color: var(--color-light);
             padding: 0.25rem 0.75rem;
             border-radius: 1rem;
             font-size: 0.75rem;
             font-weight: 500;
+            border: 1px solid rgba(109, 109, 109, 0.4);
         }
 
         .status-weight {
-            background: #fef3c7;
-            color: #92400e;
+            background: rgba(109, 109, 109, 0.3);
+            color: var(--color-light);
             padding: 0.25rem 0.75rem;
             border-radius: 1rem;
             font-size: 0.75rem;
             font-weight: 500;
+            border: 1px solid rgba(109, 109, 109, 0.4);
         }
 
-        /* Chart Containers */
+        /* Chart Containers - Dark Theme */
         .chart-container {
             height: 280px;
-            background: #f8fafc;
+            background: rgba(109, 109, 109, 0.05);
             border-radius: 0.5rem;
             padding: 1rem;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(109, 109, 109, 0.2);
             margin-top: 1rem;
         }
 
@@ -155,19 +169,19 @@
             height: 200px;
             width: 200px;
             margin: 0 auto 1rem auto;
-            background: #f8fafc;
+            background: rgba(109, 109, 109, 0.05);
             border-radius: 50%;
             padding: 1rem;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(109, 109, 109, 0.2);
         }
 
-        /* Legend */
+        /* Legend - Dark Theme */
         .legend-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(109, 109, 109, 0.2);
             font-size: 0.875rem;
             font-weight: 600;
         }
@@ -181,21 +195,22 @@
             margin-right: 0.5rem;
         }
 
-        /* Performers */
+        /* Performers - Dark Theme */
         .performer-item {
             display: flex;
             align-items: center;
             padding: 0.75rem;
-            background: #f8fafc;
+            background: rgba(109, 109, 109, 0.1);
             border-radius: 0.75rem;
             margin-bottom: 0.5rem;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(109, 109, 109, 0.2);
             transition: all 0.3s ease;
         }
 
         .performer-item:hover {
-            background: #f1f5f9;
+            background: rgba(109, 109, 109, 0.2);
             transform: translateY(-1px);
+            border-color: var(--color-light);
         }
 
         .performer-rank {
@@ -210,24 +225,26 @@
             font-size: 0.75rem;
             font-weight: 700;
             margin-right: 0.75rem;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .performer-percentage {
-            background: #d1fae5;
-            color: #065f46;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
             padding: 0.25rem 0.5rem;
             border-radius: 1rem;
             font-size: 0.75rem;
             font-weight: 600;
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
-        /* Quick Actions */
+        /* Quick Actions - Forced Dark Theme untuk Light dan Dark Mode */
         .quick-actions {
-            background: white;
+            background: var(--color-black) !important;
             border-radius: 1rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid var(--color-gray) !important;
         }
 
         .actions-grid {
@@ -237,24 +254,25 @@
             margin-top: 1rem;
         }
 
+        /* Action Items - Forced Dark Theme untuk Light dan Dark Mode */
         .action-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 1.5rem 1rem;
-            border: 2px dashed #e5e7eb;
+            border: 2px dashed var(--color-gray) !important;
             border-radius: 0.75rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            background: #f8fafc;
-            color: #374151;
+            background: var(--color-black) !important;
+            color: var(--color-white) !important;
         }
 
         .action-item:hover {
-            transform: translateY(-2px);
-            border-color: #3b82f6;
-            background: white;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+            transform: translateY(-3px);
+            border-color: var(--color-light) !important;
+            background: var(--color-black) !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
         }
 
         .action-icon {
@@ -265,7 +283,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 0.75rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         /* Animation */
@@ -317,39 +335,39 @@
             }
         }
 
-        /* Dark Mode - Container based */
-        .dark .dashboard-container {
-            background: #111827 !important;
+        /* Dark Mode Text Colors */
+        .text-gray-900 { color: var(--color-white) !important; }
+        .text-white { color: var(--color-white) !important; }
+        .text-gray-600 { color: var(--color-light) !important; }
+        .text-gray-700 { color: var(--color-light) !important; }
+        .text-gray-800 { color: var(--color-white) !important; }
+        .text-gray-300 { color: var(--color-light) !important; }
+        .text-gray-200 { color: var(--color-white) !important; }
+        .text-gray-400 { color: var(--color-gray) !important; }
+        .text-gray-500 { color: var(--color-gray) !important; }
+
+        /* Override Tailwind dark mode classes jika diperlukan */
+        .dark\:text-white { color: var(--color-white) !important; }
+        .dark\:text-gray-200 { color: var(--color-white) !important; }
+        .dark\:text-gray-300 { color: var(--color-light) !important; }
+        .dark\:text-gray-400 { color: var(--color-gray) !important; }
+
+        /* Global Dark Theme Override - Paksa semua elemen menggunakan dark theme */
+        body {
+            background: var(--color-black) !important;
         }
 
-        .dark .card,
-        .dark .quick-actions {
-            background: #1f2937;
-            color: white;
-            border-color: #374151;
-        }
-
-        .dark .activity-item,
-        .dark .performer-item {
-            background: #374151;
-            border-color: #4b5563;
-        }
-
-        .dark .chart-container,
-        .dark .doughnut-container {
-            background: #374151;
-            border-color: #4b5563;
-        }
-
-        .dark .action-item {
-            background: #374151;
-            border-color: #4b5563;
-            color: #f3f4f6;
-        }
-
-        .dark .action-item:hover {
-            background: #1f2937;
-            border-color: #3b82f6;
+        /* Dashboard Container - Forced Dark Theme */
+        .dashboard-container {
+            padding: 1.5rem;
+            margin: 0;
+            background: var(--color-black) !important;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            box-sizing: border-box;
         }
     </style>
 
@@ -365,7 +383,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-3xl font-bold mb-2">Selamat Datang, {{ Auth::user()->name }}!</h1>
+                    <h1 class="text-3xl font-bold mb-2" style="color: var(--color-white);">Selamat Datang, {{ Auth::user()->name }}!</h1>
                     <p class="text-white text-opacity-90 font-semibold text-lg">Sistem Manajemen Admin Rotan - {{ date('d F Y') }}</p>
                 </div>
             </div>
@@ -376,18 +394,18 @@
             
             <!-- Activity Card -->
             <div class="card activity-card">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Aktivitas Terbaru</h3>
+                <h3 class="text-xl font-bold mb-6" style="color: var(--color-white);">Aktivitas Terbaru</h3>
                 
                 <div class="activity-section">
                     <div class="activity-section-title absensi">Absensi Terbaru</div>
                     @forelse($recentAbsensi->take(2) as $absensi)
                         <div class="activity-item">
-                            <span class="font-medium text-gray-800 dark:text-gray-200">{{ $absensi->karyawan->nama }}</span>
+                            <span class="font-medium" style="color: var(--color-white);">{{ $absensi->karyawan->nama }}</span>
                             <span class="status-hadir">Hadir</span>
                         </div>
                     @empty
                         <div class="activity-item">
-                            <span class="font-medium text-gray-800 dark:text-gray-200">Belum ada data absensi</span>
+                            <span class="font-medium" style="color: var(--color-white);">Belum ada data absensi</span>
                             <span class="status-hadir">-</span>
                         </div>
                     @endforelse
@@ -397,12 +415,12 @@
                     <div class="activity-section-title timbangan">Timbangan Terbaru</div>
                     @forelse($recentTimbangan->take(3) as $timbangan)
                         <div class="activity-item">
-                            <span class="font-medium text-gray-800 dark:text-gray-200">{{ $timbangan->karyawan->nama }}</span>
+                            <span class="font-medium" style="color: var(--color-white);">{{ $timbangan->karyawan->nama }}</span>
                             <span class="status-weight">{{ $timbangan->deskripsi_timbangan }}</span>
                         </div>
                     @empty
                         <div class="activity-item">
-                            <span class="font-medium text-gray-800 dark:text-gray-200">Belum ada data timbangan</span>
+                            <span class="font-medium" style="color: var(--color-white);">Belum ada data timbangan</span>
                             <span class="status-weight">-</span>
                         </div>
                     @endforelse
@@ -412,15 +430,15 @@
             <!-- Trend Card -->
             <div class="card trend-card">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Tren Aktivitas 7 Hari</h3>
+                    <h3 class="text-lg font-bold" style="color: var(--color-white);">Tren Aktivitas 7 Hari</h3>
                     <div class="flex items-center space-x-3 text-sm">
                         <div class="flex items-center space-x-1">
                             <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
-                            <span class="text-gray-600 dark:text-gray-300">Absensi</span>
+                            <span style="color: var(--color-light);">Absensi</span>
                         </div>
                         <div class="flex items-center space-x-1">
                             <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
-                            <span class="text-gray-600 dark:text-gray-300">Timbangan</span>
+                            <span style="color: var(--color-light);">Timbangan</span>
                         </div>
                     </div>
                 </div>
@@ -432,9 +450,9 @@
             <!-- Salary Card -->
             <div class="card salary-card">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">Tren Gaji 6 Bulan Terakhir</h3>
-                    <div class="text-sm font-semibold text-gray-600 dark:text-gray-300">
-                        Total: <span class="font-bold text-gray-900 dark:text-white">Rp {{ number_format(array_sum($gajiBulanan ?? [0]), 0, ',', '.') }}</span>
+                    <h3 class="text-lg font-bold" style="color: var(--color-white);">Tren Gaji 6 Bulan Terakhir</h3>
+                    <div class="text-sm font-semibold" style="color: var(--color-light);">
+                        Total: <span class="font-bold" style="color: var(--color-white);">Rp {{ number_format(array_sum($gajiBulanan ?? [0]), 0, ',', '.') }}</span>
                     </div>
                 </div>
                 <div class="chart-container">
@@ -444,7 +462,7 @@
 
             <!-- Attendance Card -->
             <div class="card attendance-card">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Status Absensi Bulan Ini</h3>
+                <h3 class="text-lg font-bold mb-4" style="color: var(--color-white);">Status Absensi Bulan Ini</h3>
                 <div class="doughnut-container mb-4">
                     <canvas id="attendanceChart"></canvas>
                 </div>
@@ -452,43 +470,43 @@
                     <div class="legend-item">
                         <div class="flex items-center">
                             <div class="legend-color bg-green-500"></div>
-                            <span class="text-gray-700 dark:text-gray-300">Hadir</span>
+                            <span style="color: var(--color-light);">Hadir</span>
                         </div>
-                        <span class="font-bold text-gray-900 dark:text-white">{{ $absensiStats['hadir'] ?? 0 }}</span>
+                        <span class="font-bold" style="color: var(--color-white);">{{ $absensiStats['hadir'] ?? 0 }}</span>
                     </div>
                     <div class="legend-item">
                         <div class="flex items-center">
                             <div class="legend-color bg-yellow-500"></div>
-                            <span class="text-gray-700 dark:text-gray-300">Izin</span>
+                            <span style="color: var(--color-light);">Izin</span>
                         </div>
-                        <span class="font-bold text-gray-900 dark:text-white">{{ $absensiStats['izin'] ?? 0 }}</span>
+                        <span class="font-bold" style="color: var(--color-white);">{{ $absensiStats['izin'] ?? 0 }}</span>
                     </div>
                     <div class="legend-item">
                         <div class="flex items-center">
                             <div class="legend-color bg-red-500"></div>
-                            <span class="text-gray-700 dark:text-gray-300">Tidak Hadir</span>
+                            <span style="color: var(--color-light);">Tidak Hadir</span>
                         </div>
-                        <span class="font-bold text-gray-900 dark:text-white">{{ $absensiStats['tidak_hadir'] ?? 0 }}</span>
+                        <span class="font-bold" style="color: var(--color-white);">{{ $absensiStats['tidak_hadir'] ?? 0 }}</span>
                     </div>
                 </div>
             </div>
 
             <!-- Performer Card -->
             <div class="card performer-card">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Top Performer Bulan Ini</h3>
+                <h3 class="text-lg font-bold mb-4" style="color: var(--color-white);">Top Performer Bulan Ini</h3>
                 <div class="max-h-80 overflow-y-auto">
                     @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
                         <div class="performer-item">
                             <div class="performer-rank">{{ $index + 1 }}</div>
                             <div class="flex-1">
-                                <div class="font-semibold text-gray-900 dark:text-white">{{ $karyawan->nama }}</div>
-                                <div class="text-sm text-gray-600 dark:text-gray-400">{{ $karyawan->total_hadir }} hari hadir</div>
+                                <div class="font-semibold" style="color: var(--color-white);">{{ $karyawan->nama }}</div>
+                                <div class="text-sm" style="color: var(--color-light);">{{ $karyawan->total_hadir }} hari hadir</div>
                             </div>
                             <div class="performer-percentage">{{ round(($karyawan->total_hadir / 30) * 100) }}%</div>
                         </div>
                     @empty
                         <div class="text-center py-8">
-                            <p class="text-gray-500 dark:text-gray-400">Belum ada data performer</p>
+                            <p style="color: var(--color-gray);">Belum ada data performer</p>
                         </div>
                     @endforelse
                 </div>
@@ -498,7 +516,7 @@
 
         <!-- Quick Actions -->
         <div class="quick-actions">
-            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Aksi Cepat</h3>
+            <h3 class="text-lg font-bold" style="color: var(--color-white);">Aksi Cepat</h3>
             <div class="actions-grid">
                 <a href="{{ route('karyawans.create') }}" class="action-item">
                     <div class="action-icon bg-gradient-to-br from-blue-500 to-blue-600">
@@ -542,7 +560,7 @@
     @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <script>
-        // Data preparation
+        // Data preparation - tetap menggunakan data Laravel
         const chartData = {
             tanggal7Hari: {!! json_encode($tanggal7Hari ?? ['29/07', '30/07', '31/07', '01/08', '02/08', '03/08', '04/08']) !!},
             absensi7Hari: {!! json_encode($absensi7Hari ?? [0, 0, 0, 1, 0, 1, 0]) !!},
@@ -556,19 +574,18 @@
             }
         };
 
-        // Theme colors
-        const isDarkMode = () => document.documentElement.classList.contains('dark');
+        // Theme colors untuk dark mode
         const getThemeColors = () => {
-            const dark = isDarkMode();
             return {
-                text: dark ? '#f9fafb' : '#111827',
-                textSecondary: dark ? '#d1d5db' : '#6b7280',
-                gridLines: dark ? '#4b5563' : '#f3f4f6'
+                text: '#FAFAFA',
+                textSecondary: '#E7E7E7',
+                gridLines: '#6D6D6D'
             };
         };
 
         Chart.defaults.font.family = "'Inter', sans-serif";
         Chart.defaults.plugins.legend.display = false;
+        Chart.defaults.color = '#FAFAFA';
 
         // Activity Chart
         const activityCtx = document.getElementById('activityChart').getContext('2d');
@@ -583,7 +600,10 @@
                     tension: 0.4,
                     fill: true,
                     pointRadius: 4,
-                    borderWidth: 2
+                    borderWidth: 3,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: '#FAFAFA',
+                    pointBorderWidth: 2
                 }, {
                     data: chartData.timbangan7Hari,
                     borderColor: '#f59e0b',
@@ -591,15 +611,34 @@
                     tension: 0.4,
                     fill: true,
                     pointRadius: 4,
-                    borderWidth: 2
+                    borderWidth: 3,
+                    pointBackgroundColor: '#f59e0b',
+                    pointBorderColor: '#FAFAFA',
+                    pointBorderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
-                    y: { beginAtZero: true, grid: { color: getThemeColors().gridLines } },
-                    x: { grid: { display: false } }
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: '#6D6D6D' },
+                        ticks: { color: '#E7E7E7' }
+                    },
+                    x: { 
+                        grid: { display: false },
+                        ticks: { color: '#E7E7E7' }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        backgroundColor: 'rgba(36, 36, 36, 0.9)',
+                        titleColor: '#FAFAFA',
+                        bodyColor: '#FAFAFA',
+                        borderColor: '#6D6D6D',
+                        borderWidth: 1
+                    }
                 }
             }
         });
@@ -623,14 +662,32 @@
                 scales: {
                     y: { 
                         beginAtZero: true, 
-                        grid: { color: getThemeColors().gridLines },
+                        grid: { color: '#6D6D6D' },
                         ticks: { 
+                            color: '#E7E7E7',
                             callback: function(value) {
                                 return 'Rp ' + value.toLocaleString('id-ID');
                             }
                         }
                     },
-                    x: { grid: { display: false } }
+                    x: { 
+                        grid: { display: false },
+                        ticks: { color: '#E7E7E7' }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        backgroundColor: 'rgba(36, 36, 36, 0.9)',
+                        titleColor: '#FAFAFA',
+                        bodyColor: '#FAFAFA',
+                        borderColor: '#6D6D6D',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                return 'Rp ' + context.raw.toLocaleString('id-ID');
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -649,11 +706,20 @@
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        backgroundColor: 'rgba(36, 36, 36, 0.9)',
+                        titleColor: '#FAFAFA',
+                        bodyColor: '#FAFAFA',
+                        borderColor: '#6D6D6D',
+                        borderWidth: 1
+                    }
+                }
             }
         });
 
-        console.log('✅ Clean Dashboard Loaded Successfully!');
+        console.log('🌙 Dark Theme Laravel Dashboard Loaded Successfully!');
     </script>
     @endpush
 </x-app-layout>
