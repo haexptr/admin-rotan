@@ -142,7 +142,50 @@
         body {
             transition: background-color 0.2s ease, color 0.2s ease;
         }
+
+        /* ========================================
+           PERBAIKAN: DASHBOARD FULL WIDTH OVERRIDE
+           ======================================== */
+        
+        /* KHUSUS UNTUK DASHBOARD - Override main container */
+        body.dashboard-page main {
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        /* PERBAIKAN: Override body background untuk dashboard */
+        body.dashboard-page {
+            background: #f8fafc !important;
+        }
+
+        body.dashboard-page.dark {
+            background: #111827 !important;
+        }
+
+        /* PERBAIKAN: Ensure no container constraints untuk dashboard */
+        body.dashboard-page .max-w-7xl,
+        body.dashboard-page .container,
+        body.dashboard-page .mx-auto {
+            max-width: none !important;
+            margin: 0 !important;
+        }
+
+        /* PERBAIKAN: Full width untuk dashboard content */
+        body.dashboard-page main > * {
+            width: 100%;
+        }
     </style>
+    
+    <!-- PERBAIKAN: Add dashboard class to body if on dashboard page -->
+    @if(request()->routeIs('dashboard'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('dashboard-page');
+        });
+    </script>
+    @endif
 </head>
 <body class="font-sans antialiased bg-gray-50 dark:bg-gray-900">
     <div class="min-h-screen flex" x-data="darkMode">
