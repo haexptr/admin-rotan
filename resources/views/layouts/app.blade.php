@@ -105,11 +105,216 @@
             box-shadow: 0 4px 12px rgba(109, 109, 109, 0.15);
         }
 
-        /* Logout button at bottom */
+        /* User info section */
+        .user-info {
+            background: rgba(231, 231, 231, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(231, 231, 231, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+
+        .user-name {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .user-role {
+            color: rgba(231, 231, 231, 0.7);
+            font-size: 12px;
+        }
+
+        /* Fixed sidebar */
+        .sidebar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 50;
+        }
+
+        /* Main content offset untuk memberikan ruang untuk sidebar fixed */
+        .main-content-offset {
+            margin-left: 224px; /* 224px = w-56 (14rem * 16px) */
+        }
+
+        /* Sidebar bottom controls */
         .sidebar-bottom {
             margin-top: auto;
             padding: 16px 20px;
             border-top: 1px solid rgba(231, 231, 231, 0.1);
+        }
+
+        /* Custom scrollbar untuk sidebar */
+        .sidebar-fixed::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-fixed::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-fixed::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        .sidebar-fixed::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* FORCE OVERRIDE - Modern Theme Toggle - No Card Style */
+        .theme-toggle {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important; /* Align left like nav items */
+            padding: 12px 16px !important; /* Same padding as nav items */
+            margin: 0 !important; /* Remove margin */
+            margin-bottom: 4px !important; /* Same spacing as nav items */
+            border-radius: 8px !important; /* Same border radius as nav items */
+            background: transparent !important; /* No background - flat like nav items */
+            border: none !important; /* No border - flat like nav items */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            cursor: pointer !important;
+            position: relative !important;
+            overflow: visible !important; /* No overflow hidden */
+            width: 100% !important; /* Full width like nav items */
+        }
+
+        .theme-toggle::before {
+            display: none !important; /* Remove shimmer effect */
+        }
+
+        .theme-toggle:hover::before {
+            display: none !important; /* Remove shimmer effect */
+        }
+
+        .theme-toggle:hover {
+            background: transparent !important; /* No hover background */
+            border-color: transparent !important;
+            transform: none !important; /* No hover transform */
+            box-shadow: none !important; /* No shadow */
+        }
+
+        /* Override nav-hover-green for theme toggle */
+        .theme-toggle.nav-hover-green:hover {
+            background: transparent !important;
+            color: inherit !important;
+            transform: none !important;
+            transition: none !important;
+        }
+
+        /* Beautiful Toggle Switch - FORCED */
+        .theme-switch {
+            position: relative !important;
+            width: 56px !important;
+            height: 30px !important;
+            border-radius: 15px !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            cursor: pointer !important;
+            border: 2px solid transparent !important;
+            overflow: hidden !important;
+        }
+
+        .theme-switch.inactive {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706) !important;
+            box-shadow: 
+                0 4px 8px rgba(251, 191, 36, 0.3) !important,
+                inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .theme-switch.active {
+            background: linear-gradient(135deg, #6366f1, #4f46e5, #3730a3) !important;
+            box-shadow: 
+                0 4px 8px rgba(99, 102, 241, 0.3) !important,
+                inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .theme-switch:focus {
+            outline: none !important;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3) !important;
+        }
+
+        /* Animated Slider - FORCED */
+        .theme-slider {
+            position: absolute !important;
+            top: 2px !important;
+            left: 2px !important;
+            width: 22px !important;
+            height: 22px !important;
+            background: linear-gradient(135deg, #ffffff, #f8fafc) !important;
+            border-radius: 50% !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            z-index: 10 !important;
+            border: 1px solid rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .theme-slider.active {
+            transform: translateX(26px) !important;
+            box-shadow: 
+                0 4px 8px rgba(99, 102, 241, 0.3) !important,
+                0 2px 4px rgba(0, 0, 0, 0.1) !important,
+                inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .theme-slider.inactive {
+            transform: translateX(0) !important;
+            box-shadow: 
+                0 4px 8px rgba(251, 191, 36, 0.3) !important,
+                0 2px 4px rgba(0, 0, 0, 0.1) !important,
+                inset 0 1px 2px rgba(255, 255, 255, 0.3) !important;
+        }
+
+        /* Beautiful Icons - FORCED */
+        .theme-icon {
+            width: 14px !important;
+            height: 14px !important;
+            transition: all 0.3s ease !important;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) !important;
+        }
+
+        .theme-icon.sun {
+            color: #f59e0b !important;
+            animation: rotate-sun 20s linear infinite !important;
+        }
+
+        .theme-icon.moon {
+            color: #6366f1 !important;
+            animation: glow-moon 2s ease-in-out infinite alternate !important;
+        }
+
+        @keyframes rotate-sun {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes glow-moon {
+            from { filter: drop-shadow(0 0 2px rgba(99, 102, 241, 0.3)); }
+            to { filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6)); }
+        }
+
+        /* Hover effects - FORCED */
+        .theme-toggle:hover .theme-slider {
+            transform: scale(1.05) !important;
+        }
+
+        .theme-toggle:hover .theme-slider.active {
+            transform: translateX(26px) scale(1.05) !important;
+        }
+
+        .theme-toggle:active .theme-slider {
+            transform: scale(0.95) !important;
+        }
+
+        .theme-toggle:active .theme-slider.active {
+            transform: translateX(26px) scale(0.95) !important;
         }
 
         .logout-nav-item {
@@ -197,6 +402,13 @@
                 padding: 1.25rem 1.5rem;
             }
         }
+
+        /* TEMPORARY FIX: Hide any duplicate dark mode toggles outside sidebar */
+        body > div:not(.min-h-screen) [class*="dark"],
+        .fixed.top-4.right-4,
+        .absolute.top-4.right-4 {
+            display: none !important;
+        }
     </style>
     
     <!-- PERBAIKAN: Add dashboard class to body if on dashboard page -->
@@ -209,10 +421,10 @@
     @endif
 </head>
 <body class="font-sans antialiased bg-gray-50 dark:bg-gray-900">
-    <div class="min-h-screen flex" x-data="darkMode">
-        <!-- Sidebar -->
-        <aside class="w-56 sidebar-green shadow-lg border-r border-gray-800/30 select-none">
-            <div class="p-4">
+    <div class="min-h-screen" x-data="darkMode">
+        <!-- Fixed Sidebar -->
+        <aside class="w-56 sidebar-green sidebar-fixed shadow-lg border-r border-gray-800/30 select-none flex flex-col">
+            <div class="p-4 flex-1 flex flex-col h-full">
                 <!-- Logo Section -->
                 <div class="flex items-center space-x-2 mb-6 select-none">
                     <div class="w-8 h-8 flex items-center justify-center select-none overflow-hidden logo-container rounded-lg">
@@ -226,8 +438,14 @@
                     </div>
                 </div>
 
+                <!-- User Info Section -->
+                <div class="user-info select-none">
+                    <div class="user-name">{{ Auth::user()->name }}</div>
+                    <div class="user-role">Administrator</div>
+                </div>
+
                 <!-- Navigation Menu -->
-                <nav class="space-y-1 select-none">
+                <nav class="space-y-1 select-none flex-1">
                     <a href="{{ route('dashboard') }}" 
                        class="nav-item flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all select-none
                               {{ request()->routeIs('dashboard') 
@@ -292,68 +510,48 @@
                         </svg>
                         <span class="select-none">Gaji</span>
                     </a>
-
-                    <!-- Logout dibawah menu Gaji dengan spacing -->
-                    <div class="pt-25">
-                        <form method="POST" action="{{ route('logout') }}" class="w-full">
-                            @csrf
-                            <button type="submit" class="logout-nav-item flex items-center w-full space-x-2 px-3 py-2 rounded-lg text-sm font-medium">
-                                <svg class="w-4 h-4 select-none pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                                    <polyline points="16,17 21,12 16,7"/>
-                                    <line x1="21" y1="12" x2="9" y2="12"/>
-                                </svg>
-                                <span class="select-none">Logout</span>
-                            </button>
-                        </form>
-                    </div>
                 </nav>
+
+                <!-- Bottom Controls -->
+                <div class="sidebar-bottom">
+                    <!-- Beautiful Theme Toggle - No Hover -->
+                    <div class="dark-mode-toggle theme-toggle" @click="toggle()" title="Toggle Theme">
+                        <button class="theme-switch select-none focus:outline-none"
+                                :class="{ 'active': isDark, 'inactive': !isDark }"
+                                type="button"
+                                aria-label="Toggle dark mode">
+                            <div class="theme-slider"
+                                 :class="{ 'active': isDark, 'inactive': !isDark }">
+                                <!-- Sun icon for light mode -->
+                                <svg x-show="!isDark" class="theme-icon sun" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+                                </svg>
+                                <!-- Moon icon for dark mode -->
+                                <svg x-show="isDark" class="theme-icon moon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Logout Button -->
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        @csrf
+                        <button type="submit" class="logout-nav-item flex items-center w-full space-x-2 px-3 py-2 rounded-lg text-sm font-medium">
+                            <svg class="w-4 h-4 select-none pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                <polyline points="16,17 21,12 16,7"/>
+                                <line x1="21" y1="12" x2="9" y2="12"/>
+                            </svg>
+                            <span class="select-none">Logout</span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </aside>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
-            <!-- Header -->
-            <header class="header-green shadow-lg border-b border-gray-800/30 px-4 py-3 select-none">
-                <div class="flex items-center justify-between select-none">
-                    <h1 class="text-lg font-semibold text-white select-none pointer-events-none">
-                        @if(request()->routeIs('dashboard'))
-                            Dashboard
-                        @elseif(request()->routeIs('karyawans.*'))
-                            Karyawan
-                        @elseif(request()->routeIs('absensis.*'))
-                            Absensi  
-                        @elseif(request()->routeIs('timbangans.*'))
-                            Timbangan
-                        @elseif(request()->routeIs('gajis.*'))
-                            Gaji
-                        @else
-                            {{ ucfirst(str_replace(['.', '_'], [' ', ' '], Route::currentRouteName() ?? 'Dashboard')) }}
-                        @endif
-                    </h1>
-                    
-                    <div class="flex items-center space-x-4 text-sm select-none">
-                        <div class="flex items-center space-x-2 select-none">
-                            <button @click="toggle()" 
-                                    class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 focus:ring-offset-gray-800 select-none shrink-0"
-                                    :class="{ 'toggle-green': isDark, 'toggle-green-inactive': !isDark }"
-                                    type="button"
-                                    aria-label="Toggle dark mode"
-                                    draggable="false">
-                                <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ease-in-out pointer-events-none select-none shadow-sm"
-                                      :class="{ 'translate-x-6': isDark, 'translate-x-1': !isDark }"
-                                      draggable="false">
-                                </span>
-                            </button>
-                            <span class="text-sm text-gray-300 select-none pointer-events-none" 
-                                  x-text="isDark ? 'Dark' : 'Light'"></span>
-                        </div>
-                        
-                        <span class="text-gray-300 select-none pointer-events-none">{{ Auth::user()->name }}</span>
-                    </div>
-                </div>
-            </header>
-
+        <!-- Main Content with offset -->
+        <div class="main-content-offset flex flex-col">
             <!-- FIXED: Page Content with Proper Spacing -->
             <main class="flex-1">
                 @if (session('success'))

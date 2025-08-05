@@ -2,12 +2,25 @@
     @section('title', 'Data Timbangan')
 
     <style>
-        /* Custom Color Palette Variables */
+        /* Dynamic Color Palette Variables - Light & Dark Mode Support */
         :root {
-            --color-black: #242424;
-            --color-gray: #6D6D6D;
-            --color-light: #E7E7E7;
-            --color-white: #FAFAFA;
+            /* Light mode colors */
+            --color-bg-primary: #F8F9FA;
+            --color-bg-secondary: #FFFFFF;
+            --color-text-primary: #212529;
+            --color-text-secondary: #6C757D;
+            --color-border: #DEE2E6;
+            --color-border-hover: #CED4DA;
+        }
+
+        .dark {
+            /* Dark mode colors */
+            --color-bg-primary: #111827;
+            --color-bg-secondary: #1F2937;
+            --color-text-primary: #F9FAFB;
+            --color-text-secondary: #D1D5DB;
+            --color-border: #374151;
+            --color-border-hover: #4B5563;
         }
 
         /* PERBAIKAN: Override container constraints */
@@ -15,7 +28,8 @@
             margin: 0 !important;
             padding: 0 !important;
             width: 100% !important;
-            background: var(--color-black) !important;
+            background: var(--color-bg-primary) !important;
+            transition: background-color 0.3s ease;
         }
 
         main, [role="main"], .min-h-screen {
@@ -23,7 +37,8 @@
             padding: 0 !important;
             width: 100% !important;
             max-width: none !important;
-            background: var(--color-black) !important;
+            background: var(--color-bg-primary) !important;
+            transition: background-color 0.3s ease;
         }
 
         .max-w-7xl,
@@ -35,14 +50,15 @@
             padding: 0 !important;
         }
 
-        /* Timbangan page container - FULL WIDTH - Dark Theme */
+        /* Timbangan page container - FULL WIDTH - Responsive Theme */
         .timbangan-container {
             padding: 1.5rem;
             margin: 0;
-            background: var(--color-black);
+            background: var(--color-bg-primary);
             min-height: 100vh;
             width: 100%;
             box-sizing: border-box;
+            transition: background-color 0.3s ease;
         }
 
         /* Menghilangkan scrollbar pada semua elemen */
@@ -73,198 +89,246 @@
             overflow-wrap: break-word;
         }
 
-        /* Header Dark Theme */
+        /* Header Responsive Theme */
         .page-header h1 {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            font-weight: 600 !important;
+            transition: color 0.3s ease;
         }
 
         .page-header .divider {
-            background: var(--color-light) !important;
+            background: var(--color-border) !important;
+            transition: background-color 0.3s ease;
         }
 
-        /* Buttons Dark Theme */
+        /* Buttons Responsive Theme */
         .btn-delete {
-            color: #ef4444 !important;
-            background: var(--color-black) !important;
-            border-color: rgba(239, 68, 68, 0.3) !important;
+            color: #dc3545 !important;
+            background: var(--color-bg-secondary) !important;
+            border-color: var(--color-border) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease;
         }
 
         .btn-delete:hover {
-            background: rgba(239, 68, 68, 0.1) !important;
-            border-color: rgba(239, 68, 68, 0.5) !important;
+            background: var(--color-bg-primary) !important;
+            border-color: #dc3545 !important;
+            color: #dc3545 !important;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2) !important;
         }
 
         .btn-primary {
-            background: var(--color-gray) !important;
-            color: var(--color-white) !important;
-            border: 1px solid var(--color-light) !important;
+            background: var(--color-text-primary) !important;
+            color: var(--color-bg-secondary) !important;
+            border: 1px solid var(--color-text-primary) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background: var(--color-light) !important;
-            color: var(--color-black) !important;
+            background: var(--color-text-secondary) !important;
+            border-color: var(--color-text-secondary) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
         }
 
-        /* Dropdown Dark Theme */
+        /* Dropdown Responsive Theme */
         .dropdown-menu {
-            background: var(--color-black) !important;
-            border: 1px solid var(--color-gray) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+            background: var(--color-bg-secondary) !important;
+            border: 1px solid var(--color-border) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease;
+        }
+
+        .dark .dropdown-menu {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
         }
 
         .dropdown-item {
-            color: var(--color-light) !important;
+            color: var(--color-text-primary) !important;
+            transition: all 0.3s ease;
         }
 
         .dropdown-item:hover {
-            background: rgba(109, 109, 109, 0.2) !important;
-            color: var(--color-white) !important;
+            background: var(--color-bg-primary) !important;
+            color: var(--color-text-primary) !important;
         }
 
         .dropdown-item.danger {
-            color: #ef4444 !important;
+            color: #dc3545 !important;
         }
 
         .dropdown-item.danger:hover {
-            background: rgba(239, 68, 68, 0.1) !important;
+            background: rgba(220, 53, 69, 0.1) !important;
         }
 
         .dropdown-divider {
-            border-color: var(--color-gray) !important;
+            border-color: var(--color-border) !important;
         }
 
-        /* Table Card Dark Theme */
+        /* Table Card Responsive Theme */
         .table-card {
-            background: var(--color-black) !important;
-            border: 1px solid var(--color-gray) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+            background: var(--color-bg-secondary) !important;
+            border: 1px solid var(--color-border) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
             transition: all 0.3s ease;
+        }
+
+        .dark .table-card {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
         }
 
         .table-card:hover {
             transform: translateY(-1px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            border-color: var(--color-border-hover) !important;
         }
 
-        /* Table Dark Theme */
+        .dark .table-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        /* Table Responsive Theme */
         .table-header-row {
-            border-bottom: 1px solid var(--color-gray) !important;
+            border-bottom: 1px solid var(--color-border) !important;
+            background: var(--color-bg-primary) !important;
+            transition: all 0.3s ease;
         }
 
         .table-header-cell {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            font-weight: 600 !important;
+            transition: color 0.3s ease;
         }
 
         .table-row {
-            border-bottom: 1px solid rgba(109, 109, 109, 0.2) !important;
+            border-bottom: 1px solid var(--color-border) !important;
+            transition: all 0.3s ease;
         }
 
         .table-row:hover {
-            background: rgba(109, 109, 109, 0.1) !important;
+            background: var(--color-bg-primary) !important;
         }
 
         .table-cell {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            transition: color 0.3s ease;
         }
 
         .table-cell-secondary {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
-        /* Action Links Dark Theme */
+        /* Action Links Responsive Theme */
         .action-view {
-            color: var(--color-light) !important;
+            color: #0d6efd !important;
+            transition: color 0.3s ease;
         }
 
         .action-view:hover {
-            color: var(--color-white) !important;
+            color: #0b5ed7 !important;
         }
 
         .action-edit {
-            color: #f59e0b !important;
+            color: #198754 !important;
+            transition: color 0.3s ease;
         }
 
         .action-edit:hover {
-            color: #fbbf24 !important;
+            color: #146c43 !important;
         }
 
         .action-delete {
-            color: #ef4444 !important;
+            color: #dc3545 !important;
+            transition: color 0.3s ease;
         }
 
         .action-delete:hover {
-            color: #f87171 !important;
+            color: #b02a37 !important;
         }
 
-        /* Empty State Dark Theme */
+        /* Empty State Responsive Theme */
         .empty-state-icon {
-            color: var(--color-gray) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
         .empty-state-title {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            transition: color 0.3s ease;
         }
 
         .empty-state-subtitle {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
-        /* Modal Dark Theme */
+        /* Modal Responsive Theme */
         .modal-overlay {
-            background: rgba(36, 36, 36, 0.8) !important;
+            background: rgba(0, 0, 0, 0.5) !important;
         }
 
         .modal-content {
-            background: var(--color-black) !important;
-            border: 1px solid var(--color-gray) !important;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+            background: var(--color-bg-secondary) !important;
+            border: 1px solid var(--color-border) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+            transition: all 0.3s ease;
+        }
+
+        .dark .modal-content {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
         }
 
         .modal-header {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            transition: color 0.3s ease;
         }
 
         .modal-text {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
         .modal-icon-bg {
-            background: rgba(239, 68, 68, 0.2) !important;
+            background: rgba(220, 53, 69, 0.1) !important;
         }
 
         .modal-icon {
-            color: #ef4444 !important;
+            color: #dc3545 !important;
         }
 
         .modal-footer {
-            background: rgba(109, 109, 109, 0.1) !important;
+            background: var(--color-bg-primary) !important;
+            border-top: 1px solid var(--color-border) !important;
+            transition: all 0.3s ease;
         }
 
         .modal-btn-danger {
-            background: #ef4444 !important;
-            border-color: #ef4444 !important;
+            background: #dc3545 !important;
+            border-color: #dc3545 !important;
         }
 
         .modal-btn-danger:hover {
-            background: #dc2626 !important;
+            background: #bb2d3b !important;
         }
 
         .modal-btn-cancel {
-            background: var(--color-black) !important;
-            border: 1px solid var(--color-gray) !important;
-            color: var(--color-light) !important;
+            background: var(--color-bg-secondary) !important;
+            border: 1px solid var(--color-border) !important;
+            color: var(--color-text-secondary) !important;
+            transition: all 0.3s ease;
         }
 
         .modal-btn-cancel:hover {
-            background: rgba(109, 109, 109, 0.2) !important;
-            color: var(--color-white) !important;
+            background: var(--color-bg-primary) !important;
+            color: var(--color-text-primary) !important;
         }
 
         /* Color icons untuk dropdown items */
-        .icon-orange { color: #f59e0b !important; }
-        .icon-yellow { color: #eab308 !important; }
-        .icon-red { color: #ef4444 !important; }
-        .icon-red-dark { color: #dc2626 !important; }
+        .icon-orange { color: #fd7e14 !important; }
+        .icon-yellow { color: #ffc107 !important; }
+        .icon-red { color: #dc3545 !important; }
+        .icon-red-dark { color: #b02a37 !important; }
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -300,6 +364,9 @@
         <div class="flex items-center justify-between mb-8 page-header">
             <div>
                 <h1 class="text-2xl font-light tracking-tight">Data Timbangan</h1>
+                <p class="mt-1 text-sm page-subtitle">
+                    Kelola data karyawan dengan sistem terintegrasi
+                </p>
                 <div class="w-12 h-0.5 mt-2 divider"></div>
             </div>
             <div class="flex items-center gap-3">
@@ -539,7 +606,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🌙 Timbangan Dark Theme Loaded Successfully!');
+            console.log('🌓 Timbangan Responsive Theme Loaded Successfully!');
+            
+            // Log current theme
+            const isDark = document.documentElement.classList.contains('dark');
+            console.log('Current theme:', isDark ? 'Dark' : 'Light');
         });
     </script>
 </x-app-layout>

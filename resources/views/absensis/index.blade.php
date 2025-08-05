@@ -1,14 +1,27 @@
 <x-app-layout>
     @section('title', 'Data Absensi')
 
-    <!-- CSS Override untuk Dark Theme Absensi Page -->
+    <!-- CSS Override untuk Responsive Theme Absensi Page -->
     <style>
-        /* Custom Color Palette Variables */
+        /* Dynamic Color Palette Variables - Light & Dark Mode Support */
         :root {
-            --color-black: #242424;
-            --color-gray: #6D6D6D;
-            --color-light: #E7E7E7;
-            --color-white: #FAFAFA;
+            /* Light mode colors */
+            --color-bg-primary: #F8F9FA;
+            --color-bg-secondary: #FFFFFF;
+            --color-text-primary: #212529;
+            --color-text-secondary: #6C757D;
+            --color-border: #DEE2E6;
+            --color-border-hover: #CED4DA;
+        }
+
+        .dark {
+            /* Dark mode colors */
+            --color-bg-primary: #111827;
+            --color-bg-secondary: #1F2937;
+            --color-text-primary: #F9FAFB;
+            --color-text-secondary: #D1D5DB;
+            --color-border: #374151;
+            --color-border-hover: #4B5563;
         }
 
         /* KHUSUS UNTUK HALAMAN ABSENSI - Override main container */
@@ -19,9 +32,10 @@
             width: 100% !important;
         }
 
-        /* Override body background untuk absensi - Dark Theme */
+        /* Override body background untuk absensi - Responsive Theme */
         body.absensi-page {
-            background: var(--color-black) !important;
+            background: var(--color-bg-primary) !important;
+            transition: background-color 0.3s ease;
         }
 
         /* Ensure no container constraints untuk absensi */
@@ -37,11 +51,12 @@
             width: 100%;
         }
 
-        /* Custom padding untuk konten absensi - Dark Theme */
+        /* Custom padding untuk konten absensi - Responsive Theme */
         body.absensi-page .absensi-content {
             padding: 1.5rem;
-            background: var(--color-black);
+            background: var(--color-bg-primary);
             min-height: 100vh;
+            transition: background-color 0.3s ease;
         }
 
         @media (min-width: 640px) {
@@ -104,249 +119,307 @@
             max-width: 0;
         }
 
-        /* Page Background Dark Theme */
+        /* Page Background Responsive Theme */
         .page-background {
-            background: var(--color-black) !important;
+            background: var(--color-bg-primary) !important;
+            transition: background-color 0.3s ease;
         }
 
-        /* Header Dark Theme */
+        /* Header Responsive Theme */
         .page-title {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            font-weight: 700 !important;
+            transition: color 0.3s ease;
         }
 
         .page-subtitle {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
-        /* Action Buttons Dark Theme */
+        /* Action Buttons Responsive Theme */
         .btn-purple {
-            background: #8b5cf6 !important;
-            border: 1px solid #a855f7 !important;
-        }
-
-        .btn-purple:hover {
-            background: #7c3aed !important;
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3) !important;
-        }
-
-        .btn-green {
-            background: #10b981 !important;
-            border: 1px solid #059669 !important;
-        }
-
-        .btn-green:hover {
-            background: #059669 !important;
-            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3) !important;
-        }
-
-        .btn-blue {
-            background: #3b82f6 !important;
-            border: 1px solid #2563eb !important;
-        }
-
-        .btn-blue:hover {
-            background: #2563eb !important;
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3) !important;
-        }
-
-        /* Stats Card Dark Theme */
-        .stats-card {
-            background: var(--color-black) !important;
-            border: 1px solid var(--color-gray) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+            background: #6f42c1 !important;
+            border: 1px solid #6f42c1 !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
             transition: all 0.3s ease;
         }
 
+        .btn-purple:hover {
+            background: #5a2d91 !important;
+            box-shadow: 0 4px 12px rgba(111, 66, 193, 0.3) !important;
+        }
+
+        .btn-green {
+            background: #198754 !important;
+            border: 1px solid #198754 !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+            transition: all 0.3s ease;
+        }
+
+        .btn-green:hover {
+            background: #146c43 !important;
+            box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3) !important;
+        }
+
+        .btn-blue {
+            background: #0d6efd !important;
+            border: 1px solid #0d6efd !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
+            transition: all 0.3s ease;
+        }
+
+        .btn-blue:hover {
+            background: #0b5ed7 !important;
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3) !important;
+        }
+
+        /* Stats Card Responsive Theme */
+        .stats-card {
+            background: var(--color-bg-secondary) !important;
+            border: 1px solid var(--color-border) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease;
+        }
+
+        .dark .stats-card {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+        }
+
         .stats-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5) !important;
-            border-color: var(--color-light) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            border-color: #198754 !important;
+        }
+
+        .dark .stats-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
         }
 
         .stats-icon-bg {
-            background: rgba(16, 185, 129, 0.2) !important;
+            background: rgba(25, 135, 84, 0.1) !important;
         }
 
         .stats-icon {
-            color: #10b981 !important;
+            color: #198754 !important;
         }
 
         .stats-label {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            font-weight: 500 !important;
         }
 
         .stats-value {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            font-weight: 700 !important;
         }
 
-        /* Main Content Card Dark Theme */
+        /* Main Content Card Responsive Theme */
         .content-card {
-            background: var(--color-black) !important;
-            border: 1px solid var(--color-gray) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+            background: var(--color-bg-secondary) !important;
+            border: 1px solid var(--color-border) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease;
         }
 
-        /* Table Dark Theme */
+        .dark .content-card {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* Table Responsive Theme */
         .table-header {
-            background: rgba(109, 109, 109, 0.1) !important;
+            background: var(--color-bg-primary) !important;
+            transition: background-color 0.3s ease;
         }
 
         .table-header-cell {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            font-weight: 600 !important;
+            transition: color 0.3s ease;
         }
 
         .table-body {
-            background: var(--color-black) !important;
+            background: var(--color-bg-secondary) !important;
+            transition: background-color 0.3s ease;
         }
 
         .table-row {
-            border-bottom: 1px solid rgba(109, 109, 109, 0.2) !important;
+            border-bottom: 1px solid var(--color-border) !important;
+            transition: all 0.3s ease;
         }
 
         .table-row:hover {
-            background: rgba(109, 109, 109, 0.1) !important;
+            background: var(--color-bg-primary) !important;
         }
 
         .table-cell {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            transition: color 0.3s ease;
         }
 
         .table-cell-secondary {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
-        /* Employee Avatar Dark Theme */
+        /* Employee Avatar Responsive Theme */
         .employee-avatar {
-            background: linear-gradient(135deg, #8b5cf6, #a855f7) !important;
+            background: linear-gradient(135deg, #6f42c1, #495057) !important;
         }
 
-        /* Status Badges Dark Theme */
+        .dark .employee-avatar {
+            background: linear-gradient(135deg, #a855f7, #9ca3af) !important;
+        }
+
+        /* Status Badges Light Theme */
         .badge-hadir {
-            background: rgba(16, 185, 129, 0.2) !important;
-            color: #10b981 !important;
-            border: 1px solid rgba(16, 185, 129, 0.3) !important;
+            background: rgba(25, 135, 84, 0.1) !important;
+            color: #198754 !important;
+            border: 1px solid rgba(25, 135, 84, 0.3) !important;
         }
 
         .badge-izin {
-            background: rgba(245, 158, 11, 0.2) !important;
-            color: #f59e0b !important;
-            border: 1px solid rgba(245, 158, 11, 0.3) !important;
+            background: rgba(255, 193, 7, 0.1) !important;
+            color: #ffc107 !important;
+            border: 1px solid rgba(255, 193, 7, 0.3) !important;
         }
 
         .badge-tidak-hadir {
-            background: rgba(239, 68, 68, 0.2) !important;
-            color: #ef4444 !important;
-            border: 1px solid rgba(239, 68, 68, 0.3) !important;
+            background: rgba(220, 53, 69, 0.1) !important;
+            color: #dc3545 !important;
+            border: 1px solid rgba(220, 53, 69, 0.3) !important;
         }
 
         .badge-auto {
-            background: rgba(59, 130, 246, 0.2) !important;
-            color: #3b82f6 !important;
-            border: 1px solid rgba(59, 130, 246, 0.3) !important;
+            background: rgba(13, 110, 253, 0.1) !important;
+            color: #0d6efd !important;
+            border: 1px solid rgba(13, 110, 253, 0.3) !important;
         }
 
         .badge-manual {
-            background: rgba(109, 109, 109, 0.2) !important;
-            color: var(--color-light) !important;
-            border: 1px solid rgba(109, 109, 109, 0.3) !important;
+            background: rgba(108, 117, 125, 0.1) !important;
+            color: var(--color-dark-gray) !important;
+            border: 1px solid rgba(108, 117, 125, 0.3) !important;
         }
 
-        /* Action Links Dark Theme */
+        /* Action Links Light Theme */
         .action-view {
-            color: #3b82f6 !important;
+            color: #0d6efd !important;
         }
 
         .action-view:hover {
-            color: #2563eb !important;
+            color: #0b5ed7 !important;
         }
 
         .action-edit {
-            color: #10b981 !important;
+            color: #198754 !important;
         }
 
         .action-edit:hover {
-            color: #059669 !important;
+            color: #146c43 !important;
         }
 
         .action-delete {
-            color: #ef4444 !important;
+            color: #dc3545 !important;
         }
 
         .action-delete:hover {
-            color: #dc2626 !important;
+            color: #b02a37 !important;
         }
 
-        /* Mobile Card View Dark Theme */
+        /* Mobile Card View Responsive Theme */
         .mobile-card {
-            background: var(--color-black) !important;
+            background: var(--color-bg-secondary) !important;
+            transition: all 0.3s ease;
         }
 
         .mobile-card:hover {
-            background: rgba(109, 109, 109, 0.1) !important;
+            background: var(--color-bg-primary) !important;
         }
 
         .mobile-card-title {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            transition: color 0.3s ease;
         }
 
         .mobile-card-subtitle {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
         .mobile-info-bg {
-            background: rgba(109, 109, 109, 0.1) !important;
+            background: var(--color-bg-primary) !important;
+            border: 1px solid var(--color-border) !important;
+            transition: all 0.3s ease;
         }
 
         .mobile-info-label {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            font-weight: 500 !important;
+            transition: color 0.3s ease;
         }
 
-        /* Mobile Action Buttons Dark Theme */
+        /* Mobile Action Buttons Responsive Theme */
         .mobile-btn-view {
-            background: rgba(59, 130, 246, 0.2) !important;
-            color: #3b82f6 !important;
+            background: rgba(13, 110, 253, 0.1) !important;
+            color: #0d6efd !important;
+            border: 1px solid rgba(13, 110, 253, 0.2) !important;
+            transition: all 0.3s ease;
         }
 
         .mobile-btn-view:hover {
-            background: rgba(59, 130, 246, 0.3) !important;
+            background: rgba(13, 110, 253, 0.2) !important;
         }
 
         .mobile-btn-edit {
-            background: rgba(16, 185, 129, 0.2) !important;
-            color: #10b981 !important;
+            background: rgba(25, 135, 84, 0.1) !important;
+            color: #198754 !important;
+            border: 1px solid rgba(25, 135, 84, 0.2) !important;
+            transition: all 0.3s ease;
         }
 
         .mobile-btn-edit:hover {
-            background: rgba(16, 185, 129, 0.3) !important;
+            background: rgba(25, 135, 84, 0.2) !important;
         }
 
         .mobile-btn-delete {
-            background: rgba(239, 68, 68, 0.2) !important;
-            color: #ef4444 !important;
+            background: rgba(220, 53, 69, 0.1) !important;
+            color: #dc3545 !important;
+            border: 1px solid rgba(220, 53, 69, 0.2) !important;
+            transition: all 0.3s ease;
         }
 
         .mobile-btn-delete:hover {
-            background: rgba(239, 68, 68, 0.3) !important;
+            background: rgba(220, 53, 69, 0.2) !important;
         }
 
-        /* Empty State Dark Theme */
+        /* Empty State Responsive Theme */
         .empty-state-icon {
-            color: var(--color-gray) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
         .empty-state-title {
-            color: var(--color-white) !important;
+            color: var(--color-text-primary) !important;
+            transition: color 0.3s ease;
         }
 
         .empty-state-subtitle {
-            color: var(--color-light) !important;
+            color: var(--color-text-secondary) !important;
+            transition: color 0.3s ease;
         }
 
-        /* Pagination Dark Theme */
+        /* Pagination Responsive Theme */
         .pagination-card {
-            background: var(--color-black) !important;
-            border: 1px solid var(--color-gray) !important;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+            background: var(--color-bg-secondary) !important;
+            border: 1px solid var(--color-border) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease;
+        }
+
+        .dark .pagination-card {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+        }, 0, 0, 0.1) !important;
         }
 
         /* Animation */
@@ -363,12 +436,6 @@
             animation: slideUp 0.8s ease-out;
         }
 
-        /* Responsive enhancements */
-        @media (max-width: 768px) {
-            body.absensi-page .absensi-content {
-                padding: 1rem;
-            }
-        }
     </style>
 
     <!-- Script untuk menambah class absensi-page ke body -->
@@ -663,7 +730,7 @@
                                    class="btn-blue inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-lg transition-colors">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
+                                    </svg>
                                     Tambah Manual
                                 </a>
                             </div>
@@ -706,7 +773,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🌙 Absensi Dark Theme Loaded Successfully!');
+            console.log('🌓 Absensi Responsive Theme Loaded Successfully!');
+            
+            // Log current theme
+            const isDark = document.documentElement.classList.contains('dark');
+            console.log('Current theme:', isDark ? 'Dark' : 'Light');
         });
     </script>
 </x-app-layout>
