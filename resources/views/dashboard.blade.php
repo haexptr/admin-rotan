@@ -3,8 +3,50 @@
 
     <style>
         /* ========================================
-           OPTIMIZED DASHBOARD DESIGN
+           OPTIMIZED DASHBOARD DESIGN - NO SCROLLBAR
            ======================================== */
+        
+        /* Hide ALL scrollbars globally */
+        * {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        *::-webkit-scrollbar {
+            display: none; /* WebKit */
+        }
+
+        body {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        html {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Remove scrollbar from specific containers */
+        .custom-scroll,
+        .overflow-y-auto,
+        .overflow-auto {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        .custom-scroll::-webkit-scrollbar,
+        .overflow-y-auto::-webkit-scrollbar,
+        .overflow-auto::-webkit-scrollbar {
+            display: none !important;
+        }
         
         /* Simplified animations - better performance */
         @keyframes fadeInUp {
@@ -46,32 +88,6 @@
         /* Smooth transitions for dark mode - prevents flash */
         * {
             transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        /* Optimized scrollbar */
-        .custom-scroll::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .custom-scroll::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: rgba(156, 163, 175, 0.4);
-            border-radius: 2px;
-        }
-
-        .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: rgba(156, 163, 175, 0.7);
-        }
-
-        .dark .custom-scroll::-webkit-scrollbar-thumb {
-            background: rgba(156, 163, 175, 0.3);
-        }
-
-        .dark .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: rgba(156, 163, 175, 0.5);
         }
 
         /* Optimized chart containers - full width friendly */
@@ -258,6 +274,28 @@
             gap: 2rem;
         }
 
+        /* NO SCROLLBAR CONTAINERS */
+        .no-scroll {
+            overflow: hidden !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        .no-scroll::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        /* Make containers height-controlled to prevent scrolling */
+        .max-h-64 {
+            max-height: 16rem;
+            overflow: hidden !important;
+        }
+
+        .max-h-80 {
+            max-height: 20rem;
+            overflow: hidden !important;
+        }
+
         @media (max-width: 1280px) {
             .main-grid {
                 grid-template-columns: 1fr;
@@ -299,7 +337,7 @@
         }
     </style>
 
-    <div class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div class="bg-gray-50 dark:bg-gray-900 min-h-screen no-scroll">
         <div class="space-y-6 px-4 py-6 max-w-none w-full">
             
             <!-- Modern Welcome Card -->
@@ -428,7 +466,7 @@
                             <h3 class="modern-section-header">Absensi Terbaru</h3>
                             <div class="modern-indicator bg-emerald-500"></div>
                         </div>
-                        <div class="space-y-3 custom-scroll max-h-64 overflow-y-auto">
+                        <div class="space-y-3 no-scroll max-h-64">
                             @forelse($recentAbsensi->take(4) as $absensi)
                                 <div class="modern-list-item">
                                     <div class="flex items-center justify-between">
@@ -463,7 +501,7 @@
                             <h3 class="modern-section-header">Timbangan Terbaru</h3>
                             <div class="modern-indicator bg-amber-500"></div>
                         </div>
-                        <div class="space-y-3 custom-scroll max-h-64 overflow-y-auto">
+                        <div class="space-y-3 no-scroll max-h-64">
                             @forelse($recentTimbangan->take(4) as $timbangan)
                                 <div class="modern-list-item">
                                     <div class="flex items-center justify-between">
@@ -529,7 +567,7 @@
                 <!-- Top Performers -->
                 <div class="modern-card p-6 animate-fade-in-up" style="animation-delay: 0.1s;">
                     <h3 class="modern-section-header">Top Performer Bulan Ini</h3>
-                    <div class="space-y-3 custom-scroll max-h-80 overflow-y-auto">
+                    <div class="space-y-3 no-scroll max-h-80">
                         @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
                             <div class="modern-list-item">
                                 <div class="flex items-center space-x-4">
@@ -833,7 +871,7 @@
             attributeFilter: ['class']
         });
 
-        console.log('✅ Optimized Dashboard Loaded Successfully!');
+        console.log('✅ Dashboard Tanpa Scrollbar Loaded Successfully!');
     </script>
     @endpush
 </x-app-layout>
