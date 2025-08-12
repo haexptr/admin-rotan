@@ -21,8 +21,8 @@
             font-family: 'Poppins', sans-serif;
             height: 100vh;
             overflow: hidden;
-            /* Updated gradient dengan warna hijau yang serasi */
-            background: linear-gradient(135deg, #2d5a27 0%, #3d6b2f 25%, #6b8e23 50%, #4d7c37 75%, #2d5a27 100%);
+            /* Updated gradient dengan warna hitam yang elegan */
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #000000 100%);
             background-size: 400% 400%;
             animation: gradientShift 10s ease infinite;
             display: flex;
@@ -38,7 +38,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Floating particles effect - Green colors */
+        /* Floating particles effect - Black/Gray colors */
         .particles {
             position: absolute;
             top: 0;
@@ -51,10 +51,10 @@
 
         .particle {
             position: absolute;
-            background: rgba(107, 142, 35, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: float 8s ease-in-out infinite;
-            box-shadow: 0 0 10px rgba(107, 142, 35, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         .particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: 0s; }
@@ -94,9 +94,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 25px 50px rgba(45, 90, 39, 0.4);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(20px);
-            border: 3px solid rgba(107, 142, 35, 0.4);
+            border: 3px solid rgba(128, 128, 128, 0.4);
             animation: logoFloat 4s ease-in-out infinite;
             position: relative;
         }
@@ -108,8 +108,8 @@
             left: -5px;
             right: -5px;
             bottom: -5px;
-            /* Updated gradient dengan warna hijau */
-            background: linear-gradient(45deg, #6b8e23, #4d7c37, #228b22, #3d6b2f);
+            /* Updated gradient dengan warna hitam/abu-abu */
+            background: linear-gradient(45deg, #333333, #1a1a1a, #4d4d4d, #2d2d2d);
             border-radius: 50%;
             z-index: -1;
             animation: rotate 3s linear infinite;
@@ -124,7 +124,7 @@
         .logo-text {
             font-size: 2.8rem;
             font-weight: 700;
-            background: linear-gradient(45deg, #2d5a27, #3d6b2f);
+            background: linear-gradient(45deg, #000000, #1a1a1a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -160,21 +160,17 @@
             font-size: 3.2rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
             line-height: 1.2;
-            /* Updated dengan warna hijau terang */
-            background: linear-gradient(135deg, #f8fdf7, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            /* Solid white color for better visibility */
+            color: #ffffff;
         }
 
         .welcome-text p {
             font-size: 1.3rem;
             font-weight: 400;
-            opacity: 0.95;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            color: rgba(248, 253, 247, 0.9);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            color: #ffffff;
         }
 
         @keyframes textSlideUp {
@@ -194,33 +190,33 @@
         }
 
         .loading-text {
-            color: rgba(248, 253, 247, 0.9);
+            color: #ffffff;
             font-size: 1.1rem;
             font-weight: 500;
             margin-bottom: 1.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .progress-bar {
             width: 320px;
             height: 8px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             margin: 0 auto;
             overflow: hidden;
             backdrop-filter: blur(10px);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .progress-fill {
             height: 100%;
-            /* Updated gradient dengan warna hijau */
-            background: linear-gradient(90deg, #6b8e23, #4d7c37, #228b22, #3d6b2f);
+            /* Updated gradient dengan warna hitam/abu-abu */
+            background: linear-gradient(90deg, #333333, #1a1a1a, #4d4d4d, #2d2d2d);
             background-size: 200% 100%;
             border-radius: 15px;
             width: 0%;
             animation: progressFill 4s ease-in-out, progressShine 2s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(107, 142, 35, 0.6);
+            box-shadow: 0 0 20px rgba(128, 128, 128, 0.4);
         }
 
         @keyframes loadingAppear {
@@ -320,7 +316,7 @@
             }
         }
 
-        /* Additional modern effects with green theme */
+        /* Additional modern effects with black theme */
         .container::before {
             content: '';
             position: absolute;
@@ -328,7 +324,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(107, 142, 35, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
             z-index: -1;
         }
@@ -411,11 +407,11 @@
             particle.style.top = y + 'px';
             particle.style.width = '6px';
             particle.style.height = '6px';
-            particle.style.background = 'rgba(107, 142, 35, 0.8)';
+            particle.style.background = 'rgba(255, 255, 255, 0.6)';
             particle.style.borderRadius = '50%';
             particle.style.pointerEvents = 'none';
             particle.style.zIndex = '100';
-            particle.style.boxShadow = '0 0 10px rgba(107, 142, 35, 0.6)';
+            particle.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.4)';
             particle.style.animation = 'tempParticle 1.2s ease-out forwards';
             
             document.body.appendChild(particle);
@@ -464,13 +460,13 @@
             }
         }, 60);
 
-        // Add subtle screen glow effect with green theme
+        // Add subtle screen glow effect with black theme
         document.addEventListener('DOMContentLoaded', function() {
             const body = document.body;
             
             setInterval(() => {
                 const glowIntensity = 0.5 + Math.sin(Date.now() * 0.001) * 0.2;
-                body.style.boxShadow = `inset 0 0 100px rgba(107, 142, 35, ${glowIntensity * 0.1})`;
+                body.style.boxShadow = `inset 0 0 100px rgba(255, 255, 255, ${glowIntensity * 0.02})`;
             }, 100);
         });
     </script>

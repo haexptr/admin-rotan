@@ -3,106 +3,91 @@
 
     <style>
         /* ========================================
-           NEW MODERN DASHBOARD DESIGN
+           OPTIMIZED DASHBOARD DESIGN
            ======================================== */
         
+        /* Simplified animations - better performance */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
+            from { opacity: 0; transform: translateX(-20px); }
             to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(30px); }
+            from { opacity: 0; transform: translateX(20px); }
             to { opacity: 1; transform: translateX(0); }
         }
 
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
-        }
-
         @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
+            from { opacity: 0; transform: scale(0.98); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
         .animate-fade-in-up {
-            animation: fadeInUp 1s ease-out;
+            animation: fadeInUp 0.4s ease-out;
         }
 
         .animate-slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
+            animation: slideInLeft 0.4s ease-out;
         }
 
         .animate-slide-in-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        .animate-float {
-            animation: gentleFloat 4s ease-in-out infinite;
+            animation: slideInRight 0.4s ease-out;
         }
 
         .animate-scale-in {
-            animation: scaleIn 0.5s ease-out;
+            animation: scaleIn 0.3s ease-out;
         }
 
-        /* Enhanced scrollbar */
+        /* Smooth transitions for dark mode - prevents flash */
+        * {
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Optimized scrollbar */
         .custom-scroll::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
 
         .custom-scroll::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.02);
-            border-radius: 3px;
+            background: transparent;
         }
 
         .custom-scroll::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #d1d5db, #9ca3af);
-            border-radius: 3px;
-            transition: background 0.3s ease;
+            background: rgba(156, 163, 175, 0.4);
+            border-radius: 2px;
         }
 
         .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #9ca3af, #6b7280);
-        }
-
-        .dark .custom-scroll::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(156, 163, 175, 0.7);
         }
 
         .dark .custom-scroll::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #4b5563, #6b7280);
+            background: rgba(156, 163, 175, 0.3);
         }
 
         .dark .custom-scroll::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #6b7280, #9ca3af);
+            background: rgba(156, 163, 175, 0.5);
         }
 
-        /* Modern chart containers */
+        /* Optimized chart containers - full width friendly */
         .chart-container {
             position: relative;
             width: 100%;
-            height: 16rem;
+            height: 18rem;
             padding: 1rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            background: rgb(255 255 255);
+            border-radius: 12px;
+            border: 1px solid rgb(229 231 235);
         }
 
         .dark .chart-container {
-            background: linear-gradient(135deg, rgba(55, 65, 81, 0.8), rgba(55, 65, 81, 0.4));
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgb(31 41 55);
+            border: 1px solid rgb(55 65 81);
         }
 
         .doughnut-container {
@@ -111,67 +96,51 @@
             height: 12rem;
             margin: 0 auto;
             padding: 1rem;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-            border-radius: 50%;
         }
 
-        /* Modern welcome card */
+        /* Simplified welcome card - removed heavy gradients */
         .welcome-card {
-            background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%);
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
             position: relative;
             min-height: auto;
             overflow: hidden;
         }
 
         .dark .welcome-card {
-            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 50%, #f9fafb 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
         }
 
-        .welcome-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-            border-radius: 50%;
-        }
-
-        /* Modern cards with glassmorphism */
+        /* Optimized cards - removed backdrop-filter for performance */
         .modern-card {
             position: relative;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
+            background: rgb(255 255 255);
+            border: 1px solid rgb(229 231 235);
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .dark .modern-card {
-            background: linear-gradient(135deg, rgba(55, 65, 81, 0.9), rgba(55, 65, 81, 0.7));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: rgb(31 41 55);
+            border: 1px solid rgb(55 65 81);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
         }
 
         .modern-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
         }
 
         .dark .modern-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.35);
         }
 
-        /* Compact stats cards */
+        /* Simplified stat cards */
         .compact-stat-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 16px;
+            background: rgb(255 255 255);
+            border: 1px solid rgb(229 231 235);
+            border-radius: 12px;
             padding: 1.5rem;
             transition: all 0.3s ease;
             position: relative;
@@ -179,83 +148,75 @@
         }
 
         .dark .compact-stat-card {
-            background: linear-gradient(135deg, rgba(55, 65, 81, 0.95), rgba(55, 65, 81, 0.8));
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgb(31 41 55);
+            border: 1px solid rgb(55 65 81);
         }
 
-        .compact-stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s ease;
+        .compact-stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .compact-stat-card:hover::before {
-            left: 100%;
+        .dark .compact-stat-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
         }
 
-        /* Enhanced list items with modern design */
+        /* Simplified list items */
         .modern-list-item {
             position: relative;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
+            background: rgb(249 250 251);
+            border: 1px solid rgb(229 231 235);
+            border-radius: 8px;
             padding: 1rem;
             margin-bottom: 0.75rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
         }
 
         .dark .modern-list-item {
-            background: linear-gradient(135deg, rgba(55, 65, 81, 0.8), rgba(55, 65, 81, 0.6));
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgb(55 65 81);
+            border: 1px solid rgb(75 85 99);
         }
 
         .modern-list-item:hover {
-            transform: translateX(8px);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(4px);
+            background: rgb(243 244 246);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .dark .modern-list-item:hover {
-            background: linear-gradient(135deg, rgba(55, 65, 81, 0.95), rgba(55, 65, 81, 0.8));
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: rgb(75 85 99);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Modern status badges */
+        /* Simplified badges */
         .modern-badge {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
+            background: rgb(249 250 251);
+            border: 1px solid rgb(229 231 235);
+            border-radius: 16px;
             padding: 0.5rem 1rem;
             font-weight: 600;
             font-size: 0.8rem;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
-        /* Modern indicators */
+        .dark .modern-badge {
+            background: rgb(55 65 81);
+            border: 1px solid rgb(75 85 99);
+        }
+
+        /* Simplified indicators */
         .modern-indicator {
             position: relative;
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            animation: gentle-pulse 2s ease-in-out infinite;
+            display: inline-block;
         }
 
-        @keyframes gentle-pulse {
-            0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px currentColor; }
-            50% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 20px currentColor; }
-        }
-
-        /* Section headers with modern styling */
+        /* Section headers */
         .modern-section-header {
             position: relative;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: #1f2937;
             margin-bottom: 1.5rem;
@@ -268,69 +229,84 @@
         .modern-section-header::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -6px;
             left: 0;
-            width: 40px;
-            height: 3px;
-            background: linear-gradient(90deg, #6b7280, transparent);
-            border-radius: 2px;
+            width: 32px;
+            height: 2px;
+            background: #6b7280;
+            border-radius: 1px;
         }
 
-        /* Grid layouts */
+        /* Grid layouts - optimized for full width */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .main-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .content-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
         }
 
+        @media (max-width: 1280px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 1024px) {
-            .main-grid,
             .content-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Font smoothing */
+        @media (max-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Font optimization */
         * {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
         }
 
-        /* Reduced motion */
+        /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
             .animate-fade-in-up,
             .animate-slide-in-left,
             .animate-slide-in-right,
-            .animate-float,
             .animate-scale-in {
                 animation: none;
             }
         }
     </style>
 
-    <div class="bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-        <div class="space-y-6 px-6 py-8">
+    <div class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <div class="space-y-6 px-4 py-6 max-w-none w-full">
             
             <!-- Modern Welcome Card -->
             <div class="relative animate-scale-in">
-                <div class="welcome-card rounded-3xl p-8 shadow-2xl border border-gray-800/20 dark:border-gray-200/20">
+                <div class="welcome-card rounded-2xl p-8 shadow-lg border border-gray-800/20 dark:border-gray-200/20">
                     <div class="flex items-center space-x-6 relative z-10">
-                        <div class="w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 dark:from-gray-900/20 dark:to-gray-900/10 rounded-2xl flex items-center justify-center backdrop-blur-10 animate-float flex-shrink-0">
+                        <div class="w-16 h-16 bg-white/20 dark:bg-gray-900/20 rounded-xl flex items-center justify-center flex-shrink-0">
                             <svg class="w-8 h-8 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                             </svg>
@@ -355,8 +331,8 @@
                             <p class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">Total Karyawan</p>
                             <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $totalKaryawan ?? '4' }}</p>
                         </div>
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                             </svg>
                         </div>
@@ -369,8 +345,8 @@
                             <p class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">Absensi Hari Ini</p>
                             <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $absensiHariIni ?? '3' }}</p>
                         </div>
-                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
@@ -383,8 +359,8 @@
                             <p class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">Total Timbangan</p>
                             <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $totalTimbangan ?? '12' }}</p>
                         </div>
-                        <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
                             </svg>
                         </div>
@@ -397,8 +373,8 @@
                             <p class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">Total Gaji</p>
                             <p class="text-2xl font-bold text-gray-900 dark:text-white">Rp {{ number_format(array_sum($gajiBulanan ?? [0]), 0, ',', '.') }}</p>
                         </div>
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
                             </svg>
                         </div>
@@ -431,10 +407,10 @@
                     </div>
 
                     <!-- Salary Chart -->
-                    <div class="modern-card p-6 animate-slide-in-left" style="animation-delay: 0.2s;">
+                    <div class="modern-card p-6 animate-slide-in-left" style="animation-delay: 0.1s;">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="modern-section-header">Tren Gaji 6 Bulan</h3>
-                            <div class="text-sm font-semibold text-gray-600 dark:text-gray-300 bg-white/50 dark:bg-gray-700/50 px-4 py-2 rounded-lg backdrop-blur-sm">
+                            <div class="text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 px-4 py-2 rounded-lg">
                                 Total: <span class="font-bold text-gray-900 dark:text-white">Rp {{ number_format(array_sum($gajiBulanan ?? [0]), 0, ',', '.') }}</span>
                             </div>
                         </div>
@@ -482,7 +458,7 @@
                     </div>
 
                     <!-- Recent Weighing -->
-                    <div class="modern-card p-6 animate-slide-in-right" style="animation-delay: 0.2s;">
+                    <div class="modern-card p-6 animate-slide-in-right" style="animation-delay: 0.1s;">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="modern-section-header">Timbangan Terbaru</h3>
                             <div class="modern-indicator bg-amber-500"></div>
@@ -495,7 +471,7 @@
                                             <div class="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
                                             <span class="text-gray-900 dark:text-white font-semibold">{{ $timbangan->karyawan->nama }}</span>
                                         </div>
-                                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 bg-white/60 dark:bg-gray-600/60 px-3 py-1 rounded-lg">
+                                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-600 px-3 py-1 rounded-lg">
                                             {{ $timbangan->deskripsi_timbangan }}
                                         </span>
                                     </div>
@@ -526,21 +502,21 @@
                         </div>
                     </div>
                     <div class="space-y-3">
-                        <div class="flex items-center justify-between p-3 rounded-lg bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm">
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
                             <div class="flex items-center space-x-3">
                                 <div class="w-4 h-4 bg-gray-900 dark:bg-gray-100 rounded-full"></div>
                                 <span class="text-gray-700 dark:text-gray-300 font-medium">Hadir</span>
                             </div>
                             <span class="font-bold text-gray-900 dark:text-white">{{ $absensiStats['hadir'] ?? 0 }}</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-lg bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm">
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
                             <div class="flex items-center space-x-3">
                                 <div class="w-4 h-4 bg-gray-600 dark:bg-gray-400 rounded-full"></div>
                                 <span class="text-gray-700 dark:text-gray-300 font-medium">Izin</span>
                             </div>
                             <span class="font-bold text-gray-900 dark:text-white">{{ $absensiStats['izin'] ?? 0 }}</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-lg bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm">
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
                             <div class="flex items-center space-x-3">
                                 <div class="w-4 h-4 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
                                 <span class="text-gray-700 dark:text-gray-300 font-medium">Tidak Hadir</span>
@@ -551,13 +527,13 @@
                 </div>
 
                 <!-- Top Performers -->
-                <div class="modern-card p-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="modern-card p-6 animate-fade-in-up" style="animation-delay: 0.1s;">
                     <h3 class="modern-section-header">Top Performer Bulan Ini</h3>
                     <div class="space-y-3 custom-scroll max-h-80 overflow-y-auto">
                         @forelse($topKaryawanAbsensi->take(5) as $index => $karyawan)
                             <div class="modern-list-item">
                                 <div class="flex items-center space-x-4">
-                                    <div class="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-900 dark:from-gray-200 dark:to-gray-400 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-bold animate-float">
+                                    <div class="w-10 h-10 bg-gray-700 dark:bg-gray-300 text-white dark:text-gray-900 rounded-full flex items-center justify-center font-bold">
                                         {{ $index + 1 }}
                                     </div>
                                     <div class="flex-1">
@@ -589,10 +565,10 @@
     @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <script>
-        // Enhanced theme detection with better performance
+        // Optimized theme detection
         const isDarkMode = () => document.documentElement.classList.contains('dark');
         
-        // Same color palette - enhanced for better contrast
+        // Simplified color palette
         const getThemeColors = () => {
             const dark = isDarkMode();
             return {
@@ -602,18 +578,17 @@
                 border: dark ? '#374151' : '#e5e7eb',
                 gridLines: dark ? '#374151' : '#f3f4f6',
                 primary: dark ? '#f9fafb' : '#1f2937',
-                secondary: dark ? '#d1d5db' : '#6b7280',
-                tertiary: dark ? '#9ca3af' : '#9ca3af'
+                secondary: dark ? '#d1d5db' : '#6b7280'
             };
         };
 
-        // Enhanced Chart.js configuration
+        // Optimized Chart.js defaults
         Chart.defaults.font.family = "'Inter', -apple-system, BlinkMacSystemFont, sans-serif";
-        Chart.defaults.font.weight = '600';
+        Chart.defaults.font.weight = '500';
         Chart.defaults.color = getThemeColors().textSecondary;
         Chart.defaults.plugins.legend.display = false;
 
-        // Enhanced Activity Chart with better styling
+        // Activity Chart - optimized
         const activityCtx = document.getElementById('activityChart').getContext('2d');
         const activityChart = new Chart(activityCtx, {
             type: 'line',
@@ -626,13 +601,12 @@
                     backgroundColor: getThemeColors().primary + '20',
                     tension: 0.4,
                     fill: true,
-                    pointRadius: 5,
-                    pointHoverRadius: 7,
-                    borderWidth: 3,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    borderWidth: 2,
                     pointBackgroundColor: getThemeColors().background,
                     pointBorderColor: getThemeColors().primary,
-                    pointBorderWidth: 2,
-                    pointHoverBorderWidth: 3
+                    pointBorderWidth: 2
                 }, {
                     label: 'Timbangan',
                     data: @json($timbangan7Hari),
@@ -640,13 +614,12 @@
                     backgroundColor: getThemeColors().secondary + '20',
                     tension: 0.4,
                     fill: true,
-                    pointRadius: 5,
-                    pointHoverRadius: 7,
-                    borderWidth: 3,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    borderWidth: 2,
                     pointBackgroundColor: getThemeColors().background,
                     pointBorderColor: getThemeColors().secondary,
-                    pointBorderWidth: 2,
-                    pointHoverBorderWidth: 3
+                    pointBorderWidth: 2
                 }]
             },
             options: {
@@ -661,13 +634,12 @@
                         beginAtZero: true,
                         grid: { 
                             color: getThemeColors().gridLines,
-                            drawBorder: false,
-                            lineWidth: 1
+                            drawBorder: false
                         },
                         ticks: {
                             color: getThemeColors().textSecondary,
-                            padding: 12,
-                            font: { weight: '600', size: 11 }
+                            padding: 8,
+                            font: { size: 11 }
                         }
                     },
                     x: {
@@ -675,27 +647,25 @@
                         ticks: {
                             color: getThemeColors().textSecondary,
                             padding: 8,
-                            font: { weight: '600', size: 11 }
+                            font: { size: 11 }
                         }
                     }
                 },
                 plugins: {
                     tooltip: {
-                        backgroundColor: getThemeColors().background + 'f0',
+                        backgroundColor: getThemeColors().background,
                         titleColor: getThemeColors().text,
                         bodyColor: getThemeColors().text,
                         borderColor: getThemeColors().border,
                         borderWidth: 1,
-                        cornerRadius: 12,
-                        padding: 16,
-                        titleFont: { weight: 'bold', size: 14 },
-                        bodyFont: { weight: '600', size: 12 }
+                        cornerRadius: 8,
+                        padding: 12
                     }
                 }
             }
         });
 
-        // Enhanced Salary Chart
+        // Salary Chart - optimized
         const gajiCtx = document.getElementById('gajiChart').getContext('2d');
         const gajiChart = new Chart(gajiCtx, {
             type: 'bar',
@@ -705,9 +675,9 @@
                     label: 'Total Gaji',
                     data: @json($gajiBulanan),
                     backgroundColor: getThemeColors().primary,
-                    borderRadius: 8,
+                    borderRadius: 6,
                     borderSkipped: false,
-                    maxBarThickness: 40
+                    maxBarThickness: 32
                 }]
             },
             options: {
@@ -718,13 +688,12 @@
                         beginAtZero: true,
                         grid: { 
                             color: getThemeColors().gridLines,
-                            drawBorder: false,
-                            lineWidth: 1
+                            drawBorder: false
                         },
                         ticks: {
                             color: getThemeColors().textSecondary,
-                            padding: 12,
-                            font: { weight: '600', size: 11 },
+                            padding: 8,
+                            font: { size: 11 },
                             callback: function(value) {
                                 if (value >= 1000000) {
                                     return 'Rp ' + (value/1000000).toFixed(1) + 'M';
@@ -741,21 +710,19 @@
                         ticks: {
                             color: getThemeColors().textSecondary,
                             padding: 8,
-                            font: { weight: '600', size: 11 }
+                            font: { size: 11 }
                         }
                     }
                 },
                 plugins: {
                     tooltip: {
-                        backgroundColor: getThemeColors().background + 'f0',
+                        backgroundColor: getThemeColors().background,
                         titleColor: getThemeColors().text,
                         bodyColor: getThemeColors().text,
                         borderColor: getThemeColors().border,
                         borderWidth: 1,
-                        cornerRadius: 12,
-                        padding: 16,
-                        titleFont: { weight: 'bold', size: 14 },
-                        bodyFont: { weight: '600', size: 12 },
+                        cornerRadius: 8,
+                        padding: 12,
                         callbacks: {
                             label: function(context) {
                                 return 'Total Gaji: Rp ' + new Intl.NumberFormat('id-ID').format(context.parsed.y);
@@ -766,7 +733,7 @@
             }
         });
 
-        // Enhanced Doughnut Chart
+        // Doughnut Chart - optimized
         const absensiCtx = document.getElementById('absensiChart').getContext('2d');
         const absensiChart = new Chart(absensiCtx, {
             type: 'doughnut',
@@ -783,9 +750,9 @@
                         isDarkMode() ? '#9ca3af' : '#4b5563',
                         isDarkMode() ? '#4b5563' : '#d1d5db'
                     ],
-                    borderWidth: 3,
+                    borderWidth: 2,
                     borderColor: getThemeColors().background,
-                    cutout: '65%'
+                    cutout: '60%'
                 }]
             },
             options: {
@@ -794,58 +761,69 @@
                 aspectRatio: 1,
                 plugins: {
                     tooltip: {
-                        backgroundColor: getThemeColors().background + 'f0',
+                        backgroundColor: getThemeColors().background,
                         titleColor: getThemeColors().text,
                         bodyColor: getThemeColors().text,
                         borderColor: getThemeColors().border,
                         borderWidth: 1,
-                        cornerRadius: 12,
-                        padding: 16,
-                        titleFont: { weight: 'bold', size: 14 },
-                        bodyFont: { weight: '600', size: 12 }
+                        cornerRadius: 8,
+                        padding: 12
                     }
                 }
             }
         });
 
-        // Enhanced theme change handler
+        // Optimized theme change handler
         const observer = new MutationObserver(() => {
             const colors = getThemeColors();
             
+            // Update all charts efficiently
             [activityChart, gajiChart, absensiChart].forEach(chart => {
                 if (chart) {
-                    // Update chart colors
+                    // Update scales
                     if (chart.options.scales?.y?.grid) {
                         chart.options.scales.y.grid.color = colors.gridLines;
-                    }
-                    if (chart.options.scales?.y?.ticks) {
                         chart.options.scales.y.ticks.color = colors.textSecondary;
                     }
                     if (chart.options.scales?.x?.ticks) {
                         chart.options.scales.x.ticks.color = colors.textSecondary;
                     }
                     
+                    // Update tooltips
                     if (chart.options.plugins?.tooltip) {
-                        chart.options.plugins.tooltip.backgroundColor = colors.background + 'f0';
+                        chart.options.plugins.tooltip.backgroundColor = colors.background;
                         chart.options.plugins.tooltip.titleColor = colors.text;
                         chart.options.plugins.tooltip.bodyColor = colors.text;
                         chart.options.plugins.tooltip.borderColor = colors.border;
                     }
                     
+                    // Update datasets
                     if (chart.config.type === 'line') {
                         chart.data.datasets[0].borderColor = colors.primary;
                         chart.data.datasets[0].backgroundColor = colors.primary + '20';
                         chart.data.datasets[0].pointBorderColor = colors.primary;
+                        chart.data.datasets[0].pointBackgroundColor = colors.background;
                         chart.data.datasets[1].borderColor = colors.secondary;
                         chart.data.datasets[1].backgroundColor = colors.secondary + '20';
                         chart.data.datasets[1].pointBorderColor = colors.secondary;
+                        chart.data.datasets[1].pointBackgroundColor = colors.background;
                     }
                     
                     if (chart.config.type === 'bar') {
                         chart.data.datasets[0].backgroundColor = colors.primary;
                     }
                     
-                    chart.update();
+                    if (chart.config.type === 'doughnut') {
+                        chart.data.datasets[0].backgroundColor = [
+                            isDarkMode() ? '#f9fafb' : '#111827',
+                            isDarkMode() ? '#9ca3af' : '#4b5563',
+                            isDarkMode() ? '#4b5563' : '#d1d5db'
+                        ];
+                        chart.data.datasets[0].borderColor = colors.background;
+                    }
+                    
+                    // Update without animation for smoother dark mode transition
+                    chart.update('none');
                 }
             });
         });
@@ -855,7 +833,7 @@
             attributeFilter: ['class']
         });
 
-        console.log('✨ Modern Dashboard Loaded Successfully!');
+        console.log('✅ Optimized Dashboard Loaded Successfully!');
     </script>
     @endpush
 </x-app-layout>
